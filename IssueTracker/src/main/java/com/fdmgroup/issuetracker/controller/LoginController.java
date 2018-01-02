@@ -25,12 +25,7 @@ public class LoginController {
 		return "login";
 	}
 	
-	/**
-	 * Register page
-	 * @param req the request 
-	 * @param model the model used for the form
-	 * @return path for registration page
-	 */
+
 	@RequestMapping(value="/register")
 	public String displayRegister(HttpServletRequest req, Model model)
 	{
@@ -39,14 +34,7 @@ public class LoginController {
 		return "register";
 	}
 	
-	/**
-	 * Handles the login request 
-	 * @param request 
-	 * @param model the model for the webpage data
-	 * @param username username input to be matched
-	 * @param password password input to be matched
-	 * @return path to home upon successful login or redirect back to login and sets flags for failures
-	 */
+
 	@RequestMapping(value="/LoginServlet", method=RequestMethod.POST)
 	public String login(HttpServletRequest request, Model model, @RequestParam String username, @RequestParam String password) throws DMLException
 	
