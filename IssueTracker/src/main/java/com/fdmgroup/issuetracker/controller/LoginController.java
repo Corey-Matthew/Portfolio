@@ -63,9 +63,19 @@ public class LoginController {
 			model.addAttribute("notmatch", true);
 			path = "login";	
 		}
-		else
+		else if (user.getRole().equlas("employee"))
 		{
-			request.getSession().setAttribute("user", user);
+			request.getSession().setAttribute("employee", user);
+			path = "index";
+		}
+		else if (user.getRole().equlas("superAdmin"))
+		{
+			request.getSession().setAttribute("superAdmin", user);
+			path = "index";
+		}
+		else if (user.getRole().equlas("deptAdmin"))
+		{
+			request.getSession().setAttribute("deptAdmin", user);
 			path = "index";
 		}
 		return path;
