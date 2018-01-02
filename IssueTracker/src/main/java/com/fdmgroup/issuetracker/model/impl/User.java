@@ -22,18 +22,18 @@ public class User implements IUser {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	private int id;
+	private int userId;
 	private int department_id;
 	@Column(unique = true)
 	private String username;
 	private String password;
 	private String email;
 	
-	public int getId() {
-		return id;
+	public int getUserId() {
+		return userId;
 	}
-	public void setId(int id) {
-		this.id = id;
+	public void setUserId(int userId) {
+		this.userId = userId;
 	}
 	public int getDepartment_id() {
 		return department_id;
