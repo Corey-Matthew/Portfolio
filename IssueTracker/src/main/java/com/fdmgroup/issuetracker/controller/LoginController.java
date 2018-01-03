@@ -15,7 +15,12 @@ import com.fdmgroup.issuetracker.model.impl.UserDAO;
 @Controller
 public class LoginController {
 	
-	
+/**
+ * Return to the login page
+ * @param req
+ * @param model
+ * @return
+ */
 	@RequestMapping(value="/login")
 	public String displayLogin(HttpServletRequest req, Model model)
 	{
@@ -23,49 +28,47 @@ public class LoginController {
 		model.addAttribute("user", conx.getBean("user"));
 		return "login";
 	}
-	
 
-	@RequestMapping(value="/register")
-	public String displayRegister(HttpServletRequest req, Model model)
-	{
-		ApplicationContext conx = (ApplicationContext)req.getSession().getServletContext().getAttribute("conx");
-		model.addAttribute("user", conx.getBean("user"));
-		return "register";
+/**
+ * Deal with login requests
+ * @param request
+ * @param model
+ * @param username
+ * @param password
+ * @return path
+ */
+   @RequestMapping(value="/LoginServlet", method=RequestMethod.POST)
+   public String login(HttpServletRequest request, Model model, @RequestParam String username, @RequestParam String password)
+
+   {
+    UserDAO dao = (UserDAO)request.getSession().getServletContext().getAttribute("dao");
+    User user = dao.getUser(username);
+    String path;
+    if(user == null)
+      {
+     	model.addAttribute("notfound", true);
+   		path = "login";	
 	}
-	
-//
-//	@RequestMapping(value="/LoginServlet", method=RequestMethod.POST)
-//	public String login(HttpServletRequest request, Model model, @RequestParam String username, @RequestParam String password) throws DMLException
-//	
-//	{
-//		UserDAO dao = (UserDAO)request.getSession().getServletContext().getAttribute("dao");
-//		User user = dao.getUser(username);
-//		String path;
-//		if(user == null)
-//		{
-//			model.addAttribute("notfound", true);
-//			path = "login";	
-//		}
-//		else if(!user.getPassword().equals(password)){
-//			model.addAttribute("notmatch", true);
-//			path = "login";	
-//		}
-//		else if (user.getRole().equals("employee"))
-//		{
-//			request.getSession().setAttribute("employee", user);
-//			path = "index";
-//		}
-//		else if (user.getRole().equals("superAdmin"))
-//		{
-//			request.getSession().setAttribute("superAdmin", user);
-//			path = "index";
-//		}
-//		else if (user.getRole().equals("deptAdmin"))
-//		{
-//			request.getSession().setAttribute("deptAdmin", user);
-//			path = "index";
-//		}
-//		return path;
-//	}
+		else if(!user.getPassword().equals(password)){
+			model.addAttribute("notmatch", true);
+			path = "login";	
+		}
+		else if (user.getRole().equals("employee"))
+		{
+			request.getSession().setAttribute("employee", user);
+			path = "index";
+		}
+		else if (user.getRole().equals("superAdmin"))
+		{
+			request.getSession().setAttribute("superAdmin", user);
+			path = "index";
+		}
+		else if (user.getRole().equals("deptAdmin"))
+		{
+			request.getSession().setAttribute("deptAdmin", user);
+			path = "index";
+		}
+		return path;
+	}
 
 }
