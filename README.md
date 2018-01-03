@@ -14,7 +14,7 @@ Workflow
 2. change files
 3. commit the changes with descriptive messages
 4. pull again
-5. (resolve conflicts if there are any)
+5. (resolve conflicts if there are any) commit again
 6. push to origin
 
 ## Front End
