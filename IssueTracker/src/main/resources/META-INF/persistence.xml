@@ -23,7 +23,7 @@
 			<property name="hibernate.connection.username" value="Trainee1" />
 			<property name="hibernate.connection.password" value="!QAZSE4" /> -->
 			<!-- validate, create, create-drop, update -->
-			<property name="hibernate.hbm2ddl.auto" value="create" />
+			<property name="hibernate.hbm2ddl.auto" value="update" />
 			<!-- Connection pooling config -->
 			<!-- <property name="hibernate.c3p0.min_size" value="2" />
 			<property name="hibernate.c3p0.max_size" value="3" />
@@ -31,8 +31,8 @@
 			<property name="hibernate.c3p0.max_statements" value="50" />
 			<property name="hibernate.c3p0.idle_test_period" value="3000" /> -->
 			<property name="javax.persistence.jdbc.url" value="jdbc:oracle:thin:@localhost:1521:xe"/>
-			<property name="javax.persistence.jdbc.user" value="Trainee1"/>
-			<property name="javax.persistence.jdbc.password" value="!QAZSE4"/>
+			<property name="javax.persistence.jdbc.user" value="system"/>
+			<property name="javax.persistence.jdbc.password" value="system"/>
 			<property name="javax.persistence.jdbc.driver" value="oracle.jdbc.OracleDriver"/>
 		</properties>
 	</persistence-unit>

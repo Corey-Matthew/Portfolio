@@ -1,10 +1,12 @@
 package com.fdmgroup.issuetracker.model.impl;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
@@ -22,24 +24,32 @@ public class User implements IUser {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
+	@Column(name = "User_Id")
 	private int userId;
-	private int department_id;
+	@ManyToOne (cascade=CascadeType.ALL)
+	private Department department;
 	@Column(unique = true)
 	private String username;
 	private String password;
 	private String email;
 	
+	public User(){}
+	public User(Department department, String username, String password, String email) {
+		this.setDepartment(department);
+		this.setUsername(username);
+		this.setPassword(password);
+		this.setEmail(email);
+	}
+	
 	public int getUserId() {
 		return userId;
 	}
-	public void setUserId(int userId) {
-		this.userId = userId;
+
+	public Department getDepartment() {
+		return department;
 	}
-	public int getDepartment_id() {
-		return department_id;
-	}
-	public void setDepartment_id(int department_id) {
-		this.department_id = department_id;
+	public void setDepartment(Department department) {
+		this.department = department;
 	}
 	public String getUsername() {
 		return username;
