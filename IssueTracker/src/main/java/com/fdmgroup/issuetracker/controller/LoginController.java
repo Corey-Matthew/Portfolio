@@ -69,7 +69,6 @@ public class LoginController {
 		model.addAttribute("notmatch", true);
 		path = "login";
 	}
-
 		return path;
 	}
 
