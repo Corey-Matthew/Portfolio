@@ -37,38 +37,38 @@ public class LoginController {
  * @param password
  * @return path
  */
-   @RequestMapping(value="/LoginServlet", method=RequestMethod.POST)
-   public String login(HttpServletRequest request, Model model, @RequestParam String username, @RequestParam String password)
-
-   {
-    UserDAO dao = (UserDAO)request.getSession().getServletContext().getAttribute("dao");
-    User user = dao.getUser(username);
-    String path;
-    if(user == null)
-      {
-     	model.addAttribute("notfound", true);
-   		path = "login";	
-	}
-		else if(!user.getPassword().equals(password)){
-			model.addAttribute("notmatch", true);
-			path = "login";	
-		}
-		else if (user.getRole().equals("employee"))
-		{
-			request.getSession().setAttribute("employee", user);
-			path = "index";
-		}
-		else if (user.getRole().equals("superAdmin"))
-		{
-			request.getSession().setAttribute("superAdmin", user);
-			path = "index";
-		}
-		else if (user.getRole().equals("deptAdmin"))
-		{
-			request.getSession().setAttribute("deptAdmin", user);
-			path = "index";
-		}
-		return path;
-	}
+//   @RequestMapping(value="/LoginServlet", method=RequestMethod.POST)
+//   public String login(HttpServletRequest request, Model model, @RequestParam String username, @RequestParam String password)
+//
+//   {
+//    UserDAO dao = (UserDAO)request.getSession().getServletContext().getAttribute("dao");
+//    User user = dao.getUser(username);
+//    String path;
+//    if(user == null)
+//      {
+//     	model.addAttribute("notfound", true);
+//   		path = "login";	
+//	}
+//		else if(!user.getPassword().equals(password)){
+//			model.addAttribute("notmatch", true);
+//			path = "login";	
+//		}
+//		else if (user.getRole().equals("employee"))
+//		{
+//			request.getSession().setAttribute("employee", user);
+//			path = "index";
+//		}
+//		else if (user.getRole().equals("superAdmin"))
+//		{
+//			request.getSession().setAttribute("superAdmin", user);
+//			path = "index";
+//		}
+//		else if (user.getRole().equals("deptAdmin"))
+//		{
+//			request.getSession().setAttribute("deptAdmin", user);
+//			path = "index";
+//		}
+//		return path;
+//	}
 
 }
