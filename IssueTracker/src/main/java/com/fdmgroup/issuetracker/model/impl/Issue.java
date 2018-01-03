@@ -10,6 +10,9 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -17,6 +20,11 @@ import javax.persistence.TemporalType;
 
 @Entity
 @Table(name = "Issue")
+@NamedQueries({
+@NamedQuery(name = "Issue.findAll", query = "Select i from Issue i"),
+@NamedQuery(name = "Issue.listDepts", query = "Select i from Issue i where i.assignedTo = :assignedId"),
+@NamedQuery(name = "Issue.listUserIssues", query = "Select i from Issue i where i.submittedBy = :submittedBy")
+})
 public class Issue {
 
 	@Id
@@ -29,13 +37,12 @@ public class Issue {
 	@Column(name = "admin_comment")
 	private String adminComment;
 	
-	@OneToOne
+
 	@Column(name = "assigned_to")
-	private User assignedTo;
-	
-	@OneToOne
+	private int assignedTo;
+
 	@Column(name = "submitted_by")
-	private User sumbmittedBy;
+	private int submittedBy;
 	
 	
 	@Enumerated(EnumType.STRING)
@@ -81,20 +88,20 @@ public class Issue {
 		this.adminComment = adminComment;
 	}
 
-	public User getAssignedTo() {
+	public int getAssignedTo() {
 		return assignedTo;
 	}
 
-	public void setAssignedTo(User assignedTo) {
+	public void setAssignedTo(int assignedTo) {
 		this.assignedTo = assignedTo;
 	}
 
-	public User getSumbmittedBy() {
-		return sumbmittedBy;
+	public int getSubmittedBy() {
+		return submittedBy;
 	}
 
-	public void setSumbmittedBy(User sumbmittedBy) {
-		this.sumbmittedBy = sumbmittedBy;
+	public void setSubmittedBy(int submittedBy) {
+		this.submittedBy = submittedBy;
 	}
 
 	public Status getStatus() {
