@@ -1,3 +1,5 @@
+-- DROP ALL TABLES FIRST (preferrably twice)
+-- THEN create tables afterwards.
 DROP TABLE USERS;
 DROP TABLE ROLE;
 DROP TABLE USER_ROLE;
