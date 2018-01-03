@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.fdmgroup.issuetracker.model.impl.User;
 import com.fdmgroup.issuetracker.model.impl.UserDAO;
-import com.fdmgroup.issuetracker.utils.*;;
+import com.fdmgroup.issuetracker.utils.Validation;
 
 @Controller
 public class LoginController {
@@ -51,18 +51,25 @@ public class LoginController {
 		path = "login";
 		model.addAttribute("notfound", true);
 	}
-	else if (user.getRole().equals("employee")){
-		request.getSession().setAttribute("employee", user);
-		path = "homepage";
-	}
-	else if (user.getRole().getRoleName.equals("superAdmin")){
-		request.getSession().setAttribute("superAdmin", user);
-		path = "homepage";
-	}
-	else if (user.getRole().equals("deptAdmin")){
-		request.getSession().setAttribute("deptAdmin", user);
-		path = "homepage";
+	if (Validation.compare(dao, username, password)){
+		if (user.getRole().equals("employee")){
+			request.getSession().setAttribute("employee", user);
+			path = "homepage";
 		}
+		else if (user.getRole().getRoleName.equals("superAdmin")){
+			request.getSession().setAttribute("superAdmin", user);
+			path= "homepage";
+		}
+		else if (user.getRole().equals("deptAdmin")){
+			request.getSession().setAttribute("deptAdmin", user);
+			path = "homepage";
+		}
+	}
+	else {
+		model.addAttribute("notmatch", true);
+		path = "login";
+	}
+
 		return path;
 	}
 
