@@ -15,7 +15,8 @@ public class Role {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int id;
 	private String role_name;
-	
+	public static String ADMIN = "admin";
+	public static String DEPT_ADMIN ="department_admin";
 	public int getId() {
 		return id;
 	}
