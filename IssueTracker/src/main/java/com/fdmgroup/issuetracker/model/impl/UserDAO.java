@@ -52,7 +52,7 @@ public class UserDAO {
 			em.close();
 		}
 	}
-
+	
 	/**
 	 * Retrieves a user with the passed in parameter of username
 	 */
