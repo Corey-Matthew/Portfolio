@@ -41,10 +41,16 @@
 					type="password" name="password" class="fa long-input"
 					placeholder="Enter password..." required><br /> <input
 					type="password" name="confirmedPassword" class="fa long-input"
-					placeholder="Confirm password..." required><br /> <input
+					placeholder="Confirm password..." required><br /> 
+					<select name="cars" size="1">
+ 					<option value="volvo">User</option>
+  					<option value="saab">Depatment Admin</option>
+  					<option value="fiat">God Admin</option>
+					</select><br /> 
+					
+					<input
 					type="submit" value="Register" class="register-button"> <br>
-				<span class="welcome-register"><a href="login">Already a
-						Member? Login Now</a></span> <br> <span class="welcome-register"><a
+				<span class="welcome-register"> <br> <span class="welcome-register"><a
 					href="./">Go Back Home</a></span>
 			</form>
 		</c:otherwise>
