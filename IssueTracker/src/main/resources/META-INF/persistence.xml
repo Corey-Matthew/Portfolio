@@ -23,7 +23,7 @@
 			<property name="hibernate.connection.username" value="Trainee1" />
 			<property name="hibernate.connection.password" value="!QAZSE4" /> -->
 			<!-- validate, create, create-drop, update -->
-			<property name="hibernate.hbm2ddl.auto" value="create" />
+			<property name="hibernate.hbm2ddl.auto" value="update" />
 			<!-- Connection pooling config -->
 			<!-- <property name="hibernate.c3p0.min_size" value="2" />
 			<property name="hibernate.c3p0.max_size" value="3" />

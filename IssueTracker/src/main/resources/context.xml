@@ -11,9 +11,8 @@
 	http://www.springframework.org/schema/aop/spring-aop-3.2.xsd">
 
 	<aop:aspectj-autoproxy proxy-target-class="true" />
-	<bean id="UserDAO" class="com.fdmgroup.springusersystem.model.impl.UserDAO"></bean>
-	<bean id="newUser" class="com.fdmgroup.springusersystem.model.impl.User"
+	<bean id="UserDAO" class="com.fdmgroup.issuetracker.model.impl.UserDAO"></bean>
+	<bean id="newUser" class="com.fdmgroup.issuetracker.model.impl.User"
 		scope="prototype"></bean>
-	<bean id="myLogger" class="com.fdmgroup.springusersystem.util.DAOLogger" />
-
+		
 </beans>

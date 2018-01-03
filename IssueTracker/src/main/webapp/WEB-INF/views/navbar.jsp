@@ -21,13 +21,13 @@
 							<li><a href="register">Register</a></li>
 						</c:otherwise>
 					</c:choose>
-					<li><a href="ListUsers">Users List</a></li>
+					<li><a href="listusers">Users List</a></li>
 				</ul>
-				<form action="FindUser" method="GET"
+				<form action="finduser" method="GET"
 					class="navbar-form navbar-right">
 					<div class="form-group">
-						<input type="text" name="user" id="user" class="form-control"
-							placeholder="Search for a user..">
+						<input type="text" name="username" id="user" class="form-control"
+							placeholder="Search for a username..">
 						<button type="submit" class="btn btn-default">Search</button>
 					</div>
 				</form>
