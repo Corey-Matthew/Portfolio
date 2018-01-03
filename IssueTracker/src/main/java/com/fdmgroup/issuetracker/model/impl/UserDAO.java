@@ -1,3 +1,4 @@
+
 package com.fdmgroup.issuetracker.model.impl;
 
 import java.util.List;
@@ -18,42 +19,40 @@ import com.fdmgroup.issuetracker.model.IUserDAO;
  * Implements UserDAO interfaces to manipulate User table in the database
  *
  */
-public class UserDAO implements IUserDAO {
+public class UserDAO  {
 
 	private static final String PERSISTENCE_UNIT_NAME = "IssueTracker";
 //	static Logger myLogger = Logger.getLogger("myLogger");
 	
 	private static EntityManagerFactory factory;
 
-	static {
-		setFactory(Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME));
-//		PropertyConfigurator.configure("log4j.properties");
+	public UserDAO(){		
+		factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);	
 	}
 
 	public EntityManager getEntityManager() {
-		return getFactory().createEntityManager();
+		return factory.createEntityManager();
 	}
+	
+	public void addUser(User user) {
 
-	/**
-	 * Insert a row with the user information to the User table
-	 */
-	public boolean addUser(User user) {
-		EntityManager em = getEntityManager();
-		EntityTransaction et = em.getTransaction();
-		User validUser = getUser(user.getUsername());
-		if (validUser != null) {
-			return false;
-		}
+		int userId = user.getUserId();
+		Department department_id = user.getDepartment();
+		String username = user.getUsername();
+		String password = user.getPassword();
+		String email = user.getEmail();
+
+		EntityManager em = factory.createEntityManager();
+
 		try {
-			et.begin();
+			em.getTransaction().begin();
 			em.persist(user);
-			et.commit();
-			return true;
+			em.getTransaction().commit();
 		} finally {
 			em.close();
 		}
 	}
-
+	
 	/**
 	 * Retrieves a user with the passed in parameter of username
 	 */
@@ -67,27 +66,29 @@ public class UserDAO implements IUserDAO {
 			return null;
 		}
 	}
+	
+	public boolean removeUser(String username) {
+		
+		EntityManager em = factory.createEntityManager();
+		User user = em.find(User.class, username);
+		
+		try {
+			if (user != null) {
+					
+				em.getTransaction().begin();
+				em.remove(user);
+				em.getTransaction().commit();
+				return true;
+			}
+		} finally {
+			em.close();
+		} 
+		return false;
+	}
 
 	/**
 	 * Removes a user with the passed in parameter of username
 	 */
-	public boolean removeUser(String username) {
-		EntityManager em = getEntityManager();
-		EntityTransaction et = em.getTransaction();
-		User user = getUser(username);
-		if (user != null) {
-			try {
-				et.begin();
-				em.remove(em.contains(user) ? user : em.merge(user));
-				et.commit();
-				return true;
-			} finally {
-				em.close();
-			}
-		} else {
-			return false;
-		}
-	}
 
 	/**
 	 * Update a user if the username exist in the database
@@ -120,12 +121,6 @@ public class UserDAO implements IUserDAO {
 		return query.getResultList();
 	}
 
-	public static EntityManagerFactory getFactory() {
-		return factory;
-	}
 
-	public static void setFactory(EntityManagerFactory factory) {
-		UserDAO.factory = factory;
-	}
 
 }
