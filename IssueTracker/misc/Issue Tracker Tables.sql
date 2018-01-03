@@ -9,7 +9,7 @@ DROP TABLE ISSUE_UPDATES;
 CREATE TABLE DEPARTMENT (
     Dept_id number(4),
     Dept_Name varchar2(30),
-    constraint dept_pk PRIMARY KEY (Dept_id),
+    constraint dept_pk PRIMARY KEY (Dept_id)
     --constraint dept_uk UNIQUE (Dept_Name)
 );
 
