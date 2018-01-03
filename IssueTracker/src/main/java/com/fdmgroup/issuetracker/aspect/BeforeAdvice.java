@@ -7,6 +7,8 @@ import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
 import org.springframework.stereotype.Component;
 
+@Component
+@Aspect
 public class BeforeAdvice {
 	
 	static Logger myLogger = Logger.getLogger("myLogger");
@@ -24,7 +26,7 @@ public class BeforeAdvice {
 	    return beforeCalled;
 	  }
 
-	  @Before("execution(* *(..))")
+	  @Before("execution(String login(..))")
 	  public void entering(JoinPoint joinPoint) {
 	    beforeCalled = true;
 	    myLogger.trace("entering "
