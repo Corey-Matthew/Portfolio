@@ -1,3 +1,4 @@
+
 package com.fdmgroup.issuetracker.model.impl;
 
 import java.util.List;
