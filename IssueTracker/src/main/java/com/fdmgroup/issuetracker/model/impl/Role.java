@@ -29,5 +29,12 @@ public class Role {
 	public void setRoleName(String role_name) {
 		this.roleName = role_name;
 	}
+	
+	public void setAdmin(){
+		this.roleName = ADMIN;
+	}
+	public void setDeptAdmin(){
+		this.roleName = DEPT_ADMIN;
+	}
 
 }

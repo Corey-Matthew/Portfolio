@@ -34,20 +34,23 @@ public class UserDAO  {
 		return factory.createEntityManager();
 	}
 	
-	public void addUser(User user) {
-
-		int userId = user.getUserId();
-		Department department_id = user.getDepartment();
-		String username = user.getUsername();
-		String password = user.getPassword();
-		String email = user.getEmail();
-
-		EntityManager em = factory.createEntityManager();
-
+	public boolean addUser(User user) {
+		EntityManager em = getEntityManager();
+		EntityTransaction et = em.getTransaction();
+		User validUser = getUser(user.getUsername());
+		if (validUser != null) {
+			return false;
+		}
+		Department dept = getDepartment(user.getDepartment().getDepartmentName());
+		if(dept != null)
+		{
+			user.setDepartment(dept);
+		}
 		try {
-			em.getTransaction().begin();
-			em.persist(user);
-			em.getTransaction().commit();
+			et.begin();
+			em.merge(user);
+			et.commit();
+			return true;
 		} finally {
 			em.close();
 		}
@@ -66,7 +69,7 @@ public class UserDAO  {
 			return null;
 		}
 	}
-	
+
 	public boolean removeUser(String username) {
 		
 		EntityManager em = factory.createEntityManager();
@@ -121,6 +124,15 @@ public class UserDAO  {
 		return query.getResultList();
 	}
 
-
+	public Department getDepartment(String username) {
+		TypedQuery<Department> query = getEntityManager().createNamedQuery("Department.findByName", Department.class);
+		Department department= null;
+		try {
+			department = query.setParameter("dept_name", username).getSingleResult();
+			return department;
+		} catch (NoResultException e) {
+			return null;
+		}
+	}
 
 }
