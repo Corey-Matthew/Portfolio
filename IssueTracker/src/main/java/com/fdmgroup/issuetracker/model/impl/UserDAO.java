@@ -32,8 +32,25 @@ public class UserDAO  {
 	public EntityManager getEntityManager() {
 		return factory.createEntityManager();
 	}
+	
+	public void addUser(User user) {
 
+		int userId = user.getUserId();
+		Department department_id = user.getDepartment();
+		String username = user.getUsername();
+		String password = user.getPassword();
+		String email = user.getEmail();
 
+		EntityManager em = factory.createEntityManager();
+
+		try {
+			em.getTransaction().begin();
+			em.persist(user);
+			em.getTransaction().commit();
+		} finally {
+			em.close();
+		}
+	}
 	
 	/**
 	 * Retrieves a user with the passed in parameter of username
@@ -48,7 +65,25 @@ public class UserDAO  {
 			return null;
 		}
 	}
-
+	
+	public boolean removeUser(String username) {
+		
+		EntityManager em = factory.createEntityManager();
+		User user = em.find(User.class, username);
+		
+		try {
+			if (user != null) {
+					
+				em.getTransaction().begin();
+				em.remove(user);
+				em.getTransaction().commit();
+				return true;
+			}
+		} finally {
+			em.close();
+		} 
+		return false;
+	}
 
 	/**
 	 * Removes a user with the passed in parameter of username
