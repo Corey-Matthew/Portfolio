@@ -13,4 +13,11 @@ public class Issue {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int issueId;
+	private String title;
+	private String userDescription;
+	private String adminComment;
+	private User assignedTo;
+	private User sumbmittedBy;
+	
+	private Status status = Status.UNASSIGNED;
 }
