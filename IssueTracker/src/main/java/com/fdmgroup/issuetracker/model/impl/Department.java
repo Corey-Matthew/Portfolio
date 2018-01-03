@@ -38,6 +38,10 @@ public class Department {
 		this.users = users;
 	}
 	
+	public void addUsers(User user){
+		user.setDepartment(this);
+	}
+	
 	private String department_name;
 	public String getDepartment_name() {
 		return department_name;
