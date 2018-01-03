@@ -22,10 +22,10 @@
 		</c:when>
 		<c:otherwise>
 
-				<c:if test="${requestScope.usernotfound}">
+				<c:if test="${requestScope.notfound}">
 					<label> User not found!</label>
 				</c:if>
-				<c:if test="${requestScope.passwordincorrect}">
+				<c:if test="${requestScope.notmatch}">
 					<label> Incorrect Password! </label>
 
 				</c:if>
