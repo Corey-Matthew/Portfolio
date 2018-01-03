@@ -18,20 +18,19 @@ import com.fdmgroup.issuetracker.model.IUserDAO;
  * Implements UserDAO interfaces to manipulate User table in the database
  *
  */
-public class UserDAO implements IUserDAO {
+public class UserDAO  {
 
 	private static final String PERSISTENCE_UNIT_NAME = "IssueTracker";
 //	static Logger myLogger = Logger.getLogger("myLogger");
 	
 	private static EntityManagerFactory factory;
 
-	static {
-		setFactory(Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME));
-//		PropertyConfigurator.configure("log4j.properties");
+	public UserDAO(){		
+		factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);	
 	}
 
 	public EntityManager getEntityManager() {
-		return getFactory().createEntityManager();
+		return factory.createEntityManager();
 	}
 
 
@@ -86,12 +85,6 @@ public class UserDAO implements IUserDAO {
 		return query.getResultList();
 	}
 
-	public static EntityManagerFactory getFactory() {
-		return factory;
-	}
 
-	public static void setFactory(EntityManagerFactory factory) {
-		UserDAO.factory = factory;
-	}
 
 }
