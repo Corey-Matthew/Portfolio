@@ -9,18 +9,26 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "Department")
-
+@NamedQueries({
+@NamedQuery(name = "Department.findByName", 
+query = "SELECT u FROM Department u WHERE u.departmentName = :dept_name") })
 public class Department {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="Dept_id")
 	private int departmentId;
+	@Column(name="Dept_name", unique = true)
+	private String departmentName;
+	
+	
 	public int getDepartmentId() {
 		return departmentId;
 	}
@@ -38,16 +46,11 @@ public class Department {
 		this.users = users;
 	}
 	
-	public void addUsers(User user){
-		user.setDepartment(this);
+	public String getDepartmentName() {
+		return departmentName;
 	}
-	
-	private String department_name;
-	public String getDepartment_name() {
-		return department_name;
-	}
-	public void setDepartment_name(String department_name) {
-		this.department_name = department_name;
+	public void setDepartmentName(String department_name) {
+		this.departmentName = department_name;
 	}
 	
 }

@@ -10,27 +10,27 @@ import org.springframework.stereotype.Component;
 @Component
 @Aspect
 public class BeforeAdvice {
-	
+
 	static Logger myLogger = Logger.getLogger("myLogger");
+
 	static {
 		PropertyConfigurator.configure("./src/main/resources/META-INF/log4j.properties");
 	}
-	
+
 	private boolean beforeCalled = false;
-	
+
 	public void reset() {
 		beforeCalled = false;
 	}
-	
-	public boolean isBeforeCalled() {
-	    return beforeCalled;
-	  }
 
-	  @Before("execution(String login(..))")
-	  public void entering(JoinPoint joinPoint) {
-	    beforeCalled = true;
-	    myLogger.trace("entering "
-	        + joinPoint.getStaticPart().getSignature().toString());
-	  }
+	public boolean isBeforeCalled() {
+		return beforeCalled;
+	}
+
+	@Before("execution(String login(..))")
+	public void entering(JoinPoint joinPoint) {
+		beforeCalled = true;
+		myLogger.trace("entering " + joinPoint.getStaticPart().getSignature().toString());
+	}
 
 }
