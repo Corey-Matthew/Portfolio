@@ -51,7 +51,8 @@ public class LoginController {
 		path = "login";
 		model.addAttribute("notfound", true);
 	}
-	if (Validation.compare(dao, username, password)){
+	//use the helper method validation to validate user
+	else if (Validation.compare(dao, username, password)){
 		if (user.getRole().equals("employee")){
 			request.getSession().setAttribute("employee", user);
 			path = "homepage";
