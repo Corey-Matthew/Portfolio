@@ -18,7 +18,7 @@ Workflow
 6. push to origin
 
 ## Front End
-Template.jsp
+Template.jsp for all pages [See src/main/webapp/WEB-INF/views/template.jsp]
 - Ensure all tag lib at top.
 - head.jsp -> css imports
 - navbar.jsp -> Links in navbar (\<li\>\</li\>)
