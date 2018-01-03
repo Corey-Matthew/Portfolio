@@ -42,10 +42,10 @@
 					placeholder="Enter password..." required><br /> <input
 					type="password" name="confirmedPassword" class="fa long-input"
 					placeholder="Confirm password..." required><br /> 
-					<select name="cars" size="1">
- 					<option value="volvo">User</option>
-  					<option value="saab">Depatment Admin</option>
-  					<option value="fiat">God Admin</option>
+					<select name="userType" size="1">
+ 					<option value="user">User</option>
+  					<option value="departmentAdmin">Depatment Admin</option>
+  					<option value="admin">God Admin</option>
 					</select><br /> 
 					
 					<input
