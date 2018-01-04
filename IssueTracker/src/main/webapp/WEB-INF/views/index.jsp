@@ -9,6 +9,7 @@
 	<h1> Welcome to Issue Tracker System!</h1>
 	<c:if test="${ not empty sessionScope.user }">
 		<h2 style="color: red;"> Welcome back, ${ sessionScope.user.username } </h2>
+		<h2 style="color: red;"> Your role name is ${ sessionScope.user.role.roleName } </h2>
 	</c:if>
 </body>
 <c:import url="footer.jsp"></c:import> 

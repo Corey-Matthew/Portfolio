@@ -12,8 +12,7 @@
 				<ul class="nav navbar-nav">
 					<c:choose>
 						<c:when test="${ not empty sessionScope.user }">
-							<li><a href="profile">Profile</a></li>
-							<li><a href="editprofile">Edit Profile</a></li>
+							<li><a href="issues">Issues</a></li>
 							<li><a href="logout">Logout</a></li>
 						</c:when>
 						<c:otherwise>
@@ -21,6 +20,12 @@
 							<li><a href="register">Register</a></li>
 						</c:otherwise>
 					</c:choose>
+					<c:if test="${ sessionScope.user.role.roleName == 'admin' }">
+						<li><a href="./">Admin</a>
+					</c:if>
+					<c:if test="${ sessionScope.user.role.roleName == 'department_admin' }">
+						<li><a href="./">Department Admin</a>
+					</c:if>
 					<li><a href="listusers">Users List</a></li>
 				</ul>
 				<form action="finduser" method="GET"

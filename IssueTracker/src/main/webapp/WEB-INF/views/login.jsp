@@ -12,7 +12,7 @@
 
 		<c:when test="${ not empty sessionScope.user }">
 			<p>Already logged in.</p>
-			<form method="POST" action="LogoutUserServlet">
+			<form method="POST" action="logout">
 				<input type="submit" value="Logout" class="register-button">
 			</form>
 		</c:when>

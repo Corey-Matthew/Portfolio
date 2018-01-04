@@ -13,7 +13,6 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "Role")
-
 public class Role {
 
 	@Id

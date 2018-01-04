@@ -13,7 +13,10 @@
 	<aop:aspectj-autoproxy proxy-target-class="true" />
 	<context:component-scan base-package="com.fdmgroup.issuetracker" />
 	<bean id="UserDAO" class="com.fdmgroup.issuetracker.model.impl.UserDAO"></bean>
+	<bean id="IssueDAO" class="com.fdmgroup.issuetracker.model.impl.IssueDAO"></bean>
 	<bean id="newUser" class="com.fdmgroup.issuetracker.model.impl.User"
+		scope="prototype"></bean>
+	<bean id="newIssue" class="com.fdmgroup.issuetracker.model.impl.Issue"
 		scope="prototype"></bean>
 
 </beans>
