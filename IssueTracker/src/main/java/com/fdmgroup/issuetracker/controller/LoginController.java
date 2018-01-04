@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.fdmgroup.issuetracker.model.impl.Role;
 import com.fdmgroup.issuetracker.model.impl.User;
 import com.fdmgroup.issuetracker.model.impl.UserDAO;
 import com.fdmgroup.issuetracker.utils.Validation;
@@ -32,7 +33,7 @@ public class LoginController {
 	public String displayLogin() {
 		return "login";
 	}
-	
+
 	/**
 	 * Deal with login requests Need to get role of every user
 	 * 
@@ -43,10 +44,8 @@ public class LoginController {
 	 * @return path
 	 */
 	@RequestMapping(value = "/LoginServlet", method = RequestMethod.POST)
-	public String login(HttpServletRequest request, Model model, 
-			@RequestParam String username,
-			@RequestParam String password)
-	{
+	public String login(HttpServletRequest request, Model model, @RequestParam String username,
+			@RequestParam String password) {
 		HttpSession session = request.getSession();
 		ctx = (ApplicationContext) session.getServletContext().getAttribute("ctx");
 		userDAO = (UserDAO) ctx.getBean("UserDAO");
@@ -55,19 +54,12 @@ public class LoginController {
 		if (user == null) {
 			path = "login";
 			model.addAttribute("notfound", true);
+			return path;
 		}
-		// use the helper method validation to validate user
 		else if (Validation.compare(userDAO, username, password)) {
-			if (user.getRole().getRoleName().equals("employee")) {
-				request.getSession().setAttribute("employee", user);
-				path = "homepage";
-			} else if (user.getRole().getRoleName().equals("admin")) {
-				request.getSession().setAttribute("superAdmin", user);
-				path = "homepage";
-			} else if (user.getRole().getRoleName().equals("department_admin")) {
-				request.getSession().setAttribute("deptAdmin", user);
-				path = "homepage";
-			}
+			request.getSession().setAttribute("user", user);
+			path = "index";
+
 		} else {
 			model.addAttribute("notmatch", true);
 			path = "login";

@@ -15,7 +15,6 @@
 			<form method="POST" action="LogoutUserServlet">
 				<input type="submit" value="Logout" class="register-button">
 			</form>
-
 		</c:when>
 		<c:otherwise>
 
