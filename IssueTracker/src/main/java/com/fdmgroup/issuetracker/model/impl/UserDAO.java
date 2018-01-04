@@ -10,6 +10,8 @@ import javax.persistence.NoResultException;
 import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
 
+import org.springframework.context.ConfigurableApplicationContext;
+
 //import org.apache.log4j.Logger;
 //import org.apache.log4j.PropertyConfigurator;
 
@@ -34,6 +36,10 @@ public class UserDAO  {
 		return factory.createEntityManager();
 	}
 	
+	public static EntityManagerFactory getFactory() {
+		return factory;
+	}
+
 	public boolean addUser(User user) {
 		EntityManager em = getEntityManager();
 		EntityTransaction et = em.getTransaction();

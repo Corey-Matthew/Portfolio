@@ -28,22 +28,24 @@ public class Client {
 	
 	public static void main(String[] args) {
 		
-		User trainee = new User();
-		Department java = new Department();
-		java.setDepartmentName("java");
-		trainee.setDepartment(java);
-		trainee.setEmail("haha@haha");
-		trainee.setUsername("usernamehere223");
-		trainee.setPassword("passwordhere");
-		addUser(trainee);
-		System.out.println("Done adding User");
-		
-		Role admin = new Role();
-		admin.setDeptAdmin();
-		trainee.setRole(admin);
-		updateUser(trainee);
+//		User trainee = new User();
+//		Department java = new Department();
+//		java.setDepartmentName("java");
+//		trainee.setDepartment(java);
+//		trainee.setEmail("haha@haha");
+//		trainee.setUsername("usernamehere223");
+//		trainee.setPassword("passwordhere");
+//		addUser(trainee);
+//		System.out.println("Done adding User");
+//		
+//		Role admin = new Role();
+//		admin.setDeptAdmin();
+//		trainee.setRole(admin);
+//		updateUser(trainee);
 		
 //		addRole(admin);
+		User user = getUser("usernamehere223");
+		System.out.println(user.getRole().getRoleName());
 	}
 	
 	
@@ -125,6 +127,7 @@ public class Client {
 			em.close();
 		}
 	}
+	
 	public static EntityManagerFactory getFactory() {
 		return factory;
 	}

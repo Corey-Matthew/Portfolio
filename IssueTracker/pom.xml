@@ -145,7 +145,8 @@
 					<url>http://localhost:8088/manager/text</url>
 					<server>localhost</server>
 					<username>admin</username>
-					<password></password>
+					<password>root</password>
+					<update>true</update>
 				</configuration>
 			</plugin>
 		</plugins>

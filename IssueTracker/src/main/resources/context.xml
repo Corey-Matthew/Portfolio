@@ -15,5 +15,5 @@
 	<bean id="UserDAO" class="com.fdmgroup.issuetracker.model.impl.UserDAO"></bean>
 	<bean id="newUser" class="com.fdmgroup.issuetracker.model.impl.User"
 		scope="prototype"></bean>
-		
+
 </beans>
