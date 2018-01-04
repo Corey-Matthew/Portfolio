@@ -36,7 +36,7 @@ public class CustomContextListener extends ContextLoaderListener {
      */
     @Override
     public void contextInitialized(ServletContextEvent sce)  { 
-    	ctx = new ClassPathXmlApplicationContext("beans.xml");
+    	ctx = new ClassPathXmlApplicationContext("context.xml");
     	sce.getServletContext().setAttribute("ctx", ctx);
     }
 }

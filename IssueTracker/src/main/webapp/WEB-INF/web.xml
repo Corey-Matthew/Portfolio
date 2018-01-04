@@ -14,6 +14,10 @@
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
 
+	<listener>
+		<listener-class>com.fdmgroup.issuetracker.controller.CustomContextListener</listener-class>
+	</listener>
+	
 	<!-- Error Pages 
 	<error-page>
 		<error-code>500</error-code>
