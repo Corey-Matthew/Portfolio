@@ -1,4 +1,4 @@
-package com.fdmgroup.issueTracker.controller;
+package com.fdmgroup.issuetracker.controller;
 
 import static org.junit.Assert.*;
 

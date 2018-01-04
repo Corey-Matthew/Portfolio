@@ -69,7 +69,10 @@ public class UserDAO  {
 			return null;
 		}
 	}
-
+	
+	/**
+	 * Removes a user with the passed in parameter of username
+	 */
 	public boolean removeUser(String username) {
 		
 		EntityManager em = factory.createEntityManager();
@@ -90,10 +93,6 @@ public class UserDAO  {
 	}
 
 	/**
-	 * Removes a user with the passed in parameter of username
-	 */
-
-	/**
 	 * Update a user if the username exist in the database
 	 */
 	public boolean updateUser(User user) {
@@ -104,8 +103,11 @@ public class UserDAO  {
 			if (foundUser != null) {
 				et.begin();
 				User modifyUser = em.find(User.class, foundUser.getUserId());
+				modifyUser.setDepartment(user.getDepartment());
+				modifyUser.setUsername(user.getUsername());
 				modifyUser.setPassword(user.getPassword());
 				modifyUser.setEmail(user.getEmail());
+				modifyUser.setRole(user.getRole());
 				et.commit();
 				return true;
 			}
@@ -132,6 +134,19 @@ public class UserDAO  {
 			return department;
 		} catch (NoResultException e) {
 			return null;
+		}
+	}
+	
+	public boolean addRole(Role role) {
+		EntityManager em = getEntityManager();
+		EntityTransaction et = em.getTransaction();
+		try {
+			et.begin();
+			em.persist(role);
+			et.commit();
+			return true;
+		} finally {
+			em.close();
 		}
 	}
 

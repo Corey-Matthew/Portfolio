@@ -8,6 +8,8 @@ import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
 
 import com.fdmgroup.issuetracker.model.impl.Department;
+import com.fdmgroup.issuetracker.model.impl.Issue;
+import com.fdmgroup.issuetracker.model.impl.Role;
 import com.fdmgroup.issuetracker.model.impl.User;
 
 public class Client {
@@ -31,11 +33,40 @@ public class Client {
 		java.setDepartmentName("java");
 		trainee.setDepartment(java);
 		trainee.setEmail("haha@haha");
-		trainee.setUsername("usernamehere22");
+		trainee.setUsername("usernamehere223");
 		trainee.setPassword("passwordhere");
 		addUser(trainee);
 		System.out.println("Done adding User");
-
+		
+		Role admin = new Role();
+		admin.setDeptAdmin();
+		trainee.setRole(admin);
+		updateUser(trainee);
+		
+//		addRole(admin);
+	}
+	
+	
+	public static boolean updateUser(User user) {
+		EntityManager em = getEntityManager();
+		EntityTransaction et = em.getTransaction();
+		User foundUser = getUser(user.getUsername());
+		try {
+			if (foundUser != null) {
+				et.begin();
+				User modifyUser = em.find(User.class, foundUser.getUserId());
+				modifyUser.setDepartment(user.getDepartment());
+				modifyUser.setUsername(user.getUsername());
+				modifyUser.setPassword(user.getPassword());
+				modifyUser.setEmail(user.getEmail());
+				modifyUser.setRole(user.getRole());
+				et.commit();
+				return true;
+			}
+		} finally {
+			em.close();
+		}
+		return false;
 	}
 	
 	public static boolean addUser(User user) {
@@ -82,7 +113,18 @@ public class Client {
 		}
 	}
 	
-	
+	public static boolean addRole(Role role) {
+		EntityManager em = getEntityManager();
+		EntityTransaction et = em.getTransaction();
+		try {
+			et.begin();
+			em.persist(role);
+			et.commit();
+			return true;
+		} finally {
+			em.close();
+		}
+	}
 	public static EntityManagerFactory getFactory() {
 		return factory;
 	}

@@ -31,14 +31,13 @@ CREATE TABLE USERS (
 CREATE TABLE ROLE (
     Role_id number(4),
     Role_Name varchar2(30),
-    constraint role_pk PRIMARY KEY (Role_id)
+    constraint role_pk PRIMARY KEY (Role_id),
+    constraint role_uk UNIQUE (Role_Name)
 );
 
 CREATE TABLE USER_ROLE (
   User_id number(4) ,
-  Role_id  number(4),
-  constraint FK_user_id FOREIGN KEY (User_id) REFERENCES USERS(User_id),
-  constraint FK_role_id FOREIGN KEY (Role_id) REFERENCES ROLE(Role_id)
+  Role_id  number(4)
 );
 
 CREATE TABLE ISSUE (
