@@ -1,5 +1,7 @@
 package com.fdmgroup.issuetracker.utils;
 
+import com.fdmgroup.issuetracker.model.impl.Issue;
+import com.fdmgroup.issuetracker.model.impl.IssueDAO;
 import com.fdmgroup.issuetracker.model.impl.User;
 import com.fdmgroup.issuetracker.model.impl.UserDAO;
 
@@ -19,4 +21,17 @@ public final class Validation {
 		}
 		return false;
 	}
+	
+	public static boolean compare(IssueDAO dao, int issueId){
+		Issue issue = dao.getIssue(issueId);
+		if(issue == null){
+			return false;
+		}
+		else if(issue != null){
+			return true;
+		}
+		
+		return false;
+	}
+	
 }
