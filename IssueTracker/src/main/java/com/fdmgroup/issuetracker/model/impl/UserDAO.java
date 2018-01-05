@@ -52,6 +52,11 @@ public class UserDAO  {
 		{
 			user.setDepartment(dept);
 		}
+		Role role = getRole(user.getRole().getRoleName());
+		if(role != null)
+		{
+			user.setRole(role);
+		}
 		try {
 			et.begin();
 			em.merge(user);
@@ -142,7 +147,16 @@ public class UserDAO  {
 			return null;
 		}
 	}
-	
+	public Role getRole(String name){
+		TypedQuery<Role> query = getEntityManager().createNamedQuery("Role.findByName", Role.class);
+		Role role= null;
+		try {
+			role = query.setParameter("name", name).getSingleResult();
+			return role;
+		} catch (NoResultException e) {
+			return null;
+		}
+	}
 	public boolean addRole(Role role) {
 		EntityManager em = getEntityManager();
 		EntityTransaction et = em.getTransaction();

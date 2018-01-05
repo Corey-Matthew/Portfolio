@@ -18,13 +18,29 @@
 		</c:when>
 		<c:otherwise>
 			<c:forEach var='issue' items='${ requestScope.issues }'>
-				<div class="issue" style='background: #669999;'>
+				<div class="issue">
 					<p>
 						Issue ID:
-						<c:out value='${ issue.issueId }' />
+						<c:out  value='${ issue.issueId }' />
+						Assigned to:
+						<c:out  value='${ issue.assignedTo }' />
 					</p>
 				</div>
 			</c:forEach>
+			<c:if test= "${ sessionScope.user.role.roleName eq 'admin' }">
+			<form method="POST" action="assign">
+		<ul>
+					<li><input type="text" name="issueId" class="fa long-input"
+						placeholder="Enter the issueId..." required><br /></li>
+					<li><input type="text" name="assignedTo"
+						class="fa long-input" placeholder="Enter the Dept.Id..."
+						required><br /> 
+						<li><input type="text" name="Status" class="fa long-input"
+						placeholder="Change Status..." required><br /></li><input type="submit" value="Assign"
+						class="register-button"> <br></li>
+				</ul>
+	</form>
+	</c:if>
 		</c:otherwise>
 	</c:choose>
 </body>

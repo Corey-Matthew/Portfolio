@@ -71,7 +71,7 @@ public class IssueController {
 		boolean addIssueBool = issueDAO.addIssue(issue);
 		if (addIssueBool) {
 			model.addAttribute("issueAdded",true);
-			return "issues";
+			return listIssues(model, req);
 		} else {
 			model.addAttribute("addIssueFailed", true);
 			return "addIssue";

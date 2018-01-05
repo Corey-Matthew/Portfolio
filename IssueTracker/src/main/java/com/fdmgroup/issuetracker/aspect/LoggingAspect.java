@@ -9,9 +9,9 @@ import org.springframework.stereotype.Component;
 
 @Component
 @Aspect
-public class TracingAspect {
+public class LoggingAspect {
 
-	private static final Logger log = Logger.getLogger(TracingAspect.class);
+	private static final Logger log = Logger.getLogger(LoggingAspect.class);
 
 	static {
 		PropertyConfigurator.configure("./src/main/resources/META-INF/log4j.properties");
