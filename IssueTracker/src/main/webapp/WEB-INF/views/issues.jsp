@@ -27,6 +27,7 @@
 					</p>
 				</div>
 			</c:forEach>
+			<c:if test= "${ sessionScope.user.role.roleName == 'admin' }">
 			<form method="POST" action="assign">
 		<ul>
 					<li><input type="text" name="issueId" class="fa long-input"
@@ -39,6 +40,7 @@
 						class="register-button"> <br></li>
 				</ul>
 	</form>
+	</c:if>
 		</c:otherwise>
 	</c:choose>
 </body>
