@@ -23,6 +23,7 @@ public class Role {
 	private String roleName;
 	public static final String ADMIN = "admin";
 	public static final String DEPT_ADMIN ="department_admin";
+	public static final String USER = "user";
 	
 	@OneToMany(mappedBy = "role")
 	private List<User> users;
@@ -47,6 +48,11 @@ public class Role {
 	public void setDeptAdmin(){
 		this.roleName = DEPT_ADMIN;
 	}
+	
+	public void setUser() {
+		this.roleName = USER;
+	}
+	
 
 }
 

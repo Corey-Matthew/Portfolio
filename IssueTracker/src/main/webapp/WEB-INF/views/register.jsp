@@ -32,6 +32,10 @@
 				<br>
 					<p>Passwords DO NOT Match!</p>
 				</c:if>
+				<c:if test="${requestScope.emptyField}">
+				<br>
+					<p>Please fill in all the fields</p>
+				</c:if>
 				
 				<input
 					type="text" name="username" class="fa long-input"
@@ -46,6 +50,11 @@
  					<option value="user">User</option>
   					<option value="departmentAdmin">Depatment Admin</option>
   					<option value="admin">God Admin</option>
+					</select><br /> 
+					<select name="department" size="1">
+ 					<option value="BossDepartment">Baws</option>
+  					<option value="Fixers">Fixers</option>
+  					<option value="Sales">Sales</option>
 					</select><br /> 
 					
 					<input

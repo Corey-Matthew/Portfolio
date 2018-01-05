@@ -18,5 +18,7 @@
 		scope="prototype"></bean>
 	<bean id="newIssue" class="com.fdmgroup.issuetracker.model.impl.Issue"
 		scope="prototype"></bean>
+	<bean id="newRole" class="com.fdmgroup.issuetracker.model.impl.Role" scope="prototype"></bean>
+	<bean id="newDept" class="com.fdmgroup.issuetracker.model.impl.Department" scope="prototype"></bean>
 
 </beans>
