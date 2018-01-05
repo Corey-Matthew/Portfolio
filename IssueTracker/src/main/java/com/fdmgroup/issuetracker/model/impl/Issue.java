@@ -49,7 +49,7 @@ public class Issue {
 	@Enumerated(EnumType.STRING)
 	private Status status = Status.UNASSIGNED;
 	
-//	@OneToMany(cascade=CascadeType.ALL)
+//	@OneToMany(mappedBy="issue", cascade=CascadeType.ALL) 
 //	@JoinColumn(name="update_id")
 //	private List<IssueUpdate> issueUpdates;
 
