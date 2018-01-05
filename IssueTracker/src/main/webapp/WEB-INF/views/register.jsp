@@ -14,8 +14,6 @@
 				<span class="welcome-register"><a href="./">Get Me Out of Here!</a></span>
 		</c:when>
 		<c:otherwise>Logout Get Me Out of Here!
-
-
 			<h3>Register</h3>
 			<span id="error-messages">${errormessage}</span>
 			<form method="POST" action="registerUser">

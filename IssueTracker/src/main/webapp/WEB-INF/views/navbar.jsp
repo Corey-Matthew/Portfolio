@@ -14,24 +14,24 @@
 						<c:when test="${ not empty sessionScope.user }">
 							<li><a href="issues">Issues</a></li>
 							<li><a href="logout">Logout</a></li>
+							<c:if test="${ sessionScope.user.role.roleName == 'admin' }">
+								<li><a href="register">Register</a></li>
+								<li><a href="listusers">Users List</a></li>
+								<li><a href="./">Admin: ${sessionScope.user.username}</a></li>		
+							</c:if>
+							<c:if test="${ sessionScope.user.role.roleName == 'department_admin' }">
+								<li><a href="./">Department Admin: ${sessionScope.user.username}</a></li>
+							</c:if>
+							<c:if test="${ sessionScope.user.role.roleName == 'user' }">
+								<li><a href="./">User: ${sessionScope.user.username}</a></li>
+							</c:if>
 						</c:when>
 						<c:otherwise>
 							<li><a href="login">Login<span class="sr-only">(current)</span></a></li>
-							<c:if test = "${ sessionScope.user.role.roleName == 'admin'}">
-								<li><a href="register">Register</a></li>
-							</c:if>
 						</c:otherwise>
 					</c:choose>
-					<c:if test="${ sessionScope.user.role.roleName == 'admin' }">
-						<li><a href="./">Admin: ${sessionScope.user.username}</a>
-					</c:if>
-					<c:if test="${ sessionScope.user.role.roleName == 'department_admin' }">
-						<li><a href="./">Department Admin: ${sessionScope.user.username}</a>
-					</c:if>
-					<c:if test="${ sessionScope.user.role.roleName == 'user' }">
-						<li><a href="./">User: ${sessionScope.user.username}</a>
-					</c:if>
-					<li><a href="listusers">Users List</a></li>
+
+					
 					
 				</ul>
 				<form action="finduser" method="GET"
