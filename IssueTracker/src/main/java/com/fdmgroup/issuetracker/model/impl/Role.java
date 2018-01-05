@@ -8,11 +8,16 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "Role")
+@NamedQueries({
+@NamedQuery(name = "Role.findByName", 
+query = "SELECT u FROM Role u WHERE u.roleName = :name") })
 public class Role {
 
 	@Id
