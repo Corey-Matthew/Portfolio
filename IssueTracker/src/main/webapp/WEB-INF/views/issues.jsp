@@ -18,7 +18,7 @@
 		</c:when>
 		<c:otherwise>
 			<c:forEach var='issue' items='${ requestScope.issues }'>
-				<div class="issue" style='background: #669999;'>
+				<div class="issue">
 					<p>
 						Issue ID:
 						<c:out  value='${ issue.issueId }' />
@@ -27,7 +27,7 @@
 					</p>
 				</div>
 			</c:forEach>
-			<c:if test= "${ sessionScope.user.role.roleName == 'admin' }">
+			<c:if test= "${ sessionScope.user.role.roleName eq 'admin' }">
 			<form method="POST" action="assign">
 		<ul>
 					<li><input type="text" name="issueId" class="fa long-input"
