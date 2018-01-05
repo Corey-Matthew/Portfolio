@@ -18,7 +18,7 @@ public class TracingAspect {
 	}
 
 	
-	@Around("execution(* *(..))")
+	@Around("execution(* com.fdmgroup.issuetracker.controller.*.*(..))")
 	public Object trace(ProceedingJoinPoint pjp ) throws Throwable {
 		String methodInfo = pjp.getStaticPart().getSignature().toString();
 		log.trace("Entering " + methodInfo);
