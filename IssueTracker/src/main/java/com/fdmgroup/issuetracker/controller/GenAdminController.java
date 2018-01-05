@@ -25,8 +25,9 @@ public class GenAdminController {
 	private ApplicationContext ctx;
 	private IssueDAO issueDAO;
 	
-	@RequestMapping(value="/assign")
+	@RequestMapping(value="/assign", method = RequestMethod.POST)
 	public String assignIssue(HttpServletRequest req, Model model, @RequestParam int issueId, @RequestParam int assignedTo,@RequestParam Status status){
+		
 		HttpSession session = req.getSession();
 		ctx = (ApplicationContext) session.getServletContext().getAttribute("ctx");
 		issueDAO = (IssueDAO) ctx.getBean("issueDAO");
