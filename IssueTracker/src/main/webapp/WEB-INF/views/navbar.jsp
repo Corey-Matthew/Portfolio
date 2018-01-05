@@ -17,7 +17,9 @@
 						</c:when>
 						<c:otherwise>
 							<li><a href="login">Login<span class="sr-only">(current)</span></a></li>
-							<li><a href="register">Register</a></li>
+							<c:if test = "${ sessionScope.user.role.roleName == 'admin'}">
+								<li><a href="register">Register</a></li>
+							</c:if>
 						</c:otherwise>
 					</c:choose>
 					<c:if test="${ sessionScope.user.role.roleName == 'admin' }">

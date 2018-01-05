@@ -32,8 +32,7 @@ public class RegisterController {
 	 * @return
 	 */
 	@RequestMapping(value="/register")
-	public String goToRegister(HttpServletRequest req, Model model)	{
-
+	public String goToRegister()	{
 		return "register";
 	}
 
