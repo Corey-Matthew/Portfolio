@@ -1,5 +1,7 @@
 package com.fdmgroup.issuetracker.controller;
 
+import java.util.Date;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
@@ -7,8 +9,12 @@ import javax.persistence.NoResultException;
 import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
 
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
 import com.fdmgroup.issuetracker.model.impl.Department;
 import com.fdmgroup.issuetracker.model.impl.Issue;
+import com.fdmgroup.issuetracker.model.impl.IssueDAO;
 import com.fdmgroup.issuetracker.model.impl.Role;
 import com.fdmgroup.issuetracker.model.impl.User;
 
@@ -46,6 +52,16 @@ public class Client {
 //		addRole(admin);
 		User user = getUser("usernamehere223");
 		System.out.println(user.getRole().getRoleName());
+		ApplicationContext ctx = new ClassPathXmlApplicationContext("context.xml");
+		
+		Issue issue = (Issue) ctx.getBean("newIssue");
+		issue.setTitle("different one");
+		issue.setUserDescription("hello");
+		issue.setSubmittedBy(user.getUserId());
+		issue.setDateSubmitted(new Date());
+		IssueDAO issueDAO = new IssueDAO();
+		issueDAO.addIssue(issue);
+		System.out.print("complete");
 	}
 	
 	

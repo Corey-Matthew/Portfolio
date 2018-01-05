@@ -2,8 +2,6 @@ package com.fdmgroup.issuetracker.model.impl;
 
 
 import java.util.Date;
-
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -11,10 +9,8 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -23,7 +19,7 @@ import javax.persistence.TemporalType;
 @Table(name = "Issue")
 @NamedQueries({
 @NamedQuery(name = "Issue.findAll", query = "Select i from Issue i"),
-@NamedQuery(name = "Issue.listDepts", query = "Select i from Issue i where i.assignedTo = :assignedId"),
+@NamedQuery(name = "Issue.listDepts", query = "Select i from Issue i where i.assignedTo = :assignedTo"),
 @NamedQuery(name = "Issue.listUserIssues", query = "Select i from Issue i where i.submittedBy = :submittedBy")
 })
 public class Issue {
@@ -38,7 +34,6 @@ public class Issue {
 	@Column(name = "admin_comment")
 	private String adminComment;
 	
-
 	@Column(name = "assigned_to")
 	private int assignedTo;
 

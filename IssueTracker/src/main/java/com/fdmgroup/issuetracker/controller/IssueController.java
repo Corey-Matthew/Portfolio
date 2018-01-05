@@ -1,5 +1,6 @@
 package com.fdmgroup.issuetracker.controller;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -8,27 +9,25 @@ import javax.servlet.http.HttpSession;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.fdmgroup.issuetracker.model.impl.Issue;
 import com.fdmgroup.issuetracker.model.impl.IssueDAO;
 import com.fdmgroup.issuetracker.model.impl.Role;
 import com.fdmgroup.issuetracker.model.impl.User;
-import com.fdmgroup.issuetracker.model.impl.UserDAO;
 
 @Controller
 public class IssueController {
 
 	private ApplicationContext ctx;
-	private UserDAO userDAO;
 	private IssueDAO issueDAO;
 
 	@RequestMapping(value = "/issues")
 	public String listIssues(Model model, HttpServletRequest req) {
 		HttpSession session = req.getSession();
 		ctx = (ApplicationContext) session.getServletContext().getAttribute("ctx");
-		userDAO = (UserDAO) ctx.getBean("UserDAO");
 		issueDAO = (IssueDAO) ctx.getBean("IssueDAO");
 		User user = (User) session.getAttribute("user");
 		if (user != null) {
@@ -47,25 +46,31 @@ public class IssueController {
 	}
 
 	@RequestMapping(value = "/addIssue")
-	public String addIssue(Model model, HttpServletRequest req) {
-		HttpSession session = req.getSession();
-		ctx = (ApplicationContext) session.getServletContext().getAttribute("ctx");
-		Issue issue = (Issue) ctx.getBean("newIssue");
-		model.addAttribute("issue", issue);
+	public String addIssue() {
+//	public String addIssue(Model model, HttpServletRequest req) {
+//		HttpSession session = req.getSession();
+//		ctx = (ApplicationContext) session.getServletContext().getAttribute("ctx");
+//		Issue issue = (Issue) ctx.getBean("newIssue");
+//		model.addAttribute("issue", issue);
 		return "addIssue";
 	}
 
-	@RequestMapping(value = "/addIssueProc, method = RequestMethod.POST")
-	public String addIssueProc(Model model, @ModelAttribute("issue") Issue issue, HttpServletRequest req) {
+	@RequestMapping(value = "/addIssueProc", method = RequestMethod.POST)
+	public String addIssueMethod(Model model, HttpServletRequest req,
+			@RequestParam(value="title") String title, 
+			@RequestParam(value="userDescription") String userDescription) {
 		HttpSession session = req.getSession();
 		ctx = (ApplicationContext) session.getServletContext().getAttribute("ctx");
-		userDAO = (UserDAO) ctx.getBean("UserDAO");
 		issueDAO = (IssueDAO) ctx.getBean("IssueDAO");
 		User sessionUser = (User) session.getAttribute("user");
+		Issue issue = (Issue) ctx.getBean("newIssue");
+		issue.setTitle(title);
+		issue.setUserDescription(userDescription);
 		issue.setSubmittedBy(sessionUser.getUserId());
-		boolean addBool = issueDAO.addIssue(issue);
-		if (addBool) {
-			model.addAttribute("issueAdded", true);
+		issue.setDateSubmitted(new Date()); 
+		boolean addIssueBool = issueDAO.addIssue(issue);
+		if (addIssueBool) {
+			model.addAttribute("issueAdded",true);
 			return "issues";
 		} else {
 			model.addAttribute("addIssueFailed", true);

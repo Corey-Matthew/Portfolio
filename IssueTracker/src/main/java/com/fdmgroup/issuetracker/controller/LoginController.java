@@ -41,7 +41,8 @@ public class LoginController {
 	 * @return path
 	 */
 	@RequestMapping(value = "/LoginServlet", method = RequestMethod.POST)
-	public String login(HttpServletRequest request, Model model, @RequestParam String username,
+	public String login(HttpServletRequest request, Model model, 
+			@RequestParam String username,
 			@RequestParam String password) {
 		HttpSession session = request.getSession();
 		ctx = (ApplicationContext) session.getServletContext().getAttribute("ctx");

@@ -17,7 +17,7 @@
 			<p>No issues. Why don't you try creating one?</p>
 		</c:when>
 		<c:otherwise>
-			<c:forEach var='issue' items='${ requestScope.issue }'>
+			<c:forEach var='issue' items='${ requestScope.issues }'>
 				<div class="issue" style='background: #669999;'>
 					<p>
 						Issue ID:

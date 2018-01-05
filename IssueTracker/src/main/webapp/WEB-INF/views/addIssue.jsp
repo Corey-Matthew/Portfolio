@@ -15,23 +15,23 @@
 	<div id="add-user" class="options">
 		<c:choose>
 			<c:when test="${ not empty sessionScope.user }">
-				<sf:form action="addIssueProc" method="POST" modelAttribute="issue">
+				<form action="addIssueProc" method="POST">
 					<table style="margin: 0 auto;">
 						<tr>
 							<td>Title </td>
-							<td><sf:input path="title" placeholder="Title: what is your issue about?" required="required" /></td>
+							<td><input type="text" name="title" placeholder="What issue are you having?" required /></td>
 						</tr>
 						<tr>
 							<td>Description </td>
-							<td><sf:textarea path="userDescription" placeholder="Please type in description of the problem..." rows="8" cols="30" required="required"  /></td>
+							<td><textarea name="userDescription" placeholder="Please type in description of the problem..." rows="8" cols="30" required></textarea></td>
 						</tr>
 						<tr>
 						<tr>
 							<td></td>
-							<td><sf:button>Submit</sf:button></td>
+							<td><input type="submit" value="Add Issue"></td>
 						</tr>
 					</table>
-				</sf:form>
+				</form>
 			</c:when>
 			<c:otherwise>
 				<p>You're not already logged in. </p>
