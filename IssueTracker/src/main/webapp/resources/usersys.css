@@ -67,7 +67,12 @@ img::-moz-selection {
 body {
 	-webkit-tap-highlight-color: rgba(255, 255, 255, 0.2);
 }
-
+ul {
+  	list-style-type: none;
+  	margin: 0;
+    padding: 0;
+    margin-bottom: 5px;
+}
 * {
 	text-align: center;
 }
@@ -111,7 +116,7 @@ body {
   bottom:0;
   width: 100%
 }
-  
+ 
 }
 .footer a {
   color: #70726F;

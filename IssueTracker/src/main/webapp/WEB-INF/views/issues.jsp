@@ -36,8 +36,8 @@
 						class="fa long-input" placeholder="Enter the Dept.Id..."
 						required><br /> 
 						<li><input type="text" name="Status" class="fa long-input"
-						placeholder="Change Status..." required><br /></li><input type="submit" value="Assign"
-						class="register-button"> <br></li>
+						placeholder="Change Status..." required><br />
+						</li><input type="submit" value="Assign" class="register-button"/> <br></li>
 				</ul>
 	</form>
 	</c:if>
