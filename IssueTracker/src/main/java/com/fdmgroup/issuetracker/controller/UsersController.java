@@ -3,6 +3,7 @@ package com.fdmgroup.issuetracker.controller;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -15,13 +16,13 @@ import com.fdmgroup.issuetracker.model.impl.UserDAO;
 
 @Controller
 public class UsersController {
-	
+	private ApplicationContext ctx;
+	private UserDAO userDAO;
 	@RequestMapping(value = "/listusers")
 	public String listUsers(Model model, HttpServletRequest req){
-		
-		ApplicationContext ctx = (ApplicationContext) req.getSession().getAttribute("ctx");
-//		ApplicationContext context = new ClassPathXmlApplicationContext("context.xml");
-		UserDAO userDAO = (UserDAO) ctx.getBean("UserDAO");
+		HttpSession session = req.getSession();
+		ctx = (ApplicationContext) session.getServletContext().getAttribute("ctx");
+		userDAO = (UserDAO) ctx.getBean("UserDAO");
 		
 		List<User> userList = userDAO.listUsers();
 		

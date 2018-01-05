@@ -34,34 +34,32 @@ public class Client {
 	
 	public static void main(String[] args) {
 		
-//		User trainee = new User();
-//		Department java = new Department();
-//		java.setDepartmentName("java");
-//		trainee.setDepartment(java);
-//		trainee.setEmail("haha@haha");
-//		trainee.setUsername("usernamehere223");
-//		trainee.setPassword("passwordhere");
-//		addUser(trainee);
-//		System.out.println("Done adding User");
+		User trainee = new User();
+		Department java = new Department();
+		java.setDepartmentName("java");
+		trainee.setDepartment(java);
+		trainee.setEmail("haha@haha");
+		trainee.setUsername("ben");
+		trainee.setPassword("bass");
+		Role admin = new Role();
+		admin.setAdmin();
+		trainee.setRole(admin);
+		addUser(trainee);
+		System.out.println("Done adding User");
 //		
-//		Role admin = new Role();
-//		admin.setDeptAdmin();
-//		trainee.setRole(admin);
-//		updateUser(trainee);
-		
-//		addRole(admin);
-		User user = getUser("usernamehere223");
-		System.out.println(user.getRole().getRoleName());
-		ApplicationContext ctx = new ClassPathXmlApplicationContext("context.xml");
-		
-		Issue issue = (Issue) ctx.getBean("newIssue");
-		issue.setTitle("different one");
-		issue.setUserDescription("hello");
-		issue.setSubmittedBy(user.getUserId());
-		issue.setDateSubmitted(new Date());
-		IssueDAO issueDAO = new IssueDAO();
-		issueDAO.addIssue(issue);
-		System.out.print("complete");
+
+//		User user = getUser("usernamehere223");
+//		System.out.println(user.getRole().getRoleName());
+//		ApplicationContext ctx = new ClassPathXmlApplicationContext("context.xml");
+//		
+//		Issue issue = (Issue) ctx.getBean("newIssue");
+//		issue.setTitle("different one");
+//		issue.setUserDescription("hello");
+//		issue.setSubmittedBy(user.getUserId());
+//		issue.setDateSubmitted(new Date());
+//		IssueDAO issueDAO = new IssueDAO();
+//		issueDAO.addIssue(issue);
+//		System.out.print("complete");
 	}
 	
 	

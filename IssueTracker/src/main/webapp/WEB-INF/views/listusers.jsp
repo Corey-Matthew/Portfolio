@@ -7,7 +7,7 @@
 <c:import url="/WEB-INF/views/navbar.jsp"></c:import> 
 <body>
 	<c:choose>
-		<c:when test="${ not sessionScope.user.role.roleName eq 'admin' }">
+		<c:when test="${ sessionScope.user.role.roleName != 'admin' }">
 			<p>You need to login to see this page.</p>
 		</c:when>
 		<c:otherwise>
