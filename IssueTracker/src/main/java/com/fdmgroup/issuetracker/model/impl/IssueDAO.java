@@ -68,6 +68,7 @@ public class IssueDAO {
 		EntityTransaction et = em.getTransaction();
 		try {
 			et.begin();
+			
 			em.merge(issue);
 			et.commit();
 			return true;

@@ -12,7 +12,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "IssueUpdates")
+@Table(name = "Issue_Updates")
 public class IssueUpdate {
 
 	@Id
@@ -30,8 +30,16 @@ public class IssueUpdate {
 	@Column(name="update_date")
 	private Date updateDate;
 	
-	@Column(name="update_comment")
+	@Column(name="Update_Comment")
 	private String updateComment;
+
+	public String getUpdateComment() {
+		return updateComment;
+	}
+
+	public void setUpdateComment(String updateComment) {
+		this.updateComment = updateComment;
+	}
 
 	public int getIssueUpdateId() {
 		return issueUpdateId;
@@ -63,14 +71,6 @@ public class IssueUpdate {
 
 	public void setUpdateDate(Date updateDate) {
 		this.updateDate = updateDate;
-	}
-
-	public String getUpdateComment() {
-		return updateComment;
-	}
-
-	public void setUpdateComment(String updateComment) {
-		this.updateComment = updateComment;
 	}
 
 

@@ -63,20 +63,22 @@ public class Client {
 //		IssueDAO issueDAO = new IssueDAO();
 //		issueDAO.addIssue(issue);
 //		System.out.print("complete");
-		
-		IssueDAO issueDAO = new IssueDAO();
-		Issue issue = getIssue(34);
-		System.out.println(issue);
-		issue.setStatus(Status.IN_PROCESS);
-		IssueUpdate issueUpdate = new IssueUpdate();
-		issueUpdate.setIssue(issue);
-		issueUpdate.setUpdateComment("Comment update");
-		issueUpdate.setUpdateDate(new Date());
-		List<IssueUpdate> listIssueUpdates = issue.getIssueUpdates();
-		listIssueUpdates.add(issueUpdate);
-		System.out.println("before update issue");
-		issueDAO.updateIssue(issue);
-		System.out.println("finished update");
+////		
+		//We should give the issue id to the person who submits it 
+		// like in a tracking system
+//		IssueDAO issueDAO = new IssueDAO();
+//		Issue issue = getIssue(4);
+//		System.out.println(issue);
+//		issue.setStatus(Status.IN_PROCESS);
+//		IssueUpdate issueUpdate = new IssueUpdate();
+//		issueUpdate.setIssue(issue);
+//		issueUpdate.setUpdateComment("helloitsme");
+//		issueUpdate.setUpdateDate(new Date());
+//		List<IssueUpdate> listIssueUpdates = issue.getIssueUpdates();
+//		listIssueUpdates.add(issueUpdate);
+//		System.out.println("before update issue");
+//		issueDAO.updateIssue(issue);
+//		System.out.println("finished update");
 	}
 	
 	
