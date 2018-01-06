@@ -54,6 +54,7 @@ CREATE TABLE ISSUE (
 );
 
 CREATE TABLE ISSUE_UPDATES (
+	Issue_Update_Id number(4),
     Issue_id number(4),
     Submitted_by number(4),
     Update_Date date,

@@ -4,25 +4,12 @@ package com.fdmgroup.issuetracker.model.impl;
 import java.util.Date;
 import java.util.List;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "Issue")
 @NamedQueries({
+//@NamedQuery(name = "Issue.findIssue", query = "Select i from Issue i where i.issueId = :issueId"),
 @NamedQuery(name = "Issue.findAll", query = "Select i from Issue i"),
 @NamedQuery(name = "Issue.listDepts", query = "Select i from Issue i where i.assignedTo = :assignedTo"),
 @NamedQuery(name = "Issue.listUserIssues", query = "Select i from Issue i where i.submittedBy = :submittedBy")
@@ -49,9 +36,8 @@ public class Issue {
 	@Enumerated(EnumType.STRING)
 	private Status status = Status.UNASSIGNED;
 	
-//	@OneToMany(mappedBy="issue", cascade=CascadeType.ALL) 
-//	@JoinColumn(name="update_id")
-//	private List<IssueUpdate> issueUpdates;
+	@OneToMany(mappedBy="issue", cascade=CascadeType.ALL, fetch=FetchType.EAGER)
+	private List<IssueUpdate> issueUpdates;
 
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "Date_Submitted")
@@ -132,6 +118,20 @@ public class Issue {
 	public void setDateResolved(Date dateResolved) {
 		this.dateResolved = dateResolved;
 	}
+
+	public List<IssueUpdate> getIssueUpdates() {
+		return issueUpdates;
+	}
+
+	public void setIssueUpdates(List<IssueUpdate> issueUpdates) {
+		this.issueUpdates = issueUpdates;
+	}
 	
-	
+	@Override
+	public String toString() {
+		return "Issue ID: " + this.issueId + 
+				" Issue Status: " + this.status +
+				" Issue title: " + this.title +
+				" Issue User Description: " + this.userDescription;
+	}
 }
