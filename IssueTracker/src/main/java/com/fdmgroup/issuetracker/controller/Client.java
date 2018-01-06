@@ -1,6 +1,7 @@
 package com.fdmgroup.issuetracker.controller;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -15,7 +16,9 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import com.fdmgroup.issuetracker.model.impl.Department;
 import com.fdmgroup.issuetracker.model.impl.Issue;
 import com.fdmgroup.issuetracker.model.impl.IssueDAO;
+import com.fdmgroup.issuetracker.model.impl.IssueUpdate;
 import com.fdmgroup.issuetracker.model.impl.Role;
+import com.fdmgroup.issuetracker.model.impl.Status;
 import com.fdmgroup.issuetracker.model.impl.User;
 
 public class Client {
@@ -34,24 +37,24 @@ public class Client {
 	
 	public static void main(String[] args) {
 		
-		User trainee = new User();
-		Department java = new Department();
-		java.setDepartmentName("java");
-		trainee.setDepartment(java);
-		trainee.setEmail("haha@haha");
-		trainee.setUsername("ben");
-		trainee.setPassword("bass");
-		Role admin = new Role();
-		admin.setAdmin();
-		trainee.setRole(admin);
-		addUser(trainee);
-		System.out.println("Done adding User");
+//		User trainee = new User();
+//		Department java = new Department();
+//		java.setDepartmentName("java");
+//		trainee.setDepartment(java);
+//		trainee.setEmail("haha@haha");
+//		trainee.setUsername("ben");
+//		trainee.setPassword("bass");
+//		Role admin = new Role();
+//		admin.setAdmin();
+//		trainee.setRole(admin);
+//		addUser(trainee);
+//		System.out.println("Done adding User");
 //		
 
 //		User user = getUser("usernamehere223");
 //		System.out.println(user.getRole().getRoleName());
+//		User user = getUser("ben");
 //		ApplicationContext ctx = new ClassPathXmlApplicationContext("context.xml");
-//		
 //		Issue issue = (Issue) ctx.getBean("newIssue");
 //		issue.setTitle("different one");
 //		issue.setUserDescription("hello");
@@ -60,8 +63,29 @@ public class Client {
 //		IssueDAO issueDAO = new IssueDAO();
 //		issueDAO.addIssue(issue);
 //		System.out.print("complete");
+////		
+		//We should give the issue id to the person who submits it 
+		// like in a tracking system
+//		IssueDAO issueDAO = new IssueDAO();
+//		Issue issue = getIssue(4);
+//		System.out.println(issue);
+//		issue.setStatus(Status.IN_PROCESS);
+//		IssueUpdate issueUpdate = new IssueUpdate();
+//		issueUpdate.setIssue(issue);
+//		issueUpdate.setUpdateComment("helloitsme");
+//		issueUpdate.setUpdateDate(new Date());
+//		List<IssueUpdate> listIssueUpdates = issue.getIssueUpdates();
+//		listIssueUpdates.add(issueUpdate);
+//		System.out.println("before update issue");
+//		issueDAO.updateIssue(issue);
+//		System.out.println("finished update");
 	}
 	
+	
+	public static Issue getIssue(int id) {
+		EntityManager em = getEntityManager();
+		return em.find(Issue.class, id);
+	}
 	
 	public static boolean updateUser(User user) {
 		EntityManager em = getEntityManager();

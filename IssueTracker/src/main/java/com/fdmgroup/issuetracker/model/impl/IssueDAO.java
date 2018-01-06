@@ -5,7 +5,6 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
-import javax.persistence.NoResultException;
 import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
 
@@ -42,7 +41,9 @@ public class IssueDAO {
 
 	public Issue getIssue(int id) {
 		EntityManager em = getEntityManager();
-		return em.find(Issue.class, id);
+		Issue issue = em.find(Issue.class, id);
+		em.close();
+		return issue;
 	}
 
 	public List<Issue> listAll() {
@@ -65,11 +66,15 @@ public class IssueDAO {
 	public boolean updateIssue(Issue issue) {
 		EntityManager em = getEntityManager();
 		EntityTransaction et = em.getTransaction();
-		et.begin();
-		em.merge(issue);
-		et.commit();
-		em.close();
-		return true;
+		try {
+			et.begin();
+			
+			em.merge(issue);
+			et.commit();
+			return true;
+		} finally {
+			em.close();
+		}
 	}
 
 }
