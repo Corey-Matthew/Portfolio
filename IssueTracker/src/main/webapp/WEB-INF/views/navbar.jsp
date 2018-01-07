@@ -17,10 +17,12 @@
 							<c:if test="${ sessionScope.user.role.roleName == 'admin' }">
 								<li><a href="register">Register</a></li>
 								<li><a href="listusers">Users List</a></li>
-								<li><a href="./">Admin: ${sessionScope.user.username}</a></li>		
+								<li><a href="./">Admin: ${sessionScope.user.username}</a></li>
 							</c:if>
-							<c:if test="${ sessionScope.user.role.roleName == 'department_admin' }">
-								<li><a href="./">Department Admin: ${sessionScope.user.username}</a></li>
+							<c:if
+								test="${ sessionScope.user.role.roleName == 'department_admin' }">
+								<li><a href="./">Department Admin:
+										${sessionScope.user.username}</a></li>
 							</c:if>
 							<c:if test="${ sessionScope.user.role.roleName == 'user' }">
 								<li><a href="./">User: ${sessionScope.user.username}</a></li>
@@ -31,16 +33,12 @@
 						</c:otherwise>
 					</c:choose>
 
-					
-					
 				</ul>
-				<form action="finduser" method="GET"
+				<form action="viewissue" method="GET"
 					class="navbar-form navbar-right">
-					
 					<div class="form-group">
-					
-						<input type="text" name="username" id="user" class="form-control"
-							placeholder="Search for a username..">
+						<input type="text" name="issueId" class="form-control"
+							placeholder="Search for an issue via issue ID..">
 						<button type="submit" class="btn btn-default">Search</button>
 					</div>
 				</form>

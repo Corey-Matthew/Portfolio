@@ -47,11 +47,6 @@ public class IssueController {
 
 	@RequestMapping(value = "/addIssue")
 	public String addIssue() {
-//	public String addIssue(Model model, HttpServletRequest req) {
-//		HttpSession session = req.getSession();
-//		ctx = (ApplicationContext) session.getServletContext().getAttribute("ctx");
-//		Issue issue = (Issue) ctx.getBean("newIssue");
-//		model.addAttribute("issue", issue);
 		return "addIssue";
 	}
 
@@ -76,6 +71,16 @@ public class IssueController {
 			model.addAttribute("addIssueFailed", true);
 			return "addIssue";
 		}
+	}
+	
+	@RequestMapping(value="/viewissue")
+	public String listUsers(@RequestParam int issueId, Model model, HttpServletRequest req) {
+		HttpSession session = req.getSession();
+		ctx = (ApplicationContext) session.getServletContext().getAttribute("ctx");
+		issueDAO = (IssueDAO) ctx.getBean("IssueDAO");
+		Issue issue = issueDAO.getIssue(issueId);
+		model.addAttribute("issue", issue);
+		return "issue";
 	}
 
 }

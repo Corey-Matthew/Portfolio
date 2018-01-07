@@ -10,7 +10,7 @@
 		<input type="submit" value="Add Issue">
 	</form>
 	<c:if test="${ requestScope.issueAdded }">
-		<h4> Successfully added your issue! </h4>
+		<h4>Successfully added your issue!</h4>
 	</c:if>
 	<c:choose>
 		<c:when test="${ empty requestScope.issues }">
@@ -20,27 +20,30 @@
 			<c:forEach var='issue' items='${ requestScope.issues }'>
 				<div class="issue">
 					<p>
-						Issue ID:
-						<c:out  value='${ issue.issueId }' />
+						<a href="viewissue?issueId=${ issue.issueId }">View issue ID: </a>
+						<c:out value='${ issue.issueId }' />
+					</p>
+					<p>
 						Assigned to:
-						<c:out  value='${ issue.assignedTo }' />
+						<c:out value='${ issue.assignedTo }' />
 					</p>
 				</div>
 			</c:forEach>
-			<c:if test= "${ sessionScope.user.role.roleName eq 'admin' }">
-			<form method="POST" action="assign">
-		<ul>
-					<li><input type="text" name="issueId" class="fa long-input"
-						placeholder="Enter the issueId..." required><br /></li>
-					<li><input type="text" name="assignedTo"
-						class="fa long-input" placeholder="Enter the Dept.Id..."
-						required><br /> 
+			<c:if test="${ sessionScope.user.role.roleName eq 'admin' }">
+				<form method="POST" action="assign">
+					<ul>
+						<li><input type="text" name="issueId" class="fa long-input"
+							placeholder="Enter the issueId..." required><br /></li>
+						<li><input type="text" name="assignedTo"
+							class="fa long-input" placeholder="Enter the Dept.Id..." required><br />
+						</li>
 						<li><input type="text" name="Status" class="fa long-input"
-						placeholder="Change Status..." required><br />
-						</li><input type="submit" value="Assign" class="register-button"/> <br></li>
-				</ul>
-	</form>
-	</c:if>
+							placeholder="Change Status..." required><br /> <input
+							type="submit" value="Assign" class="register-button" /></li>
+						<br>
+					</ul>
+				</form>
+			</c:if>
 		</c:otherwise>
 	</c:choose>
 </body>

@@ -1,7 +1,6 @@
 package com.fdmgroup.issuetracker.controller;
 
 import java.util.Date;
-import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -11,14 +10,13 @@ import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
 
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.fdmgroup.issuetracker.model.impl.Department;
 import com.fdmgroup.issuetracker.model.impl.Issue;
 import com.fdmgroup.issuetracker.model.impl.IssueDAO;
-import com.fdmgroup.issuetracker.model.impl.IssueUpdate;
 import com.fdmgroup.issuetracker.model.impl.Role;
-import com.fdmgroup.issuetracker.model.impl.Status;
 import com.fdmgroup.issuetracker.model.impl.User;
 
 public class Client {
@@ -36,25 +34,22 @@ public class Client {
 	}
 	
 	public static void main(String[] args) {
-		
+//		
+//		ApplicationContext ctx = new ClassPathXmlApplicationContext("context.xml");
 //		User trainee = new User();
 //		Department java = new Department();
 //		java.setDepartmentName("java");
 //		trainee.setDepartment(java);
 //		trainee.setEmail("haha@haha");
-//		trainee.setUsername("ben");
-//		trainee.setPassword("bass");
+//		trainee.setUsername("admin1");
+//		trainee.setPassword("adminpw");
 //		Role admin = new Role();
 //		admin.setAdmin();
 //		trainee.setRole(admin);
 //		addUser(trainee);
 //		System.out.println("Done adding User");
-//		
-
-//		User user = getUser("usernamehere223");
-//		System.out.println(user.getRole().getRoleName());
-//		User user = getUser("ben");
-//		ApplicationContext ctx = new ClassPathXmlApplicationContext("context.xml");
+//		System.out.println("User role name: " + trainee.getRole().getRoleName());
+//		User user = getUser("admin");
 //		Issue issue = (Issue) ctx.getBean("newIssue");
 //		issue.setTitle("different one");
 //		issue.setUserDescription("hello");
@@ -62,11 +57,12 @@ public class Client {
 //		issue.setDateSubmitted(new Date());
 //		IssueDAO issueDAO = new IssueDAO();
 //		issueDAO.addIssue(issue);
-//		System.out.print("complete");
-////		
+//		System.out.print("complete");	
+//		System.out.println(issue.getIssueId());
 		//We should give the issue id to the person who submits it 
 		// like in a tracking system
 //		IssueDAO issueDAO = new IssueDAO();
+		// manually find the issue id related to the issue
 //		Issue issue = getIssue(4);
 //		System.out.println(issue);
 //		issue.setStatus(Status.IN_PROCESS);
@@ -79,13 +75,9 @@ public class Client {
 //		System.out.println("before update issue");
 //		issueDAO.updateIssue(issue);
 //		System.out.println("finished update");
+//		((ConfigurableApplicationContext)ctx).close();
 	}
 	
-	
-	public static Issue getIssue(int id) {
-		EntityManager em = getEntityManager();
-		return em.find(Issue.class, id);
-	}
 	
 	public static boolean updateUser(User user) {
 		EntityManager em = getEntityManager();
