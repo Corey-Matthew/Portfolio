@@ -13,8 +13,11 @@
 			<p>You shall not pass!</p>
 				<span class="welcome-register"><a href="./">Get Me Out of Here!</a></span>
 		</c:when>
-		<c:otherwise>Logout Get Me Out of Here!
+		<c:otherwise>
 			<h3>Register</h3>
+			<c:if test="${ requestScope.registered }">
+			<h4> Successfully registered: ${ requestScope.user.username }</h4> 
+			</c:if>
 			<span id="error-messages">${errormessage}</span>
 			<form method="POST" action="registerUser">
 

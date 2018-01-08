@@ -87,7 +87,8 @@ public class RegisterController {
 		
 		dao.addUser(newUser);
 		model.addAttribute("registered", true);
-		return ("login");
+		model.addAttribute("user", newUser);
+		return ("register");
 				
 	}
 }

@@ -12,7 +12,7 @@
 		</c:when>
 		<c:otherwise>
 			<c:forEach var='user' items='${ requestScope.users }'>
-				<div class="user">
+				<div class="user-card">
 					<p>
 						User ID:
 						<c:out value='${ user.userId }' />
