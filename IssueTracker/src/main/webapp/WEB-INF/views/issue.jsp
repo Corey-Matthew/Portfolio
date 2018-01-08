@@ -36,8 +36,11 @@
 			<b>Admin Comment:</b>
 			<c:out value='${ issue.adminComment }' />
 		</p>
+		<c:if test="${ not empty requestScope.issue.issueUpdates }">
+		<br/><br/>
 		<h4>Issue updates</h4>
-		<c:forEach var='issueUpdate' items='${ requestScope.issue.issueUpdates }'>
+		<c:forEach var='issueUpdate'
+			items='${ requestScope.issue.issueUpdates }'>
 			<div class="issue-updates">
 				<p>
 					Update date:
@@ -48,7 +51,31 @@
 					<c:out value='${ issueUpdate.updateComment}' />
 				</p>
 			</div>
+		
 		</c:forEach>
+		</c:if>
+		<div class="issue-update-form">
+			<c:if test="${ sessionScope.user.role.roleName eq 'department_admin' }">
+				<c:if test="${ requestScope.issue.assignedTo == user.department.departmentId }">
+					<form method="POST" action="addIssueUpdate" >
+					<input type="hidden" name="issueId" value="${ issue.issueId }" />
+						<table style="margin: 0 auto;">
+							<tr>
+								<td>Comment</td>
+								<td><textarea name="issueComment"
+										placeholder="Enter update text..." rows="8" cols="30" required></textarea>
+								</td>
+							</tr>
+							<tr>
+							<tr>
+								<td></td>
+								<td><input type="submit" value="Submit Update"></td>
+							</tr>
+						</table>
+					</form>
+				</c:if>
+			</c:if>
+		</div>
 	</div>
 </body>
 <c:import url="/WEB-INF/views/footer.jsp"></c:import>
