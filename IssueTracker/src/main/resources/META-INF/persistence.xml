@@ -5,6 +5,7 @@
 	<persistence-unit name="IssueTracker" transaction-type="RESOURCE_LOCAL">
 		<class>com.fdmgroup.issuetracker.model.impl.User</class>
 		<class>com.fdmgroup.issuetracker.model.impl.Issue</class>
+		<class>com.fdmgroup.issuetracker.model.impl.IssueUpdate</class>
 		<class>com.fdmgroup.issuetracker.model.impl.Role</class>
 		<class>com.fdmgroup.issuetracker.model.impl.Department</class>
 		<properties>
