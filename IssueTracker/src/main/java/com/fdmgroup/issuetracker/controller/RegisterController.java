@@ -52,6 +52,23 @@ public class RegisterController {
 			return "register";
 		}
 		
+		
+		if(userType.equals("") && department.equals("")){
+			model.addAttribute("selectUserTypeDepartment",true);
+			return("register");
+		}
+		
+		if(department.equals("")){
+			model.addAttribute("selectDepartment",true);
+			return("register");
+		}
+		
+		if(userType.equals("")){
+			model.addAttribute("selectUserType",true);
+			return("register");
+		}
+		
+		
 		User user = dao.getUser(username);
 		
 		if (user != null) {
