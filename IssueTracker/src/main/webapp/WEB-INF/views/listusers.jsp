@@ -12,6 +12,8 @@
 		</c:when>
 		<c:otherwise>
 			<c:forEach var='user' items='${ requestScope.users }'>
+				
+				<a href="viewUserIssues?userId=${ user.userId }">
 				<div class="user-card">
 					<p>
 						User ID:
@@ -32,9 +34,16 @@
 						<c:out value='${ user.role.roleName }' />
 					</p>
 				</div>
+				</a>
 			</c:forEach>
 		</c:otherwise>
 	</c:choose>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
 </body>
 <c:import url="/WEB-INF/views/footer.jsp"></c:import>
 </html>

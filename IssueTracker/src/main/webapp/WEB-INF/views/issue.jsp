@@ -36,12 +36,19 @@
 			<b>Admin Comment:</b>
 			<c:out value='${ issue.adminComment }' />
 		</p>
-		<div class="issue-updates">
-			<c:forEach var='issueUpdate' items='${ requestScope.issueUpdates }'>
-			<p> Update date: <c:out value='${ issueUpdate.updateDate}' /></p>
-			<p> Update comment: <c:out value='${ issueUpdate.updateComment}' /></p>
-			</c:forEach>
-		</div>
+		<h4>Issue updates</h4>
+		<c:forEach var='issueUpdate' items='${ requestScope.issue.issueUpdates }'>
+			<div class="issue-updates">
+				<p>
+					Update date:
+					<c:out value='${ issueUpdate.updateDate}' />
+				</p>
+				<p>
+					Update comment:
+					<c:out value='${ issueUpdate.updateComment}' />
+				</p>
+			</div>
+		</c:forEach>
 	</div>
 </body>
 <c:import url="/WEB-INF/views/footer.jsp"></c:import>

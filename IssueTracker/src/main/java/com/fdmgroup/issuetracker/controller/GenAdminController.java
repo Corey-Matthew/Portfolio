@@ -19,35 +19,42 @@ import com.fdmgroup.issuetracker.model.impl.User;
 import com.fdmgroup.issuetracker.model.impl.UserDAO;
 import com.fdmgroup.issuetracker.utils.Validation;
 
-
+@Controller
 public class GenAdminController {
 
 	private ApplicationContext ctx;
 	private IssueDAO issueDAO;
-	
-	@RequestMapping(value="/assign", method = RequestMethod.POST)
-	public String assignIssue(HttpServletRequest req, Model model, @RequestParam int issueId, @RequestParam int assignedTo,@RequestParam Status status){
-		
+
+	@RequestMapping(value = "/assign", method = RequestMethod.POST)
+	public String assignIssue(HttpServletRequest req, Model model, @RequestParam int issueId,
+			@RequestParam int assignedTo, @RequestParam Status status) {
+
 		HttpSession session = req.getSession();
 		ctx = (ApplicationContext) session.getServletContext().getAttribute("ctx");
 		issueDAO = (IssueDAO) ctx.getBean("issueDAO");
 		List<Issue> issues = (List<Issue>) session.getAttribute("issues");
-		
-		
-		if(Validation.compare(issueDAO, issueId)){
-			for(Issue issue:issues){
-				if(issue.getIssueId() == issueId){
+
+		if (Validation.compare(issueDAO, issueId)) {
+			for (Issue issue : issues) {
+				if (issue.getIssueId() == issueId) {
 					issue.setAssignedTo(assignedTo);
 					issue.setStatus(status);
 				}
 			}
-			
-			
-			
-		}
-		else{
+
+		} else {
 			model.addAttribute("not found", true);
 		}
 		return "issues";
+	}
+
+	@RequestMapping(value = "/viewUserIssues")
+	public String viewUserIssues(HttpServletRequest req, Model model, @RequestParam int userId) {
+		HttpSession session = req.getSession();
+		ctx = (ApplicationContext) session.getServletContext().getAttribute("ctx");
+		issueDAO = (IssueDAO) ctx.getBean("IssueDAO");
+		List<Issue> issues = issueDAO.listByUser(userId);
+		model.addAttribute("issues", issues);
+		return "viewUserIssues";
 	}
 }

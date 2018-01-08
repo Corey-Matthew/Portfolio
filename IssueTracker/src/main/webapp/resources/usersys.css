@@ -132,10 +132,12 @@ ul {
 }
 
 .user-card {
+	margin:auto;
 	background-color: #d1d119;
 	padding-top: 5px ;
 	padding-bottom: 5px ;
 	width: 70%;
+	margin-bottom: 10px;
 	border-radius: 5px;
 	border-style: ridge;
 	border-color: #a0a004;
