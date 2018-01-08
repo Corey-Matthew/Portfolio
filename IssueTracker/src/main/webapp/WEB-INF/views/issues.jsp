@@ -20,43 +20,42 @@
 		</c:when>
 		<c:otherwise>
 			<c:forEach var='issue' items='${ requestScope.issues }'>
-			<a href="viewissue?issueId=${ issue.issueId }">
-				<div class="user-card">
-					<p> Issue ID:
-						<c:out value='${ issue.issueId }' />
-					</p>
-					<p>
-						Assigned to:
-						<c:out value='${ issue.assignedTo }' />
-					</p>
-					<p>
-						Status:
-						<c:out value='${ issue.status }' />
-
-
-					</p>
-				</div>
+				<a href="viewissue?issueId=${ issue.issueId }">
+					<div class="user-card">
+						<p>
+							Issue ID:
+							<c:out value='${ issue.issueId }' />
+						</p>
+						<p>
+							Assigned to:
+							<c:out value='${ issue.assignedTo }' />
+						</p>
+						<p>
+							Status:
+							<c:out value='${ issue.status }' />
+						</p>
+					</div>
 				</a>
 			</c:forEach>
 			<c:if test="${ sessionScope.user.role.roleName eq 'admin' }">
 				<div class="user-card">
 					<form method="POST" action="assign">
 						<ul>
-							<div>Issue ID: 
-								<select name="issueId" size="1">
-										<c:forEach var='issue' items='${ requestScope.issues }'>
-											<option value="${issue.issueId}">${issue.issueId}</option>
-										</c:forEach>
+							<div>
+								Issue ID: <select name="issueId" size="1">
+									<c:forEach var='issue' items='${ requestScope.issues }'>
+										<option value="${issue.issueId}">${issue.issueId}</option>
+									</c:forEach>
 								</select>
 							</div>
-							<div> Assign to: 
-								<select name="deptId" size="1">
-										<c:forEach var='dept' items='${ requestScope.depts}'>
-											<option value="${dept.departmentId}">${ dept.departmentName }</option>
-										</c:forEach>
-								</select>
-								<input type="submit" value="Assign"
-									class="register-button"> <br><br />
+							<div>
+								Assign to: <select name="deptId" size="1">
+									<c:forEach var='dept' items='${ requestScope.depts}'>
+										<option value="${dept.departmentId}">${ dept.departmentName }</option>
+									</c:forEach>
+								</select> <input type="submit" value="Assign" class="register-button">
+								<br>
+								<br />
 							</div>
 						</ul>
 					</form>
