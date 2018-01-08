@@ -35,19 +35,19 @@ public class Client {
 	
 	public static void main(String[] args) {
 //		
-//		ApplicationContext ctx = new ClassPathXmlApplicationContext("context.xml");
-//		User trainee = new User();
-//		Department java = new Department();
-//		java.setDepartmentName("java");
-//		trainee.setDepartment(java);
-//		trainee.setEmail("haha@haha");
-//		trainee.setUsername("admin1");
-//		trainee.setPassword("adminpw");
-//		Role admin = new Role();
-//		admin.setAdmin();
-//		trainee.setRole(admin);
-//		addUser(trainee);
-//		System.out.println("Done adding User");
+		ApplicationContext ctx = new ClassPathXmlApplicationContext("context.xml");
+		User trainee = new User();
+		Department java = new Department();
+		java.setDepartmentName("java");
+		trainee.setDepartment(java);
+		trainee.setEmail("haha@haha");
+		trainee.setUsername("admin1");
+		trainee.setPassword("adminpw");
+		Role admin = new Role();
+		admin.setAdmin();
+		trainee.setRole(admin);
+		addUser(trainee);
+		System.out.println("Done adding User");
 //		System.out.println("User role name: " + trainee.getRole().getRoleName());
 //		User user = getUser("admin");
 //		Issue issue = (Issue) ctx.getBean("newIssue");
@@ -75,7 +75,7 @@ public class Client {
 //		System.out.println("before update issue");
 //		issueDAO.updateIssue(issue);
 //		System.out.println("finished update");
-//		((ConfigurableApplicationContext)ctx).close();
+		((ConfigurableApplicationContext)ctx).close();
 	}
 	
 	
