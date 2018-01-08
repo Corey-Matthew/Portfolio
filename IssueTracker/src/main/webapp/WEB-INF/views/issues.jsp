@@ -27,7 +27,12 @@
 					</p>
 					<p>
 						Assigned to: 
-						<c:out value='${ issue.assignedTo }' />
+						<c:forEach var='dept' items='${requestScope.depts }'>
+							<c:if test="${dept.departmentId == issue.assignedTo }">
+								<c:out value='${ dept.departmentName }' />
+							
+							</c:if>
+						</c:forEach>
 					</p>
 					<p>
 						Status:
