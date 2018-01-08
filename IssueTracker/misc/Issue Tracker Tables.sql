@@ -50,7 +50,8 @@ CREATE TABLE ISSUE (
     Status varchar2(30),
     Priority number(2),
     Date_Submitted date,
-    Date_Resolved date 
+    Date_Resolved date,
+    constraint issue_pk PRIMARY KEY (Issue_id)
 );
 
 CREATE TABLE ISSUE_UPDATES (
@@ -58,5 +59,6 @@ CREATE TABLE ISSUE_UPDATES (
     Issue_id number(4),
     Submitted_by number(4),
     Update_Date date,
-    Update_Comment varchar2(300)
+    Update_Comment varchar2(300),
+    constraint issue_update_pk PRIMARY KEY (Issue_Update_Id)
 );
