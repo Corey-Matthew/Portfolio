@@ -6,21 +6,23 @@
 <c:import url="/WEB-INF/views/head.jsp"></c:import>
 <c:import url="/WEB-INF/views/navbar.jsp"></c:import>
 <body>
-	<form method="POST" action="addIssue">
+	<c:if test="${ sessionScope.user.role.roleName == 'user' }">
+		<form method="POST" action="addIssue">
 		<input type="submit" value="Add Issue">
-	</form>
+	</form></c:if>
 	<c:if test="${ requestScope.issueAdded }">
 		<h4>Successfully added your issue!</h4>
 	</c:if>
 	<c:choose>
 		<c:when test="${ empty requestScope.issues }">
-			<p>No issues. Why don't you try creating one?</p>
+			<p>No issues.</p>
 		</c:when>
 		<c:otherwise>
 			<c:forEach var='issue' items='${ requestScope.issues }'>
 				<div class="issue">
 					<p>
-						<a href="viewissue?issueId=${ issue.issueId }">View issue ID: </a>
+						<a href="viewissue?issueId=${ issue.issueId }">View issue ID:
+						</a>
 						<c:out value='${ issue.issueId }' />
 					</p>
 					<p>

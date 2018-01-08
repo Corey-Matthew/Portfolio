@@ -34,8 +34,7 @@
 						required><br /> <input type="submit" value="Login"
 						class="register-button"> <br></li>
 				</ul>
-				<span class="welcome-register"><a href="register">Not a
-						Member? Register Now</a></span> <br> <span class="welcome-register"><a
+				 <br> <span class="welcome-register"><a
 					href="./">Go Back Home</a></span>
 			</form>
 
