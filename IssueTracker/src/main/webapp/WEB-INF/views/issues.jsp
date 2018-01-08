@@ -67,6 +67,7 @@
 
 		</c:otherwise>
 	</c:choose>
+	<br/><br/><br/><br/>
 </body>
 <c:import url="/WEB-INF/views/footer.jsp"></c:import>
 </html>
