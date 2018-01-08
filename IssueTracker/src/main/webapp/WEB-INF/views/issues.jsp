@@ -29,6 +29,10 @@
 						Assigned to:
 						<c:out value='${ issue.assignedTo }' />
 					</p>
+					<p>
+						Status:
+						<c:out value='${ issue.status }' />
+					</p>
 				</div>
 			</c:forEach>
 			<c:if test="${ sessionScope.user.role.roleName eq 'admin' }">
@@ -39,9 +43,6 @@
 						<li><input type="text" name="assignedTo"
 							class="fa long-input" placeholder="Enter the Dept.Id..." required><br />
 						</li>
-						<li><input type="text" name="Status" class="fa long-input"
-							placeholder="Change Status..." required><br /> <input
-							type="submit" value="Assign" class="register-button" /></li>
 						<br>
 					</ul>
 				</form>
@@ -51,3 +52,5 @@
 </body>
 <c:import url="/WEB-INF/views/footer.jsp"></c:import>
 </html>
+
+
