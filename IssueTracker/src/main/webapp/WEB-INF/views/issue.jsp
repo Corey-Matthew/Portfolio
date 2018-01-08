@@ -21,7 +21,7 @@
 			<c:out value='${ issue.userDescription }' />
 		</p>
 		<p>
-			<b>Assigned to:</b>
+			<b>Assigned to ${ requestScope.deptName }</b>
 			<c:out value='${ issue.assignedTo }' />
 		</p>
 		<p>

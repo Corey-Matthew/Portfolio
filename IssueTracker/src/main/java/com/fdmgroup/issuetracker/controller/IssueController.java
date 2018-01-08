@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.fdmgroup.issuetracker.model.impl.Department;
 import com.fdmgroup.issuetracker.model.impl.Issue;
 import com.fdmgroup.issuetracker.model.impl.IssueDAO;
 import com.fdmgroup.issuetracker.model.impl.IssueUpdate;
@@ -38,9 +39,8 @@ public class IssueController {
 		if (user != null) {
 			if (user.getRole().getRoleName().equals(Role.ADMIN)) {
 				List<Issue> issues = issueDAO.listAll();
-				UserDAO userDAO = (UserDAO) ctx.getBean("UserDAO");
-				List<User> deptAdmins = userDAO.listDeptAdmin();
-				model.addAttribute("deptAdmins", deptAdmins);
+				List<Department> depts = issueDAO.listDepts();
+				model.addAttribute("depts", depts);
 				model.addAttribute("issues", issues);
 			} else if (user.getRole().getRoleName().equals(Role.DEPT_ADMIN)) {
 				List<Issue> issues = issueDAO.listByDept(user.getDepartment().getDepartmentId());
@@ -86,13 +86,15 @@ public class IssueController {
 		ctx = (ApplicationContext) session.getServletContext().getAttribute("ctx");
 		issueDAO = (IssueDAO) ctx.getBean("IssueDAO");
 		Issue issue = issueDAO.getIssue(issueId);
+		String deptName = issueDAO.getDepartmentById(issue.getAssignedTo()).getDepartmentName();
 		model.addAttribute("issue", issue);
+		model.addAttribute("deptName", deptName);
 		return "issue";
 	}
 	
 	@RequestMapping(value = "/assign", method = RequestMethod.POST)
 	public String assignIssue(HttpServletRequest req, Model model, @RequestParam int issueId,
-			@RequestParam int assignedTo) {
+			@RequestParam int deptId) {
 
 		HttpSession session = req.getSession();
 		ctx = (ApplicationContext) session.getServletContext().getAttribute("ctx");
@@ -101,7 +103,7 @@ public class IssueController {
 
 		if (Validation.compare(issueDAO, issueId)) {
 			Issue issue = issueDAO.getIssue(issueId);
-			issue.setAssignedTo(assignedTo);
+			issue.setAssignedTo(deptId);
 			issue.setStatus(Status.ASSIGNED);
 			issueDAO.updateIssue(issue);
 			

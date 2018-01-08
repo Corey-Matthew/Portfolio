@@ -151,6 +151,7 @@ public class UserDAO  {
 			return null;
 		}
 	}
+
 	public Role getRole(String name){
 		TypedQuery<Role> query = getEntityManager().createNamedQuery("Role.findByName", Role.class);
 		Role role= null;

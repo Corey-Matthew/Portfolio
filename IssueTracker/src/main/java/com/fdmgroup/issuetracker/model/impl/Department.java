@@ -18,7 +18,8 @@ import javax.persistence.Table;
 @Table(name = "Department")
 @NamedQueries({
 @NamedQuery(name = "Department.findByName", 
-query = "SELECT u FROM Department u WHERE u.departmentName = :dept_name") })
+query = "SELECT u FROM Department u WHERE u.departmentName = :dept_name"),
+@NamedQuery(name = "Department.listAll", query = "SELECT u from Department u")})
 public class Department {
 
 	@Id

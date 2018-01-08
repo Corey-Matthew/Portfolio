@@ -26,7 +26,7 @@
 						<c:out value='${ issue.issueId }' />
 					</p>
 					<p>
-						Assigned to:
+						Assigned to: 
 						<c:out value='${ issue.assignedTo }' />
 					</p>
 					<p>
@@ -43,14 +43,14 @@
 				
 				<form method="POST" action="assign">
 					<ul>
-						<li><select name="assignedTo" size="1">
+						<li><select name="issueId" size="1">
 								<c:forEach var='issue' items='${ requestScope.issues }'>
 									<option value="${issue.issueId}" >${issue.issueId} </option>
 								</c:forEach>
 							</select></li><br/> 
-						<li><select name="assignedTo" size="1">
-								<c:forEach var='user' items='${ requestScope.deptAdmins }'>
-									<option value="${user.userId}" > ${ user.username }, Department: ${ user.department.departmentName }</option>
+						<li><select name="deptId" size="1">
+								<c:forEach var='dept' items='${ requestScope.depts}'>
+									<option value="${dept.departmentId}" > ${ dept.departmentName }</option>
 								</c:forEach>
 							</select></li><br/> 
 						<li><input type="submit" value="Assign" class="register-button"> <br></li>

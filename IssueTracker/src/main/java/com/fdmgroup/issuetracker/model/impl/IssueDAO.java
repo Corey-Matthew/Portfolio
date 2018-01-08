@@ -5,6 +5,7 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
+import javax.persistence.NoResultException;
 import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
 
@@ -76,5 +77,23 @@ public class IssueDAO {
 			em.close();
 		}
 	}
+	
+	public Department getDepartmentById(int deptId){
+		EntityManager em = getEntityManager();
+		Department dept = em.find(Department.class, deptId);
+		em.close();
+		return dept;
+	}
+	
+	public List<Department> listDepts() {
+		TypedQuery<Department> query = getEntityManager().createNamedQuery("Department.listAll", Department.class);
+		return query.getResultList();
 
+	}
+	
 }
+
+
+
+
+
