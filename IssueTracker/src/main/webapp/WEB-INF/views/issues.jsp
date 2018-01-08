@@ -32,21 +32,31 @@
 					<p>
 						Status:
 						<c:out value='${ issue.status }' />
+						
+						
 					</p>
 				</div>
 			</c:forEach>
 			<c:if test="${ sessionScope.user.role.roleName eq 'admin' }">
+				
+				
+				
 				<form method="POST" action="assign">
 					<ul>
 						<li><input type="text" name="issueId" class="fa long-input"
 							placeholder="Enter the issueId..." required><br /></li>
 						<li><input type="text" name="assignedTo"
 							class="fa long-input" placeholder="Enter the Dept.Id..." required><br />
-						</li>
+						<input type="submit" value="Assign"
+						class="register-button"> <br></li>
 						<br>
 					</ul>
 				</form>
 			</c:if>
+			<c:if test="${requestScope.notfound}">
+				<label> Issue not found!</label>
+			</c:if>
+			
 		</c:otherwise>
 	</c:choose>
 </body>
