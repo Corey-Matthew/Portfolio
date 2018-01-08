@@ -14,7 +14,7 @@ public class LoggingAspect {
 	private static final Logger log = Logger.getLogger(LoggingAspect.class);
 
 	static {
-		PropertyConfigurator.configure("./src/main/resources/META-INF/log4j.properties");
+		PropertyConfigurator.configure("./src/main/resources/log4j.properties");
 	}
 
 	

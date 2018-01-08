@@ -17,7 +17,9 @@ import com.fdmgroup.issuetracker.model.impl.Issue;
 import com.fdmgroup.issuetracker.model.impl.IssueDAO;
 import com.fdmgroup.issuetracker.model.impl.IssueUpdate;
 import com.fdmgroup.issuetracker.model.impl.Role;
+import com.fdmgroup.issuetracker.model.impl.Status;
 import com.fdmgroup.issuetracker.model.impl.User;
+import com.fdmgroup.issuetracker.utils.Validation;
 
 @Controller
 public class IssueController {
@@ -81,6 +83,39 @@ public class IssueController {
 		Issue issue = issueDAO.getIssue(issueId);
 		model.addAttribute("issue", issue);
 		return "issue";
+	}
+	
+	@RequestMapping(value = "/assign", method = RequestMethod.POST)
+	public String assignIssue(HttpServletRequest req, Model model, @RequestParam int issueId,
+			@RequestParam int assignedTo) {
+
+		HttpSession session = req.getSession();
+		ctx = (ApplicationContext) session.getServletContext().getAttribute("ctx");
+		issueDAO = (IssueDAO) ctx.getBean("IssueDAO");
+		
+
+		if (Validation.compare(issueDAO, issueId)) {
+			Issue issue = issueDAO.getIssue(issueId);
+			issue.setAssignedTo(assignedTo);
+			issue.setStatus(Status.ASSIGNED);
+			issueDAO.updateIssue(issue);
+			
+
+		} else {
+			model.addAttribute("notfound", true);
+			return listIssues(model, req);
+		}
+		return listIssues(model, req);
+	}
+
+	@RequestMapping(value = "/viewUserIssues")
+	public String viewUserIssues(HttpServletRequest req, Model model, @RequestParam int userId) {
+		HttpSession session = req.getSession();
+		ctx = (ApplicationContext) session.getServletContext().getAttribute("ctx");
+		issueDAO = (IssueDAO) ctx.getBean("IssueDAO");
+		List<Issue> issues = issueDAO.listByUser(userId);
+		model.addAttribute("issues", issues);
+		return "viewUserIssues";
 	}
 
 	@RequestMapping(value="addIssueUpdate", method = RequestMethod.POST)
