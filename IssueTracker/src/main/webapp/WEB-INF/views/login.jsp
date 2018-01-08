@@ -25,18 +25,25 @@
 				<label> Incorrect Password! </label>
 
 			</c:if>
-			<form method="POST" action="LoginServlet">
-				<ul>
-					<li><input type="text" name="username" class="fa long-input"
-						placeholder="Enter your username..." required><br /></li>
-					<li><input type="password" name="password"
-						class="fa long-input" placeholder="Enter your password..."
-						required><br /> <input type="submit" value="Login"
-						class="register-button"> <br></li>
-				</ul>
-				 <br> <span class="welcome-register"><a
-					href="./">Go Back Home</a></span>
-			</form>
+			<div class="login-div">
+				<form method="POST" action="LoginServlet">
+					<table style="margin: 0 auto;">
+						<tr>
+							<td>Username: </td>
+							<td><input type="text" name="username" class="fa long-input"
+								placeholder="Enter your username..." required /><br /></td>
+						</tr>
+						<tr>
+							<td>Password: </td>
+							<td><input type="password" name="password"
+								class="fa long-input" placeholder="Enter your password..."
+								required><br /></td>
+						</tr>
+						<tr>
+					</table>
+					<input type="submit" value="Login">
+				</form>
+			</div>
 
 		</c:otherwise>
 	</c:choose>

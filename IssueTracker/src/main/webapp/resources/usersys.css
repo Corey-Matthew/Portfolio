@@ -144,3 +144,7 @@ input {
 	border-style: ridge;
 	border-color: #a0a004;
 }
+
+.login-div {
+	line-height: 2;
+}
