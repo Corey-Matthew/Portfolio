@@ -87,8 +87,13 @@ public class IssueController {
 		issueDAO = (IssueDAO) ctx.getBean("IssueDAO");
 		Issue issue = issueDAO.getIssue(issueId);
 		if (issue != null) {
+			if (issueDAO.getDepartmentById(issue.getAssignedTo()) != null) {
 			String deptName = issueDAO.getDepartmentById(issue.getAssignedTo()).getDepartmentName();
 			model.addAttribute("deptName", deptName);
+			} else {
+				String noDept = "Not assigned";
+				model.addAttribute("deptName", noDept);
+			}
 		}
 		model.addAttribute("issue", issue);
 		return "issue";
