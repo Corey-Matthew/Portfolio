@@ -6,6 +6,11 @@
 <c:import url="/WEB-INF/views/head.jsp"></c:import>
 <c:import url="/WEB-INF/views/navbar.jsp"></c:import>
 <body>
+<c:choose>
+<c:when test="${ empty issue }">
+	<p> No issue associated with that ID. <p>
+</c:when>
+<c:otherwise>
 	<!-- Add check that the issue belongs to the user -->
 	<div class="issue">
 		<p>
@@ -77,6 +82,8 @@
 			</c:if>
 		</div>
 	</div>
+	</c:otherwise>
+	</c:choose>
 </body>
 <c:import url="/WEB-INF/views/footer.jsp"></c:import>
 </html>

@@ -30,13 +30,13 @@
 					<table style="margin: 0 auto;">
 						<tr>
 							<td>Username: </td>
-							<td><input type="text" name="username" class="fa long-input"
+							<td><input type="text" name="username" class="long-input"
 								placeholder="Enter your username..." required /><br /></td>
 						</tr>
 						<tr>
 							<td>Password: </td>
 							<td><input type="password" name="password"
-								class="fa long-input" placeholder="Enter your password..."
+								class="long-input" placeholder="Enter your password..."
 								required><br /></td>
 						</tr>
 						<tr>

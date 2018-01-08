@@ -37,8 +37,8 @@
 				<form action="viewissue" method="GET"
 					class="navbar-form navbar-right">
 					<div class="form-group">
-						<input type="text" name="issueId" class="form-control"
-							placeholder="Search for an issue via issue ID..">
+						<input type="number" name="issueId" class="form-control"
+							placeholder="Search by issue ID..">
 						<button type="submit" class="btn btn-default">Search</button>
 					</div>
 				</form>

@@ -34,7 +34,7 @@ public class IssueController {
 		HttpSession session = req.getSession();
 		ctx = (ApplicationContext) session.getServletContext().getAttribute("ctx");
 		issueDAO = (IssueDAO) ctx.getBean("IssueDAO");
-		
+
 		User user = (User) session.getAttribute("user");
 		if (user != null) {
 			if (user.getRole().getRoleName().equals(Role.ADMIN)) {
@@ -80,18 +80,20 @@ public class IssueController {
 		}
 	}
 
-	@RequestMapping(value="/viewissue")
+	@RequestMapping(value = "/viewissue")
 	public String listUsers(@RequestParam int issueId, Model model, HttpServletRequest req) {
 		HttpSession session = req.getSession();
 		ctx = (ApplicationContext) session.getServletContext().getAttribute("ctx");
 		issueDAO = (IssueDAO) ctx.getBean("IssueDAO");
 		Issue issue = issueDAO.getIssue(issueId);
-		String deptName = issueDAO.getDepartmentById(issue.getAssignedTo()).getDepartmentName();
+		if (issue != null) {
+			String deptName = issueDAO.getDepartmentById(issue.getAssignedTo()).getDepartmentName();
+			model.addAttribute("deptName", deptName);
+		}
 		model.addAttribute("issue", issue);
-		model.addAttribute("deptName", deptName);
 		return "issue";
 	}
-	
+
 	@RequestMapping(value = "/assign", method = RequestMethod.POST)
 	public String assignIssue(HttpServletRequest req, Model model, @RequestParam int issueId,
 			@RequestParam int deptId) {
@@ -99,14 +101,12 @@ public class IssueController {
 		HttpSession session = req.getSession();
 		ctx = (ApplicationContext) session.getServletContext().getAttribute("ctx");
 		issueDAO = (IssueDAO) ctx.getBean("IssueDAO");
-		
 
 		if (Validation.compare(issueDAO, issueId)) {
 			Issue issue = issueDAO.getIssue(issueId);
 			issue.setAssignedTo(deptId);
 			issue.setStatus(Status.ASSIGNED);
 			issueDAO.updateIssue(issue);
-			
 
 		} else {
 			model.addAttribute("notfound", true);
@@ -125,9 +125,9 @@ public class IssueController {
 		return "viewUserIssues";
 	}
 
-	@RequestMapping(value="addIssueUpdate", method = RequestMethod.POST)
-	public String addIssueUpdate(@RequestParam int issueId, @RequestParam String issueComment,
-							HttpServletRequest req, Model model){
+	@RequestMapping(value = "addIssueUpdate", method = RequestMethod.POST)
+	public String addIssueUpdate(@RequestParam int issueId, @RequestParam String issueComment, HttpServletRequest req,
+			Model model) {
 		HttpSession session = req.getSession();
 		ctx = (ApplicationContext) session.getServletContext().getAttribute("ctx");
 		issueDAO = (IssueDAO) ctx.getBean("IssueDAO");
