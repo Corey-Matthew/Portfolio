@@ -18,6 +18,19 @@
 			<c:if test="${ requestScope.registered }">
 			<h4> Successfully registered: ${ requestScope.user.username }</h4> 
 			</c:if>
+			
+			<c:if test="${ requestScope.selectUserTypeDepartment }">
+			<h4> Please select a User Type & Department in Dropdowns</h4> 
+			</c:if>
+			
+			<c:if test="${ requestScope.selectDepartment }">
+			<h4> Please select a Department</h4> 
+			</c:if>
+			
+			<c:if test="${ requestScope.selectUserType }">
+			<h4> Please select a User Type</h4> 
+			</c:if>
+			
 			<span id="error-messages">${errormessage}</span>
 			<form method="POST" action="registerUser">
 
@@ -44,11 +57,13 @@
 				<input type="password" name="confirmedPassword" class="fa long-input"
 					placeholder="Confirm password..." required /><br /> 
 				<select name="userType" size="1">
+				<option value=''>Please select a User Type </option>
 					<option value="user">User</option>
 					<option value="departmentAdmin">Depatment Admin</option>
 					<option value="admin">God Admin</option>
 				</select><br /> 
 				<select name="department" size="1">
+				<option value=''>Please select a Department</option>
 					<option value="HR">Human Resources</option>
 					<option value="IT">IT</option>
 					<option value="Sales">Sales</option>
