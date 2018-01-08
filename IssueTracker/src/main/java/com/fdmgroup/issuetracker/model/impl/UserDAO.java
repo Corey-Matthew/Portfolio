@@ -136,12 +136,16 @@ public class UserDAO  {
 		TypedQuery<User> query = getEntityManager().createNamedQuery("User.findAll", User.class);
 		return query.getResultList();
 	}
-
-	public Department getDepartment(String username) {
+	public List<User> listDeptAdmin() {
+		Role role = getRole(Role.DEPT_ADMIN);
+		TypedQuery<User> query = getEntityManager().createNamedQuery("User.findByRole", User.class);
+		return query.setParameter("role", role).getResultList();
+	}
+	public Department getDepartment(String name) {
 		TypedQuery<Department> query = getEntityManager().createNamedQuery("Department.findByName", Department.class);
 		Department department= null;
 		try {
-			department = query.setParameter("dept_name", username).getSingleResult();
+			department = query.setParameter("dept_name", name).getSingleResult();
 			return department;
 		} catch (NoResultException e) {
 			return null;
@@ -169,5 +173,7 @@ public class UserDAO  {
 			em.close();
 		}
 	}
+	
+	
 
 }

@@ -43,13 +43,18 @@
 				
 				<form method="POST" action="assign">
 					<ul>
-						<li><input type="text" name="issueId" class="fa long-input"
-							placeholder="Enter the issueId..." required><br /></li>
-						<li><input type="text" name="assignedTo"
-							class="fa long-input" placeholder="Enter the Dept.Id..." required><br />
-						<input type="submit" value="Assign"
-						class="register-button"> <br></li>
-						<br>
+						<li><select name="assignedTo" size="1">
+								<c:forEach var='issue' items='${ requestScope.issues }'>
+									<option value="${issue.issueId}" >${issue.issueId} </option>
+								</c:forEach>
+							</select></li><br/> 
+						<li><select name="assignedTo" size="1">
+								<c:forEach var='user' items='${ requestScope.deptAdmins }'>
+									<option value="${user.userId}" > ${ user.username }, Department: ${ user.department.departmentName }</option>
+								</c:forEach>
+							</select></li><br/> 
+						<li><input type="submit" value="Assign" class="register-button"> <br></li>
+						<br/>
 					</ul>
 				</form>
 			</c:if>

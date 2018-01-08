@@ -49,8 +49,8 @@
 					<option value="admin">God Admin</option>
 				</select><br /> 
 				<select name="department" size="1">
-					<option value="BossDepartment">Baws</option>
-					<option value="Fixers">Fixers</option>
+					<option value="HR">Human Resources</option>
+					<option value="IT">IT</option>
 					<option value="Sales">Sales</option>
 				</select><br /> 
 				<input type="submit" value="Register" class="register-button"> <br> 

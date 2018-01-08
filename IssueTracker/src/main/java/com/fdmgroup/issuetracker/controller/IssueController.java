@@ -18,6 +18,7 @@ import com.fdmgroup.issuetracker.model.impl.IssueDAO;
 import com.fdmgroup.issuetracker.model.impl.Role;
 import com.fdmgroup.issuetracker.model.impl.Status;
 import com.fdmgroup.issuetracker.model.impl.User;
+import com.fdmgroup.issuetracker.model.impl.UserDAO;
 import com.fdmgroup.issuetracker.utils.Validation;
 
 @Controller
@@ -31,10 +32,14 @@ public class IssueController {
 		HttpSession session = req.getSession();
 		ctx = (ApplicationContext) session.getServletContext().getAttribute("ctx");
 		issueDAO = (IssueDAO) ctx.getBean("IssueDAO");
+		
 		User user = (User) session.getAttribute("user");
 		if (user != null) {
 			if (user.getRole().getRoleName().equals(Role.ADMIN)) {
 				List<Issue> issues = issueDAO.listAll();
+				UserDAO userDAO = (UserDAO) ctx.getBean("UserDAO");
+				List<User> deptAdmins = userDAO.listDeptAdmin();
+				model.addAttribute("deptAdmins", deptAdmins);
 				model.addAttribute("issues", issues);
 			} else if (user.getRole().getRoleName().equals(Role.DEPT_ADMIN)) {
 				List<Issue> issues = issueDAO.listByDept(user.getDepartment().getDepartmentId());

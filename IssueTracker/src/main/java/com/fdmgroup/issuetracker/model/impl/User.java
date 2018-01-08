@@ -10,7 +10,9 @@ import com.fdmgroup.issuetracker.model.IUser;
 @NamedQueries({ 
 @NamedQuery(name = "User.findAll", query = "SELECT u from User u"),
 @NamedQuery(name = "User.findByName", 
-query = "SELECT u FROM User u WHERE u.username = :username") })
+query = "SELECT u FROM User u WHERE u.username = :username"),
+@NamedQuery(name = "User.findByRole", 
+query = "SELECT u FROM User u WHERE u.role = :role")})
 
 public class User implements IUser {
 	
