@@ -149,6 +149,10 @@ input {
 	text-align: center;
 }
 
+ul.nav.navbar-nav li a:hover{
+	color: #ff0000;
+}
+
 .login-div {
 	width:40%;
 	margin: 0 auto;

@@ -19,7 +19,9 @@
 		<h4>Successfully added your issue!</h4>
 	</c:if>
 	<c:if test="${ sessionScope.user.role.roleName eq 'admin' }">
+		
 		<div class="user-card assign-card">
+		<h3>Assign Issues</h3>
 			<form method="POST" action="assign">
 				<div class="form-group">
 					<i class="fa fa-arrow-circle-right"></i>Issue ID: <select
@@ -43,11 +45,13 @@
 			</form>
 		</div>
 	</c:if>
+	
 	<c:choose>
 		<c:when test="${ empty requestScope.issues }">
 			<p>No issues.</p>
 		</c:when>
 		<c:otherwise>
+		
 			<div class="iter-cards">
 				<c:forEach var='issue' items='${ requestScope.issues }'>
 					<a href="viewissue?issueId=${ issue.issueId }">

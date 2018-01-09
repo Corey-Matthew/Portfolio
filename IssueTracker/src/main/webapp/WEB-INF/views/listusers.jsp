@@ -11,10 +11,10 @@
 			<p>You need to login to see this page.</p>
 		</c:when>
 		<c:otherwise>
+		<div class="iter-cards">
 		<h1>User List</h1>
 			<c:forEach var='user' items='${ requestScope.users }'>
 				<div class="user-card col-sm-4">
-					<div class="card-body">
 						<p>
 							User ID:
 							<c:out value='${ user.userId }' />
@@ -36,9 +36,9 @@
 							<c:out value='${ user.role.roleName }' />
 						</p>
 						<a href="viewUserIssues?userId=${ user.userId }" class="btn btn-primary">See User Issues</a>
-					</div>
 				</div>
 			</c:forEach>
+			</div>
 		</c:otherwise>
 	</c:choose>
 	<br />
