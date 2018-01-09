@@ -27,7 +27,7 @@ public class User implements IUser {
 	private String username;
 	private String password;
 	private String email;
-	@OneToOne(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
+	@OneToOne(cascade=CascadeType.ALL, orphanRemoval=true, fetch=FetchType.EAGER)
 	@JoinTable(name="USER_ROLE",
 				joinColumns = {@JoinColumn(name="User_id", referencedColumnName="User_id")},
 				inverseJoinColumns = {@JoinColumn(name="Role_id", referencedColumnName="Role_id")}

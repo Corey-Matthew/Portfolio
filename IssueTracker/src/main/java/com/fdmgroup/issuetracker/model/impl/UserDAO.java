@@ -89,24 +89,22 @@ public class UserDAO  {
 	 * Removes a user with the passed in parameter of username
 	 */
 	public boolean removeUser(String username) {
-		
-		EntityManager em = factory.createEntityManager();
-		User user = em.find(User.class, username);
-		
-		try {
-			if (user != null) {
-					
-				em.getTransaction().begin();
-				em.remove(user);
-				em.getTransaction().commit();
+		EntityManager em = getEntityManager();
+		EntityTransaction et = em.getTransaction();
+		User user = getUser(username);
+		if (user != null) {
+			try {
+				et.begin();
+				em.remove(em.contains(user) ? user : em.merge(user));
+				et.commit();
 				return true;
+			} finally {
+				em.close();
 			}
-		} finally {
-			em.close();
-		} 
-		return false;
+		} else {
+			return false;
+		}
 	}
-
 	/**
 	 * Update a user if the username exist in the database
 	 */
