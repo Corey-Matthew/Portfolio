@@ -223,6 +223,7 @@ public class IssueController {
 		if (Validation.compare(issueDAO, issueId)) {
 			Issue issue = issueDAO.getIssue(issueId);
 			issue.setStatus(Status.APPROVED);
+			issue.setDateResolved(new Date());
 			issueDAO.updateIssue(issue);
 		} else {
 			model.addAttribute("notfound", true);
