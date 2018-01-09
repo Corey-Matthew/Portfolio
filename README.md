@@ -2,7 +2,7 @@
 We're designing a Complaint Management System (CMS) that will allow us monitor the discomforts and nuisances of all our employees.
 
 We hope whoever utilizes this software finds joy in it's design and implementation, if not in its tickets.
-![alt text](https://i.redd.it/pkjxpbwqt9801.jpg)
+#(https://i.redd.it/pkjxpbwqt9801.jpg)
 
 ## Trello Is Up!
 [Trello link](https://trello.com/b/encea361/issuetracker)
