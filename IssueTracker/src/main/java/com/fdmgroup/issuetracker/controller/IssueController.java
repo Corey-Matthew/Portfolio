@@ -169,6 +169,18 @@ public class IssueController {
 		model.addAttribute("issues", issues);
 		return "issues";
 	}
+	
+	@RequestMapping(value = "/viewDeptIssues")
+	public String viewAssignedIssues(HttpServletRequest req, Model model, @RequestParam int deptId) {
+		HttpSession session = req.getSession();
+		ctx = (ApplicationContext) session.getServletContext().getAttribute("ctx");
+		issueDAO = (IssueDAO) ctx.getBean("IssueDAO");
+		List<Department> depts = issueDAO.listDepts();
+		List<Issue> issues = issueDAO.listByDept(deptId);
+		model.addAttribute("depts", depts);
+		model.addAttribute("issues", issues);
+		return "issues";
+	}
 	/**
 	 * This updates an issue
 	 * @param issueId

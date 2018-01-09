@@ -35,7 +35,15 @@
 							Role:
 							<c:out value='${ user.role.roleName }' />
 						</p>
+						<c:if test="${ user.role.roleName == 'user' }">
 						<a href="viewUserIssues?userId=${ user.userId }" class="btn btn-primary">See User Issues</a>
+						</c:if>
+						<c:if test="${ user.role.roleName == 'department_admin' }">
+						<a href="viewDeptIssues?deptId=${ user.department.departmentId }" class="btn btn-primary">See Department Issues</a>
+						</c:if>
+						<c:if test="${ user.role.roleName == 'admin' }">
+						<a href="issues" class="btn btn-primary">See All Issues</a>
+						</c:if>
 				</div>
 			</c:forEach>
 			</div>
