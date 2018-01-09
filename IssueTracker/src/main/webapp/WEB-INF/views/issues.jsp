@@ -51,7 +51,7 @@
 			<div class="iter-cards">
 				<c:forEach var='issue' items='${ requestScope.issues }'>
 					<a href="viewissue?issueId=${ issue.issueId }">
-						<div class="user-card col-sm-4">
+						<div class="user-card col-md-4">
 							<p>
 								Issue ID:
 								<c:out value='${ issue.issueId }' />

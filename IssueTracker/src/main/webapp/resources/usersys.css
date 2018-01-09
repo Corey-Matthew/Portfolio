@@ -16,6 +16,9 @@ html {
 h1, h2, h3, h4, h5, h6, button, .login-button, p{
 	text-align: center;
 }
+.login-button{
+	padding: 5px;
+}
 
 h1, h2, h3, h4, h5, h6 {
 	font-family: 'Cabin', 'Helvetica Neue', Helvetica, Arial, sans-serif;
@@ -136,9 +139,7 @@ input {
 .user-card {
 	margin:auto;
 	background-color: #d1d119;
-	padding-top: 5px ;
-	padding-bottom: 5px ;
-	width: 20%;
+	padding: 5px;
 	margin-bottom: 10px;
 	border-radius: 5px;
 	border-style: ridge;

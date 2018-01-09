@@ -95,6 +95,7 @@ public class IssueController {
 				model.addAttribute("deptName", noDept);
 			}
 		}
+		
 		model.addAttribute("issue", issue);
 		return "issue";
 	}
@@ -125,9 +126,11 @@ public class IssueController {
 		HttpSession session = req.getSession();
 		ctx = (ApplicationContext) session.getServletContext().getAttribute("ctx");
 		issueDAO = (IssueDAO) ctx.getBean("IssueDAO");
+		List<Department> depts = issueDAO.listDepts();
 		List<Issue> issues = issueDAO.listByUser(userId);
+		model.addAttribute("depts", depts);
 		model.addAttribute("issues", issues);
-		return "viewUserIssues";
+		return "issues";
 	}
 
 	@RequestMapping(value = "addIssueUpdate", method = RequestMethod.POST)

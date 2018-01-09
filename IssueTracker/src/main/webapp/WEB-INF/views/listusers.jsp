@@ -11,6 +11,7 @@
 			<p>You need to login to see this page.</p>
 		</c:when>
 		<c:otherwise>
+		<h1>User List</h1>
 			<c:forEach var='user' items='${ requestScope.users }'>
 				<div class="user-card col-sm-4">
 					<div class="card-body">
