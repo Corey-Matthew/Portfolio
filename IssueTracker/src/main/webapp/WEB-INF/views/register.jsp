@@ -12,8 +12,7 @@
 		<c:when
 			test="${ empty sessionScope.user  || sessionScope.user.role.roleName != 'admin'}">
 			<p>You shall not pass!</p>
-			<p><a href="./">Get Me Out of
-					Here!</a></span></p>
+			<p><span><a href="./">Get Me Out of Here!</a></span></p>
 		</c:when>
 		<c:otherwise>
 			
