@@ -7,67 +7,77 @@
 <c:import url="/WEB-INF/views/navbar.jsp"></c:import>
 <body>
 	<c:if test="${ sessionScope.user.role.roleName == 'user' }">
-		<form method="POST" action="addIssue">
-			<input type="submit" value="Add Issue">
-		</form>
+		<div class="login-button">
+			<form method="POST" action="addIssue">
+				<button type="submit" class="btn btn-success btn-pill">Add
+					an issue</button>
+			</form>
+		</div>
 	</c:if>
 	<c:if test="${ requestScope.issueAdded }">
+		<br>
 		<h4>Successfully added your issue!</h4>
+	</c:if>
+	<c:if test="${ sessionScope.user.role.roleName eq 'admin' }">
+		<div class="user-card assign-card">
+			<form method="POST" action="assign">
+				<div class="form-group">
+					<i class="fa fa-arrow-circle-right"></i>Issue ID: <select
+						name="issueId" size="1" required>
+						<c:forEach var='issue' items='${ requestScope.issues }'>
+							<option value="${issue.issueId}">${issue.issueId}</option>
+						</c:forEach>
+					</select>
+				</div>
+				<div class="form-group">
+					<i class="fa fa-arrow-circle-right"></i>Assign to: <select
+						name="deptId" size="1" required>
+						<c:forEach var='dept' items='${ requestScope.depts}'>
+							<option value="${dept.departmentId}">${ dept.departmentName }</option>
+						</c:forEach>
+					</select>
+				</div>
+				<div class="login-button">
+					<button type="submit" class="btn btn-primary btn-pill">Assign</button>
+				</div>
+			</form>
+		</div>
 	</c:if>
 	<c:choose>
 		<c:when test="${ empty requestScope.issues }">
 			<p>No issues.</p>
 		</c:when>
 		<c:otherwise>
-			<c:forEach var='issue' items='${ requestScope.issues }'>
-				<a href="viewissue?issueId=${ issue.issueId }">
-					<div class="user-card">
-						<p>
-							Issue ID:
-							<c:out value='${ issue.issueId }' />
-						</p>
-						<p>
-							Assigned to:
-							<c:out value='${ issue.assignedTo }' />
-						</p>
-						<p>
-							Status:
-							<c:out value='${ issue.status }' />
-						</p>
-					</div>
-				</a>
-			</c:forEach>
-			<c:if test="${ sessionScope.user.role.roleName eq 'admin' }">
-				<div class="user-card">
-					<form method="POST" action="assign">
-						<ul>
-							<div>
-								Issue ID: <select name="issueId" size="1">
-									<c:forEach var='issue' items='${ requestScope.issues }'>
-										<option value="${issue.issueId}">${issue.issueId}</option>
-									</c:forEach>
-								</select>
-							</div>
-							<div>
-								Assign to: <select name="deptId" size="1">
-									<c:forEach var='dept' items='${ requestScope.depts}'>
-										<option value="${dept.departmentId}">${ dept.departmentName }</option>
-									</c:forEach>
-								</select> <input type="submit" value="Assign" class="register-button">
-								<br>
-								<br />
-							</div>
-						</ul>
-					</form>
-				</div>
-			</c:if>
+			<div class="iter-cards">
+				<c:forEach var='issue' items='${ requestScope.issues }'>
+					<a href="viewissue?issueId=${ issue.issueId }">
+						<div class="user-card col-sm-4">
+							<p>
+								Issue ID:
+								<c:out value='${ issue.issueId }' />
+							</p>
+							<p>
+								Assigned to:
+								<c:out value='${ issue.assignedTo }' />
+							</p>
+							<p>
+								Status:
+								<c:out value='${ issue.status }' />
+							</p>
+						</div>
+					</a>
+				</c:forEach>
+			</div>
 			<c:if test="${requestScope.notfound}">
 				<label> Issue not found!</label>
 			</c:if>
 
 		</c:otherwise>
 	</c:choose>
-	<br/><br/><br/><br/>
+	<br />
+	<br />
+	<br />
+	<br />
 </body>
 <c:import url="/WEB-INF/views/footer.jsp"></c:import>
 </html>

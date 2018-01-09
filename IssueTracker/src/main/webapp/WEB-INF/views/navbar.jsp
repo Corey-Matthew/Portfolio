@@ -13,10 +13,10 @@
 					<c:choose>
 						<c:when test="${ not empty sessionScope.user }">
 							<li><a href="issues">Issues</a></li>
-							<li><a href="logout">Logout</a></li>
 							<c:if test="${ sessionScope.user.role.roleName == 'admin' }">
 								<li><a href="register">Register</a></li>
 								<li><a href="listusers">Users List</a></li>
+								<li><a href="logout">Logout</a></li>
 								<li><a href="./">Admin: ${sessionScope.user.username}</a></li>
 							</c:if>
 							<c:if

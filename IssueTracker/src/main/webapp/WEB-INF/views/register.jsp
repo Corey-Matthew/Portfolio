@@ -12,8 +12,8 @@
 		<c:when
 			test="${ empty sessionScope.user  || sessionScope.user.role.roleName != 'admin'}">
 			<p>You shall not pass!</p>
-			<span class="welcome-register"><a href="./">Get Me Out of
-					Here!</a></span>
+			<p><a href="./">Get Me Out of
+					Here!</a></span></p>
 		</c:when>
 		<c:otherwise>
 			<h3>Register</h3>
@@ -22,15 +22,15 @@
 			</c:if>
 
 			<c:if test="${ requestScope.selectUserTypeDepartment }">
-				<h4>Please select a User Type & Department in Dropdowns</h4>
+				<p>Please select a User Type & Department in Dropdowns</p>
 			</c:if>
 
 			<c:if test="${ requestScope.selectDepartment }">
-				<h4>Please select a Department</h4>
+				<p>Please select a Department</p>
 			</c:if>
 
 			<c:if test="${ requestScope.selectUserType }">
-				<h4>Please select a User Type</h4>
+				<p>Please select a User Type</p>
 			</c:if>
 
 			<span id="error-messages">${errormessage}</span>
@@ -38,7 +38,7 @@
 				<form method="POST" action="registerUser">
 					<c:if test="${requestScope.userexist}">
 						<br>
-						<p>Sorry, but that username is not available</p>
+						<p>Sorry, but that username is not available.</p>
 					</c:if>
 
 					<c:if test="${requestScope.passwordNoMatch}">

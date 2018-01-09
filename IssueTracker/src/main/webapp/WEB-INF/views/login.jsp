@@ -7,22 +7,21 @@
 <body>
 
 	<h3>Login</h3>
-
 	<c:choose>
-
 		<c:when test="${ not empty sessionScope.user }">
 			<p>Already logged in.</p>
-			<form method="POST" action="logout">
-				<input type="submit" value="Logout" class="register-button">
-			</form>
+			<div class="login-button">
+				<form method="POST" action="logout">
+					<button type="submit" class="btn btn-primary btn-pill">Logout</button>
+				</form>
+			</div>
 		</c:when>
 		<c:otherwise>
-
 			<c:if test="${requestScope.notfound}">
-				<label> User not found!</label>
+				<p>User not found!</p>
 			</c:if>
 			<c:if test="${requestScope.notmatch}">
-				<label> Incorrect Password! </label>
+				<p>Incorrect Password!</p>
 
 			</c:if>
 			<div class="login-div">
@@ -31,14 +30,14 @@
 						<div class="input-group with-addon-icon-left">
 							<span class="input-group-addon"> <i class="fa fa-user"></i>
 							</span> <input class="form-control" name="username"
-								placeholder="Username" type="text" required/>
+								placeholder="Username" type="text" required />
 						</div>
 					</div>
 					<div class="form-group">
 						<div class="input-group with-addon-icon-left">
 							<span class="input-group-addon"><i class="fa fa-lock"></i>
 							</span> <input class="form-control" name="password"
-								placeholder="Password" type="password" required/>
+								placeholder="Password" type="password" required />
 						</div>
 					</div>
 					<div class="login-button">

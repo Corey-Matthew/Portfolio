@@ -61,20 +61,3 @@ public class Role {
 
 }
 
-//
-//package com.fdmgroup.issuetracker.model.impl;
-//
-//import javax.persistence.CascadeType;
-//import javax.persistence.Entity;
-//import javax.persistence.OneToOne;
-//import javax.persistence.Table;
-//
-//@Entity
-//@Table(name = "User_Role")
-//public class UserRole {
-//
-//	@OneToOne(cascade=CascadeType.ALL)
-//	private User user;
-//	@OneToOne(cascade=CascadeType.ALL)
-//	private Role role;
-//}

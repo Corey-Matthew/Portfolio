@@ -15,26 +15,32 @@
 	<div id="add-user" class="options">
 		<c:choose>
 			<c:when test="${ not empty sessionScope.user }">
-				<form action="addIssueProc" method="POST">
-					<table style="margin: 0 auto;">
-						<tr>
-							<td>Title </td>
-							<td><input type="text" name="title" placeholder="What issue are you having?" required /></td>
-						</tr>
-						<tr>
-							<td>Description </td>
-							<td><textarea name="userDescription" placeholder="Please type in description of the problem..." rows="8" cols="30" required></textarea></td>
-						</tr>
-						<tr>
-						<tr>
-							<td></td>
-							<td><input type="submit" value="Add Issue"></td>
-						</tr>
-					</table>
-				</form>
+				<div class="login-div">
+					<form action="addIssueProc" method="POST">
+						<div class="form-group">
+							<span class="input-group-addon"> <i
+								class="fa fa-exclamation"> Title of Issue</i>
+							</span> <input class="form-control" name="title"
+								placeholder="Title of your Issue" type="text" required />
+						</div>
+						<div class="form-group">
+							<span class="input-group-addon"> <i
+								class="fa fa-info-circle"> Description of Issue</i>
+							</span>
+							<textarea class="form-control" name="userDescription"
+								placeholder="Description of issue" required></textarea>
+						</div>
+						<div class="login-button">
+							<span>
+								<button type="submit" class="btn btn-primary btn-pill">Submit Issue</button>
+								<a href="issues" class="btn btn-danger btn-pill">Cancel</a>
+							</span>
+						</div>
+					</form>
+				</div>
 			</c:when>
 			<c:otherwise>
-				<p>You're not already logged in. </p>
+				<p>You're not already logged in.</p>
 			</c:otherwise>
 		</c:choose>
 	</div>
