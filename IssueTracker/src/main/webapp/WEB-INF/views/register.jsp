@@ -38,7 +38,7 @@
 				<form method="POST" action="registerUser">
 					<c:if test="${requestScope.userexist}">
 						<br>
-						<p>Sorry, but that Username is not Available</p>
+						<p>Sorry, but that username is not available</p>
 					</c:if>
 
 					<c:if test="${requestScope.passwordNoMatch}">
