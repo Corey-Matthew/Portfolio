@@ -27,27 +27,28 @@
 			</c:if>
 			<div class="login-div">
 				<form method="POST" action="LoginServlet">
-					<table style="margin: 0 auto;">
-						<tr>
-							<td>Username: </td>
-							<td><input type="text" name="username" class="long-input"
-								placeholder="Enter your username..." required /><br /></td>
-						</tr>
-						<tr>
-							<td>Password: </td>
-							<td><input type="password" name="password"
-								class="long-input" placeholder="Enter your password..."
-								required><br /></td>
-						</tr>
-						<tr>
-					</table>
-					<input type="submit" value="Login">
+					<div class="form-group">
+						<div class="input-group with-addon-icon-left">
+							<span class="input-group-addon"> <i class="fa fa-user"></i>
+							</span> 
+							<input class="form-control" name="username"
+								placeholder="Username" type="text">
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="input-group with-addon-icon-left">
+						<span class="input-group-addon"><i class="fa fa-lock"></i> </span>
+						<input class="form-control" name="password" placeholder="Password" type="password">
+						</div>
+					</div>
+					<button type="submit" class="btn btn-primary btn-pill">Login</button>
 				</form>
 			</div>
 
 		</c:otherwise>
 	</c:choose>
-
+	<br />
+	<br />
 </body>
 <c:import url="footer.jsp"></c:import>
 </html>

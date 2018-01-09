@@ -145,5 +145,7 @@ input {
 }
 
 .login-div {
-	line-height: 2;
+	width: 20%;
+	margin: 0 auto;
+	text-align: left;
 }
