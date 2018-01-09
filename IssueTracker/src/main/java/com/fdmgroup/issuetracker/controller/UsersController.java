@@ -18,6 +18,13 @@ import com.fdmgroup.issuetracker.model.impl.UserDAO;
 public class UsersController {
 	private ApplicationContext ctx;
 	private UserDAO userDAO;
+	
+	/**
+	 * This lists all users
+	 * @param model
+	 * @param req
+	 * @return String
+	 */
 	@RequestMapping(value = "/listusers")
 	public String listUsers(Model model, HttpServletRequest req){
 		HttpSession session = req.getSession();

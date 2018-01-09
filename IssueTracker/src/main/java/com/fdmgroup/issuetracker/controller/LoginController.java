@@ -64,7 +64,11 @@ public class LoginController {
 		}
 		return path;
 	}
-	
+	/**
+	 * Logs out a user
+	 * @param request
+	 * @return String
+	 */
 	@RequestMapping(value = "/logout")
 	public String logout(HttpServletRequest request) {
 		HttpSession userSesh = request.getSession();

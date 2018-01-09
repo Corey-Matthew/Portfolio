@@ -39,7 +39,11 @@ public class UserDAO  {
 	public static EntityManagerFactory getFactory() {
 		return factory;
 	}
-
+	/**
+	 * This method adds a user to the database
+	 * @param user
+	 * @return boolean
+	 */
 	public boolean addUser(User user) {
 		EntityManager em = getEntityManager();
 		EntityTransaction et = em.getTransaction();
@@ -136,11 +140,20 @@ public class UserDAO  {
 		TypedQuery<User> query = getEntityManager().createNamedQuery("User.findAll", User.class);
 		return query.getResultList();
 	}
+	/**
+	 * Returns a list of users by their roles
+	 * @return List<User>
+	 */
 	public List<User> listDeptAdmin() {
 		Role role = getRole(Role.DEPT_ADMIN);
 		TypedQuery<User> query = getEntityManager().createNamedQuery("User.findByRole", User.class);
 		return query.setParameter("role", role).getResultList();
 	}
+	/**
+	 * Returns the department name
+	 * @param name
+	 * @return Department
+	 */
 	public Department getDepartment(String name) {
 		TypedQuery<Department> query = getEntityManager().createNamedQuery("Department.findByName", Department.class);
 		Department department= null;
@@ -151,7 +164,11 @@ public class UserDAO  {
 			return null;
 		}
 	}
-
+	/**
+	 * This method returns the Role name
+	 * @param name
+	 * @return Role
+	 */
 	public Role getRole(String name){
 		TypedQuery<Role> query = getEntityManager().createNamedQuery("Role.findByName", Role.class);
 		Role role= null;
@@ -162,6 +179,11 @@ public class UserDAO  {
 			return null;
 		}
 	}
+	/**
+	 * This method adds a role to the database
+	 * @param role
+	 * @return boolean
+	 */
 	public boolean addRole(Role role) {
 		EntityManager em = getEntityManager();
 		EntityTransaction et = em.getTransaction();
