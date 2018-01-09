@@ -30,18 +30,20 @@
 					<div class="form-group">
 						<div class="input-group with-addon-icon-left">
 							<span class="input-group-addon"> <i class="fa fa-user"></i>
-							</span> 
-							<input class="form-control" name="username"
-								placeholder="Username" type="text">
+							</span> <input class="form-control" name="username"
+								placeholder="Username" type="text" required/>
 						</div>
 					</div>
 					<div class="form-group">
 						<div class="input-group with-addon-icon-left">
-						<span class="input-group-addon"><i class="fa fa-lock"></i> </span>
-						<input class="form-control" name="password" placeholder="Password" type="password">
+							<span class="input-group-addon"><i class="fa fa-lock"></i>
+							</span> <input class="form-control" name="password"
+								placeholder="Password" type="password" required/>
 						</div>
 					</div>
-					<button type="submit" class="btn btn-primary btn-pill">Login</button>
+					<div class="login-button">
+						<button type="submit" class="btn btn-primary btn-pill">Login</button>
+					</div>
 				</form>
 			</div>
 
