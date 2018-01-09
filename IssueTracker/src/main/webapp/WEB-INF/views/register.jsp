@@ -19,7 +19,9 @@
 			<c:if test="${ requestScope.registered }">
 				<h4>Successfully registered: ${ requestScope.user.username }</h4>
 			</c:if>
-
+			<c:if test="${ requestScope.invalidUsername }">
+				<p> Username can only consist of characters from A-Za-z and numbers 0-9. </p>
+			</c:if>
 			<c:if test="${ requestScope.selectUserTypeDepartment }">
 				<p>Please select a User Type & Department in Dropdowns</p>
 			</c:if>

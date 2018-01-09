@@ -49,15 +49,15 @@ public class LoginController {
 		userDAO = (UserDAO) ctx.getBean("UserDAO");
 		User user = userDAO.getUser(username);
 		String path = null;
-		if (user == null) {
+		if (!Validation.checkUsername(username)) {
+			path = "login";
+			model.addAttribute("invalidUser", true);
+		} else if (user == null) {
 			path = "login";
 			model.addAttribute("notfound", true);
-			return path;
-		}
-		else if (Validation.compare(userDAO, username, password)) {
+		} else if (Validation.compare(userDAO, username, password)) {
 			request.getSession().setAttribute("user", user);
 			path = "index";
-
 		} else {
 			model.addAttribute("notmatch", true);
 			path = "login";

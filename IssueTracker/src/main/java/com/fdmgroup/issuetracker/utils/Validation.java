@@ -8,10 +8,18 @@ import com.fdmgroup.issuetracker.model.impl.UserDAO;
 public final class Validation {
 
 	private Validation(){}
+	private static final String validUsernameRegex = "[A-Za-z0-9_]+";
 	
+	/**
+	 * Login
+	 * @param dao
+	 * @param username
+	 * @param password
+	 * @return
+	 */
 	public static boolean compare(UserDAO dao, String username, String password){
 		User user = dao.getUser(username);
-		if(user == null)
+		if(user == null || !checkUsername(username))
 		{
 			return false;
 		}
@@ -20,6 +28,10 @@ public final class Validation {
 			return true;
 		}
 		return false;
+	}
+	
+	public static boolean checkUsername(String username){
+		return username.matches(validUsernameRegex);
 	}
 	
 	public static boolean compare(IssueDAO dao, int issueId){

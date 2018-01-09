@@ -13,6 +13,7 @@ import com.fdmgroup.issuetracker.model.impl.Department;
 import com.fdmgroup.issuetracker.model.impl.Role;
 import com.fdmgroup.issuetracker.model.impl.User;
 import com.fdmgroup.issuetracker.model.impl.UserDAO;
+import com.fdmgroup.issuetracker.utils.Validation;
 
 //we are creating new bean for department and role => new user requires those 
 //if we do that twice, then the SQL fails, because dept and role already exist
@@ -52,6 +53,10 @@ public class RegisterController {
 			return "register";
 		}
 		
+		if (!Validation.checkUsername(username)){
+			model.addAttribute("invalidUsername", true);
+			return "register";
+		}
 		
 		if(userType.equals("") && department.equals("")){
 			model.addAttribute("selectUserTypeDepartment",true);
@@ -67,7 +72,6 @@ public class RegisterController {
 			model.addAttribute("selectUserType",true);
 			return("register");
 		}
-		
 		
 		User user = dao.getUser(username);
 		

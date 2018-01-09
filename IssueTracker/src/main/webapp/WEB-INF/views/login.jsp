@@ -20,9 +20,11 @@
 			<c:if test="${requestScope.notfound}">
 				<p>User not found!</p>
 			</c:if>
+			<c:if test="${requestScope.invalidUser}">
+				<p>Invalid username.</p>
+			</c:if>
 			<c:if test="${requestScope.notmatch}">
 				<p>Incorrect Password!</p>
-
 			</c:if>
 			
 			<div class="login-div ">
