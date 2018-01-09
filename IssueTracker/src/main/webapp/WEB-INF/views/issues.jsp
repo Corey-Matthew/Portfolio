@@ -19,9 +19,9 @@
 		<h4>Successfully added your issue!</h4>
 	</c:if>
 	<c:if test="${ sessionScope.user.role.roleName eq 'admin' }">
-		
+
 		<div class="user-card assign-card">
-		<h3>Assign Issues</h3>
+			<h3>Assign Issues</h3>
 			<form method="POST" action="assign">
 				<div class="form-group">
 					<i class="fa fa-arrow-circle-right"></i>Issue ID: <select
@@ -45,32 +45,36 @@
 			</form>
 		</div>
 	</c:if>
-	
+
 	<c:choose>
 		<c:when test="${ empty requestScope.issues }">
 			<p>No issues.</p>
 		</c:when>
 		<c:otherwise>
-		
-			<div class="iter-cards">
-				<c:forEach var='issue' items='${ requestScope.issues }'>
-					<a href="viewissue?issueId=${ issue.issueId }">
-						<div class="user-card col-md-4">
-							<p>
-								Issue ID:
-								<c:out value='${ issue.issueId }' />
-							</p>
-							<p>
-								Assigned to:
-								<c:out value='${ issue.assignedTo }' />
-							</p>
-							<p>
-								Status:
-								<c:out value='${ issue.status }' />
-							</p>
-						</div>
-					</a>
-				</c:forEach>
+			<div class="issues-table">
+				<table>
+					<tbody>
+						<c:forEach var='issue' items='${ requestScope.issues }'>
+							<tr>
+								<td><a href="viewissue?issueId=${ issue.issueId }">
+										<p>
+											Issue ID:
+											<c:out value='${ issue.issueId }' />
+										</p>
+										<p>
+											Assigned to:
+											<c:out value='${ issue.assignedTo }' />
+										</p>
+								</a>
+									<p>
+										Status:
+										<c:out value='${ issue.status }' />
+									</p> </a></td>
+							</tr>
+						</c:forEach>
+						</td>
+					</tbody>
+				</table>
 			</div>
 			<c:if test="${requestScope.notfound}">
 				<label> Issue not found!</label>

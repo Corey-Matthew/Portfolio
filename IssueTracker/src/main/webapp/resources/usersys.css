@@ -169,8 +169,16 @@ ul.nav.navbar-nav li a:hover{
 	text-align: center;
 }
 
-.iter-cards {
-	padding: 0 3%;
+.issues-table table {
+	margin: 0 auto;
+	border: 1px solid black;
+	width:50%;
+}
+
+tr {
+	background-color: #a0a004;
+	border: 1px solid black;
+	
 }
 
 @media only screen and (max-width: 800px) {
