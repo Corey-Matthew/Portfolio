@@ -53,7 +53,7 @@
 						<div class="input-group with-addon-icon-left">
 							<span class="input-group-addon"> <i class="fa fa-user"></i>
 							</span> <input class="form-control" name="username"
-								placeholder="Username" type="text">
+								placeholder="Username" type="text" required>
 						</div>
 					</div>
 					<div class="form-group">
@@ -79,15 +79,15 @@
 						</div>
 					</div>
 					<div class="form-group select">
-						<select name="userType" size="1">
+						<select name="userType" size="1" required>
 							<option value=''>Please select a User Type</option>
 							<option value="user">User</option>
 							<option value="departmentAdmin">Department Admin</option>
-							<option value="admin">God Admin</option>
+							<option value="admin">General Admin</option>
 						</select>
 					</div>
 					<div class="form-group select">
-						<select name="department" size="1">
+						<select name="department" size="1" required>
 							<option value=''>Please select a Department</option>
 							<option value="HR">Human Resources</option>
 							<option value="IT">IT</option>
