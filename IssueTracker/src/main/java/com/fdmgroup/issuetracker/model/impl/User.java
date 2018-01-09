@@ -42,11 +42,12 @@ public class User implements IUser {
 		this.role = role;
 	}
 	public User(){}
-	public User(Department department, String username, String password, String email) {
+	public User(Department department, String username, String password, String email, Role role) {
 		this.setDepartment(department);
 		this.setUsername(username);
 		this.setPassword(password);
 		this.setEmail(email);
+		this.setRole(role);
 	}
 	
 	public int getUserId() {
