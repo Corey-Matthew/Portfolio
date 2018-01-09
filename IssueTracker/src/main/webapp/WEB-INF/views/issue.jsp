@@ -66,6 +66,7 @@
 						test="${ requestScope.issue.assignedTo == user.department.departmentId && user.role.roleName == 'department_admin' }">
 						<div class="login-button">
 							<form method="POST" action="rejectIssue">
+								<input type="hidden" name="issueId" value="${ issue.issueId }" />
 								<button type="submit" class="btn btn-danger btn-pill">Reject
 									issue</button>
 							</form>
@@ -75,6 +76,7 @@
 						test="${ issue.submittedBy == sessionScope.user.userId && issue.status == 'RESOLVED' }">
 						<div class="login-button">
 							<form method="POST" action="approveIssue">
+								<input type="hidden" name="issueId" value="${ issue.issueId }" />
 								<button type="submit" class="btn btn-success btn-pill">Approve
 									issue</button>
 							</form>

@@ -147,4 +147,42 @@ public class IssueController {
 		return listUsers(issueId, model, req);
 	}
 
+	@RequestMapping(value = "approveIssue")
+	public String approveIssueProc(HttpServletRequest req, Model model, 
+			@RequestParam int issueId) {
+
+		HttpSession session = req.getSession();
+		ctx = (ApplicationContext) session.getServletContext().getAttribute("ctx");
+		issueDAO = (IssueDAO) ctx.getBean("IssueDAO");
+
+		if (Validation.compare(issueDAO, issueId)) {
+			Issue issue = issueDAO.getIssue(issueId);
+			issue.setStatus(Status.APPROVED);
+			issueDAO.updateIssue(issue);
+		} else {
+			model.addAttribute("notfound", true);
+			return listIssues(model, req);
+		}
+		return listIssues(model, req);
+	}
+	
+	@RequestMapping(value = "rejectIssue")
+	public String rejectIssueProc(HttpServletRequest req, Model model, 
+			@RequestParam int issueId) {
+
+		HttpSession session = req.getSession();
+		ctx = (ApplicationContext) session.getServletContext().getAttribute("ctx");
+		issueDAO = (IssueDAO) ctx.getBean("IssueDAO");
+
+		if (Validation.compare(issueDAO, issueId)) {
+			Issue issue = issueDAO.getIssue(issueId);
+			issue.setStatus(Status.UNASSIGNED);
+			issue.setAssignedTo(0);
+			issueDAO.updateIssue(issue);
+		} else {
+			model.addAttribute("notfound", true);
+			return listIssues(model, req);
+		}
+		return listIssues(model, req);
+	}
 }
