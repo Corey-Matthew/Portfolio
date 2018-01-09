@@ -16,7 +16,6 @@
 							<c:if test="${ sessionScope.user.role.roleName == 'admin' }">
 								<li><a href="register">Register</a></li>
 								<li><a href="listusers">Users List</a></li>
-								<li><a href="logout">Logout</a></li>
 								<li><a href="./">Admin: ${sessionScope.user.username}</a></li>
 							</c:if>
 							<c:if
@@ -27,6 +26,7 @@
 							<c:if test="${ sessionScope.user.role.roleName == 'user' }">
 								<li><a href="./">User: ${sessionScope.user.username}</a></li>
 							</c:if>
+							<li><a href="logout">Logout</a></li>
 						</c:when>
 						<c:otherwise>
 							<li><a href="login">Login<span class="sr-only">(current)</span></a></li>

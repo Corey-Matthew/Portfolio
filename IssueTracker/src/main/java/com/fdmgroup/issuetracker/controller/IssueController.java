@@ -185,4 +185,23 @@ public class IssueController {
 		}
 		return listIssues(model, req);
 	}
+	
+	@RequestMapping(value = "updateIssueStatus")
+	public String updateIssueStatusProc(HttpServletRequest req, Model model, 
+			@RequestParam int issueId, @RequestParam String status) {
+
+		HttpSession session = req.getSession();
+		ctx = (ApplicationContext) session.getServletContext().getAttribute("ctx");
+		issueDAO = (IssueDAO) ctx.getBean("IssueDAO");
+
+		if (Validation.compare(issueDAO, issueId)) {
+			Issue issue = issueDAO.getIssue(issueId);
+			issue.setStatus(Status.valueOf(status));
+			issueDAO.updateIssue(issue);
+		} else {
+			model.addAttribute("notfound", true);
+			return listIssues(model, req);
+		}
+		return listIssues(model, req);
+	}
 }

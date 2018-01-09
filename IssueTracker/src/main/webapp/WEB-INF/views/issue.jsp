@@ -61,9 +61,48 @@
 						</c:forEach>
 					</div>
 				</c:if>
-				<div class="issue-update-form col-md-4">
+				<div class="issue-update-div col-md-4">
+					<c:if
+						test="${ sessionScope.user.role.roleName eq 'department_admin' or sessionScope.user.role.roleName eq 'user' }">
+						<c:if
+							test="${ requestScope.issue.assignedTo == user.department.departmentId or requestScope.issue.submittedBy == sessionScope.user.userId }">
+							<div class="issue-update-form">
+								<form method="POST" action="addIssueUpdate">
+									<input type="hidden" name="issueId" value="${ issue.issueId }" />
+									<div class="form-group" style="padding: 0 20%;">
+										<span class="input-group-addon"> <i
+											class="fa fa-info-circle"> Update on Issue: </i>
+										</span>
+										<textarea class="form-control" name="issueComment"
+											placeholder="Enter any updates on the issue" required></textarea>
+									</div>
+									<div class="login-button">
+										<button type="submit" class="btn btn-primary btn-pill">Submit
+											Update</button>
+									</div>
+								</form>
+							</div>
+						</c:if>
+					</c:if>
 					<c:if
 						test="${ requestScope.issue.assignedTo == user.department.departmentId && user.role.roleName == 'department_admin' }">
+						<h4>Update Issue Status</h4>
+						<div>
+							<form method="POST" action="updateIssueStatus">
+								<div class="form-group select" style="text-align:center;">
+								<input type="hidden" name="issueId" value="${ issue.issueId }" />
+									<select name="status" size="1" required>
+										<option value=''>Please select a status</option>
+										<option value="ASSIGNED">Assigned</option>
+										<option value="IN_PROCESS">In Process</option>
+										<option value="RESOLVED">Resolved</option>
+									</select>
+								</div>
+								<div class="login-button">
+									<button type="submit" class="btn btn-primary btn-pill">Update Status</button>
+								</div>
+							</form>
+						</div>
 						<div class="login-button">
 							<form method="POST" action="rejectIssue">
 								<input type="hidden" name="issueId" value="${ issue.issueId }" />
@@ -81,26 +120,6 @@
 									issue</button>
 							</form>
 						</div>
-					</c:if>
-					<c:if
-						test="${ sessionScope.user.role.roleName eq 'department_admin' or sessionScope.user.role.roleName eq 'user' }">
-						<c:if
-							test="${ requestScope.issue.assignedTo == user.department.departmentId or requestScope.issue.submittedBy == sessionScope.user.userId }">
-							<form method="POST" action="addIssueUpdate">
-								<input type="hidden" name="issueId" value="${ issue.issueId }" />
-								<div class="form-group" style="padding: 0 20%;">
-									<span class="input-group-addon"> <i
-										class="fa fa-info-circle"> Update on Issue: </i>
-									</span>
-									<textarea class="form-control" name="issueComment"
-										placeholder="Enter any updates on the issue" required></textarea>
-								</div>
-								<div class="login-button">
-									<button type="submit" class="btn btn-primary btn-pill">Submit
-										Update</button>
-								</div>
-							</form>
-						</c:if>
 					</c:if>
 				</div>
 			</div>
