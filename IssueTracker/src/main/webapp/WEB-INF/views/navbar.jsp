@@ -29,7 +29,7 @@
 							<li><a href="logout">Logout</a></li>
 						</c:when>
 						<c:otherwise>
-							<li><a href="login">Login<span class="sr-only">(current)</span></a></li>
+	
 						</c:otherwise>
 					</c:choose>
 
