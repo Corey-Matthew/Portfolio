@@ -29,6 +29,14 @@ public class IssueController {
 	private ApplicationContext ctx;
 	private IssueDAO issueDAO;
 
+	
+
+	/**
+	 * This method lists issues by users role 
+	 * @param model
+	 * @param req
+	 * @return String
+	 */
 	@RequestMapping(value = "/issues")
 	public String listIssues(Model model, HttpServletRequest req) {
 		HttpSession session = req.getSession();
@@ -52,12 +60,22 @@ public class IssueController {
 		}
 		return "issues";
 	}
-
+	/**
+	 * This method proceeds to the addIssue page
+	 * @return
+	 */
 	@RequestMapping(value = "/addIssue")
 	public String addIssue() {
 		return "addIssue";
 	}
-
+	/**
+	 * This adds an issue by a user
+	 * @param model
+	 * @param req
+	 * @param title
+	 * @param userDescription
+	 * @return
+	 */
 	@RequestMapping(value = "/addIssueProc", method = RequestMethod.POST)
 	public String addIssueMethod(Model model, HttpServletRequest req, @RequestParam(value = "title") String title,
 			@RequestParam(value = "userDescription") String userDescription) {
@@ -79,7 +97,13 @@ public class IssueController {
 			return "addIssue";
 		}
 	}
-
+	/**
+	 * This method lists users in that department
+	 * @param issueId
+	 * @param model
+	 * @param req
+	 * @return
+	 */
 	@RequestMapping(value = "/viewissue")
 	public String listUsers(@RequestParam int issueId, Model model, HttpServletRequest req) {
 		HttpSession session = req.getSession();
@@ -99,7 +123,14 @@ public class IssueController {
 		model.addAttribute("issue", issue);
 		return "issue";
 	}
-
+	/**
+	 * This method assigns an issue
+	 * @param req
+	 * @param model
+	 * @param issueId
+	 * @param deptId
+	 * @return
+	 */
 	@RequestMapping(value = "/assign", method = RequestMethod.POST)
 	public String assignIssue(HttpServletRequest req, Model model, @RequestParam int issueId,
 			@RequestParam int deptId) {
@@ -120,7 +151,13 @@ public class IssueController {
 		}
 		return listIssues(model, req);
 	}
-
+	/**
+	 * This lists issues by a user
+	 * @param req
+	 * @param model
+	 * @param userId
+	 * @return
+	 */
 	@RequestMapping(value = "/viewUserIssues")
 	public String viewUserIssues(HttpServletRequest req, Model model, @RequestParam int userId) {
 		HttpSession session = req.getSession();
@@ -132,7 +169,14 @@ public class IssueController {
 		model.addAttribute("issues", issues);
 		return "issues";
 	}
-
+	/**
+	 * This updates an issue
+	 * @param issueId
+	 * @param issueComment
+	 * @param req
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping(value = "addIssueUpdate", method = RequestMethod.POST)
 	public String addIssueUpdate(@RequestParam int issueId, @RequestParam String issueComment, HttpServletRequest req,
 			Model model) {
@@ -149,7 +193,13 @@ public class IssueController {
 		issueDAO.updateIssue(issue);
 		return listUsers(issueId, model, req);
 	}
-
+	/**
+	 * This approves an issue
+	 * @param req
+	 * @param model
+	 * @param issueId
+	 * @return
+	 */
 	@RequestMapping(value = "approveIssue")
 	public String approveIssueProc(HttpServletRequest req, Model model, 
 			@RequestParam int issueId) {
@@ -168,7 +218,13 @@ public class IssueController {
 		}
 		return listIssues(model, req);
 	}
-	
+	/**
+	 * This rejects an issue
+	 * @param req
+	 * @param model
+	 * @param issueId
+	 * @return
+	 */
 	@RequestMapping(value = "rejectIssue")
 	public String rejectIssueProc(HttpServletRequest req, Model model, 
 			@RequestParam int issueId) {
@@ -188,7 +244,14 @@ public class IssueController {
 		}
 		return listIssues(model, req);
 	}
-	
+	/**
+	 * This updates an issue status
+	 * @param req
+	 * @param model
+	 * @param issueId
+	 * @param status
+	 * @return
+	 */
 	@RequestMapping(value = "updateIssueStatus")
 	public String updateIssueStatusProc(HttpServletRequest req, Model model, 
 			@RequestParam int issueId, @RequestParam String status) {
