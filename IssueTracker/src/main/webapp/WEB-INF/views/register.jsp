@@ -77,7 +77,7 @@
 							<span class="input-group-addon"> <i
 								class="fa fa-envelope"></i>
 							</span> <input class="form-control" name="email" placeholder="Email"
-								type="text" required />
+								type="email" required />
 						</div>
 					</div>
 					<div class="form-group select">
