@@ -6,7 +6,7 @@
 <c:import url="navbar.jsp"></c:import>
 <body>
 
-	<h3>Login</h3>
+	
 	<c:choose>
 		<c:when test="${ not empty sessionScope.user }">
 			<p>Already logged in.</p>
@@ -24,7 +24,9 @@
 				<p>Incorrect Password!</p>
 
 			</c:if>
-			<div class="login-div">
+			
+			<div class="login-div ">
+				<h3>Login</h3>
 				<form method="POST" action="LoginServlet">
 					<div class="form-group">
 						<div class="input-group with-addon-icon-left">
