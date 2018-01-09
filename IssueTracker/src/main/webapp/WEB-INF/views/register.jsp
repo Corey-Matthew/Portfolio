@@ -16,7 +16,7 @@
 					Here!</a></span></p>
 		</c:when>
 		<c:otherwise>
-			<h3>Register</h3>
+			
 			<c:if test="${ requestScope.registered }">
 				<h4>Successfully registered: ${ requestScope.user.username }</h4>
 			</c:if>
@@ -35,6 +35,7 @@
 
 			<span id="error-messages">${errormessage}</span>
 			<div class="login-div">
+				<h3>Register</h3>
 				<form method="POST" action="registerUser">
 					<c:if test="${requestScope.userexist}">
 						<br>

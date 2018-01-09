@@ -19,7 +19,9 @@ h1, h2, h3, h4, h5, h6, button, .login-button, p{
 .login-button{
 	padding: 5px;
 }
-
+h3{
+	color:#FFFFFF;
+}
 h1, h2, h3, h4, h5, h6 {
 	font-family: 'Cabin', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 	font-weight: 700;
@@ -148,14 +150,14 @@ input {
 }
 
 .login-div {
-	width:30%;
+	width:40%;
 	margin: 0 auto;
 	text-align: left;
 	padding: 10px;
-	background-color: #c0c0c0;
+	background-color: #FF8A00;
 	border-radius: 5px;
 	border-style: hidden;
-	box-shadow: 5px 10px #bbe086;
+	box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
 	
 }
 
@@ -169,7 +171,7 @@ input {
 
 @media only screen and (max-width: 800px) {
     .login-div {
-	width:90%;
+	width:80%;
 	
 }
 }
