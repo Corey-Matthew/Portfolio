@@ -8,11 +8,7 @@
 <body>
 		<section>
 			<form>
-				<h1>HTTP 404 - File not found</h1>
-				<h2>This page is under construction, we are currently working
-					on it</h2>
-				<a href=".">Click here to go to main page</a>
-				
+				<h1>HTTP 404 - File not found</h1>	
 			</form>
 		</section>
 </body>
