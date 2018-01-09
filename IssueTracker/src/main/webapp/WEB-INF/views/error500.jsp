@@ -8,7 +8,7 @@
 <body>
 		<section>
 			<form>
-				<h1>HTTP 500 - Request Processing Error</h1>	
+				<h1>HTTP 500 - Internal Server Error</h1>	
 			</form>
 		</section>
 </body>
