@@ -18,26 +18,22 @@
 						<li class="nav-item"><a class="nav-link" href="issues">Issues</a></li>
 						<c:if test="${ sessionScope.user.role.roleName == 'admin' }">
 							<li class="nav-item"><a class="nav-link" href="register">Register</a></li>
-							<li class="nav-item"><a class="nav-link" href="listusers">Users
-									List</a></li>
-							<li class="nav-item"><a class="nav-link" href="./">Admin:
-									${sessionScope.user.username}</a></li>
+							<li class="nav-item"><a class="nav-link" href="listusers">Users</a></li>
+							<li class="nav-item"><a class="nav-link" href="./">Admin:${sessionScope.user.username}</a></li>
 						</c:if>
 						<c:if
 							test="${ sessionScope.user.role.roleName == 'department_admin' }">
-							<li class="nav-item"><a class="nav-link" href="./">Department
-									Admin: ${sessionScope.user.username}</a></li>
+							<li class="nav-item"><a class="nav-link" href="./">Department_Admin:${sessionScope.user.username}</a></li>
 						</c:if>
 						<c:if test="${ sessionScope.user.role.roleName == 'user' }">
-							<li class="nav-item"><a class="nav-link" href="./">User:
-									${sessionScope.user.username}</a></li>
+							<li class="nav-item"><a class="nav-link" href="./">User:${sessionScope.user.username}</a></li>
 						</c:if>
 						<li class="nav-item"><a class="nav-link" href="logout">Logout</a></li>
 			</ul>
 			<form class="form-inline my-2 my-lg-0" action="viewissue"
 				method="GET">
-				<input type="number" name="issueId" class="form-control mr-sm-2"
-					placeholder="Search by issue ID">
+				<input type="number" name="issueId" class="form-control mr-sm-2 "
+					placeholder="Search by issue ID" style="width: 59%;">
 				<button type="submit" class="btn btn-default my-2 my-sm-0">Search</button>
 			</form>
 
