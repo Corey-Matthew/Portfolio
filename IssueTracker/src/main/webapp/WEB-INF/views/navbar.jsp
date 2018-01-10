@@ -33,18 +33,21 @@
 									${sessionScope.user.username}</a></li>
 						</c:if>
 						<li class="nav-item"><a class="nav-link" href="logout">Logout</a></li>
-					</c:when>
+			</ul>
+			<form class="form-inline my-2 my-lg-0" action="viewissue"
+				method="GET">
+				<input type="number" name="issueId" class="form-control mr-sm-2"
+					placeholder="Search by issue ID">
+				<button type="submit" class="btn btn-default my-2 my-sm-0">Search</button>
+			</form>
+
+			</c:when>
 					<c:otherwise>
 
 					</c:otherwise>
 				</c:choose>
 
-			</ul>
-			<form class="form-inline my-2 my-lg-0" action="viewissue" method="GET">
-				<input type="number" name="issueId" class="form-control mr-sm-2"
-					placeholder="Search by issue ID">
-				<button type="submit" class="btn btn-default my-2 my-sm-0">Search</button>
-			</form>
+
 		</div>
 	</nav>
 </header>
