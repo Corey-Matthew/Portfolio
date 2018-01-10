@@ -1,5 +1,3 @@
-
-
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -12,15 +10,18 @@
 		<c:when
 			test="${ empty sessionScope.user  || sessionScope.user.role.roleName != 'admin'}">
 			<p>You shall not pass!</p>
-			<p><span><a href="./">Get Me Out of Here!</a></span></p>
+			<p>
+				<span><a href="./">Get Me Out of Here!</a></span>
+			</p>
 		</c:when>
 		<c:otherwise>
-			
+
 			<c:if test="${ requestScope.registered }">
 				<h4>Successfully registered: ${ requestScope.user.username }</h4>
 			</c:if>
 			<c:if test="${ requestScope.invalidUsername }">
-				<p> Username can only consist of characters from A-Za-z and numbers 0-9. </p>
+				<p>Username can only consist of characters from A-Za-z and
+					numbers 0-9.</p>
 			</c:if>
 			<c:if test="${ requestScope.selectUserTypeDepartment }">
 				<p>Please select a User Type & Department in Dropdowns</p>
@@ -51,37 +52,45 @@
 						<br>
 						<p>Please fill in all the fields</p>
 					</c:if>
+					
 					<div class="form-group">
-						<div class="input-group with-addon-icon-left">
-							<span class="input-group-addon"> <i class="fa fa-user"></i>
-							</span> <input class="form-control" name="username"
+						<div class="input-group">
+							<div class="input-group-prepend">
+								<span class="input-group-text"><i class="fa fa-user"></i></span>
+							</div>
+							<input class="form-control" name="username"
 								placeholder="Username" type="text" required>
 						</div>
 					</div>
 					<div class="form-group">
-						<div class="input-group with-addon-icon-left">
-							<span class="input-group-addon"><i class="fa fa-lock"></i>
-							</span> <input class="form-control" name="password"
+						<div class="input-group">
+							<div class="input-group-prepend">
+								<span class="input-group-text"><i class="fa fa-lock"></i></span>
+							</div>
+							<input class="form-control" name="password"
 								placeholder="Password" type="password" required />
 						</div>
 					</div>
 					<div class="form-group">
-						<div class="input-group with-addon-icon-left">
-							<span class="input-group-addon"><i class="fa fa-lock"></i>
-							</span> <input class="form-control" name="confirmedPassword"
+						<div class="input-group">
+							<div class="input-group-prepend">
+								<span class="input-group-text"><i class="fa fa-lock"></i></span>
+							</div>
+							<input class="form-control" name="confirmedPassword"
 								placeholder="Confirm password" type="password" required />
 						</div>
 					</div>
 					<div class="form-group">
-						<div class="input-group with-addon-icon-left">
-							<span class="input-group-addon"> <i
-								class="fa fa-envelope"></i>
-							</span> <input class="form-control" name="email" placeholder="Email"
+						<div class="input-group">
+							<div class="input-group-prepend">
+								<span class="input-group-text"><i class="fa fa-envelope"></i></span>
+							</div>
+							<input class="form-control" name="email" placeholder="Email"
 								type="email" required />
 						</div>
 					</div>
 					<div class="form-group select">
-						<select name="userType" size="1" required>
+						<select class="form-control" name="userType" size="1" required>
 							<option value=''>Please select a User Type</option>
 							<option value="user">User</option>
 							<option value="departmentAdmin">Department Admin</option>
@@ -89,7 +98,7 @@
 						</select>
 					</div>
 					<div class="form-group select">
-						<select name="department" size="1" required>
+						<select class="form-control" name="department" size="1" required>
 							<option value=''>Please select a Department</option>
 							<option value="HR">Human Resources</option>
 							<option value="IT">IT</option>

@@ -23,21 +23,26 @@
 		<div class="user-card assign-card">
 			<h3>Assign Issues</h3>
 			<form method="POST" action="assign">
-				<div class="form-group">
-					<i class="fa fa-arrow-circle-right"></i>Issue ID: <select
-						name="issueId" size="1" required>
-						<c:forEach var='issue' items='${ requestScope.issues }'>
-							<option value="${issue.issueId}">${issue.issueId}</option>
-						</c:forEach>
-					</select>
+				<div class="form-group row">
+					<label class="col-sm-4 col-form-label">Issue ID:</label>
+					<div class="col-sm-8">
+						<select class="form-control" name="issueId" size="1" required>
+							<c:forEach var='issue' items='${ requestScope.issues }'>
+								<option value="${issue.issueId}">${issue.issueId}</option>
+							</c:forEach>
+						</select>
+					</div>
 				</div>
-				<div class="form-group">
-					<i class="fa fa-arrow-circle-right"></i>Assign to: <select
-						name="deptId" size="1" required>
-						<c:forEach var='dept' items='${ requestScope.depts}'>
-							<option value="${dept.departmentId}">${ dept.departmentName }</option>
-						</c:forEach>
-					</select>
+				<div class="form-group row">
+					<label class="col-sm-4 col-form-label">Assign to:</label>
+					<div class="col-sm-8">
+						<select class="form-control" name="deptId" size="1" required>
+							<c:forEach var='dept' items='${ requestScope.depts}'>
+								<option value="${dept.departmentId}">${
+									dept.departmentName }</option>
+							</c:forEach>
+						</select>
+					</div>
 				</div>
 				<div class="login-button">
 					<button type="submit" class="btn btn-primary btn-pill">Assign</button>
