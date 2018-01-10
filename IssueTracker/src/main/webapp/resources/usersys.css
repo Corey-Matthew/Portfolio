@@ -18,10 +18,11 @@ html {
 	height: 100%;
 }
 
-h1, h2, h3, h4, h5, h6, button, .login-button, p{
+h1, h2, h3, h4, h5, h6, button, .login-button, p {
 	text-align: center;
 }
-.login-button{
+
+.login-button {
 	padding: 5px;
 }
 
@@ -78,10 +79,11 @@ img::-moz-selection {
 body {
 	-webkit-tap-highlight-color: rgba(255, 255, 255, 0.2);
 }
+
 ul {
-  	list-style-type: none;
-  	margin: 0;
-    padding: 0;
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
 }
 
 #add-user {
@@ -96,6 +98,7 @@ ul {
 	padding: 10px;
 	border-radius: 30px;
 }
+
 .options h4 {
 	border: 3px solid #2ECC40;
 	margin: auto;
@@ -104,42 +107,46 @@ ul {
 	color: white;
 	border-radius: 10px;
 }
+
 .options a {
 	border: 2px smokeywhite;
-	border-radius: 5px;	
+	border-radius: 5px;
 }
 
 .list-user p {
 	color: white;
 }
+
 #home {
 	text-align: left;
 }
 
 .footer {
-  background: #061D25;
-  padding: 10px 0;
-  position:fixed;
-  bottom:0;
-  width: 100%;
+	background: #061D25;
+	padding: 10px 0;
+	position: fixed;
+	bottom: 0;
+	width: 100%;
 }
- 
+
 }
 .footer a {
-  color: #70726F;
-  font-size: 20px;
-  border-right: 1px solid #70726F;
-  transition: all .5s ease;
+	color: #70726F;
+	font-size: 20px;
+	border-right: 1px solid #70726F;
+	transition: all .5s ease;
 }
+
 .footer a:first-child {
-  border-left: 1px solid #70726F;
+	border-left: 1px solid #70726F;
 }
+
 .footer a:hover {
-  color: white;
+	color: white;
 }
 
 .user-card {
-	margin:auto;
+	margin: auto;
 	background-color: white;
 	padding: 5px;
 	margin-bottom: 10px;
@@ -155,44 +162,43 @@ ul {
 	max-width: 30%;
 }
 
-ul.nav.navbar-nav li a:hover{
+ul.nav.navbar-nav li a:hover {
 	color: #ff0000;
 }
 
 .login-div {
-	width:40%;
+	width: 40%;
 	margin: 0 auto;
 	text-align: left;
 	padding: 10px 20px;
 	background-color: #FF8A00;
 	border-radius: 5px;
 	border-style: hidden;
-	box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+	box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
 }
 
-.login-div .form-group.select{
+.login-div .form-group.select {
 	text-align: center;
 }
 
 .issues-table table {
 	margin: 0 auto;
 	border: 1px solid black;
-	width:50%;
+	width: 50%;
 }
 
 tr {
 	background-color: white;
 	border: 1px solid black;
-	
 }
 
 .footer {
 	background-color: #343a40;
-	color: rgba(255,255,255,.5);
+	color: rgba(255, 255, 255, .5);
 }
 
 .footer-text {
-	float:left; 
+	float: left;
 	padding-left: 10px;
 }
 
@@ -201,40 +207,49 @@ tr {
 	height: 220px;
 	margin: 0 auto;
 	padding: 20px;
-	
 }
 
-
 @media only screen and (max-width: 920px) {
-    .login-div {
-	width:80%;	
+	.login-div {
+		width: 80%;
+	}
+	.scrollbar {
+		width: 80%;
 	}
 }
 
 .scrollbar {
-    margin: 0 auto;
-    height: 600px;
-    width: 500px;
-    background: #fff;
-    overflow-y: scroll;
-    margin-bottom: 25px;
+	margin: 0 auto;
+	height: 600px;
+	width: 500px;
+	background: #fff;
+	overflow-y: scroll;
+	margin-bottom: 25px;
+	border-radius: 5px;
+	border-style: hidden;
+	box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
 }
+
 .force-overflow {
-    min-height: 450px;
+	min-height: 450px;
 }
 
 .scrollbar-morpheus-den::-webkit-scrollbar-track {
-  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
-  background-color: #F5F5F5;
-  border-radius: 10px; }
+	-webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
+	background-color: #F5F5F5;
+	border-radius: 10px;
+}
 
 .scrollbar-morpheus-den::-webkit-scrollbar {
-  width: 12px;
-  background-color: #F5F5F5; }
+	width: 12px;
+	background-color: #F5F5F5;
+}
 
 .scrollbar-morpheus-den::-webkit-scrollbar-thumb {
-  border-radius: 10px;
-  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
-  background-image: -webkit-gradient(linear, left bottom, left top, from(#30cfd0), to(#330867));
-  background-image: -webkit-linear-gradient(bottom, #30cfd0 0%, #330867 100%);
-  background-image: linear-gradient(to top, #30cfd0 0%, #330867 100%); }
+	border-radius: 10px;
+	-webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
+	background-image: -webkit-gradient(linear, left bottom, left top, from(#30cfd0),
+		to(#330867));
+	background-image: -webkit-linear-gradient(bottom, #30cfd0 0%, #330867 100%);
+	background-image: linear-gradient(to top, #30cfd0 0%, #330867 100%);
+}
