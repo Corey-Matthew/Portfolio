@@ -50,17 +50,17 @@ public class LoginController {
 		User user = userDAO.getUser(username);
 		String path = null;
 		if (!Validation.checkUsername(username)) {
-			path = "login";
+			path = "index";
 			model.addAttribute("invalidUser", true);
 		} else if (user == null) {
-			path = "login";
+			path = "index";
 			model.addAttribute("notfound", true);
 		} else if (Validation.compare(userDAO, username, password)) {
 			request.getSession().setAttribute("user", user);
 			path = "index";
 		} else {
 			model.addAttribute("notmatch", true);
-			path = "login";
+			path = "index";
 		}
 		return path;
 	}
