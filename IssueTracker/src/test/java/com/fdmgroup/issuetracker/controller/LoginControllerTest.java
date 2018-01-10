@@ -15,6 +15,7 @@ import org.springframework.test.context.TestContext;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.web.context.WebApplicationContext;
+import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 import com.fdmgroup.issuetracker.model.impl.User;
 
@@ -22,7 +23,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 import static org.springframework.test.web.servlet.setup.MockMvcBuilders.*;
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration("context.xml")
+@ContextConfiguration("classpath:context.xml")
 @WebAppConfiguration
 public class LoginControllerTest {
 	@Autowired
@@ -32,6 +33,8 @@ public class LoginControllerTest {
 	private User user;
 	@Before
 	public void setUp() throws Exception {
+		
+		
 		this.mockMvc = MockMvcBuilders.webAppContextSetup(this.wac).build();
 		
 	}
@@ -47,7 +50,7 @@ public class LoginControllerTest {
 	
 	@Test
 	public void testLoginServelt() throws Exception {
-	mockMvc.perform(get("/loginServlet")).andExpect(status().isOk()).andExpect(model().attribute("user", User.class)).andExpect(content().string("login"));
+	mockMvc.perform(post("/loginServlet")).andExpect(status().isOk());
 	}
 
 }
