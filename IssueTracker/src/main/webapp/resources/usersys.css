@@ -169,6 +169,15 @@ ul.nav.navbar-nav li a:hover {
 	color: #ff0000;
 }
 
+.navbar-dark .navbar-nav .nav-link {
+	color: #f8f9fa;
+	font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif;
+	font-size: 18px;
+	font-style: normal;
+	font-variant: normal;
+	font-weight: 500;
+}
+
 .login-div {
 	color: #f8f9fa;
 	width: 40%;
