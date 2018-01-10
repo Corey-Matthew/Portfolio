@@ -7,7 +7,7 @@
 <c:import url="navbar.jsp"></c:import>
 <body class="homepage">
 	<h1>Welcome to Issue Tracker System!</h1>
-	<div class="mainpic"><img src="resources/trackingsystem.png"/>
+	<div class="mainpic"><img src="https://i.imgur.com/RCr0CMy.png"/>
 	</div>
 	<c:choose>
 		<c:when test="${ not empty sessionScope.user }">
