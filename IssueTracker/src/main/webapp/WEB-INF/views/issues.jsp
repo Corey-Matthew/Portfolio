@@ -56,31 +56,31 @@
 			<p>No issues.</p>
 		</c:when>
 		<c:otherwise>
-			<div class="issues-table">
-				<table>
-					<tbody>
-						<c:forEach var='issue' items='${ requestScope.issues }'>
-							<tr>
-								<td><a href="viewissue?issueId=${ issue.issueId }">
+					<div class="scrollbar scrollbar-morpheus-den">
+						<div class="force-overflow">
+							<div class="issues-table">
+								<c:forEach var='issue' items='${ requestScope.issues }'>
+									<div class="user-card">
+										<a href="viewissue?issueId=${ issue.issueId }">
+											<p>
+												Issue ID:
+												<c:out value='${ issue.issueId }' />
+											</p>
+											<p>
+												Assigned to:
+												<c:out value='${ issue.assignedTo }' />
+											</p>
+										</a>
 										<p>
-											Issue ID:
-											<c:out value='${ issue.issueId }' />
+											Status:
+											<c:out value='${ issue.status }' />
 										</p>
-										<p>
-											Assigned to:
-											<c:out value='${ issue.assignedTo }' />
-										</p>
-								</a>
-									<p>
-										Status:
-										<c:out value='${ issue.status }' />
-									</p> </a></td>
-							</tr>
-						</c:forEach>
-						</td>
-					</tbody>
-				</table>
-			</div>
+										</a>
+									</div>
+								</c:forEach>
+							</div>
+						</div>
+					</div>
 			<c:if test="${requestScope.notfound}">
 				<label> Issue not found!</label>
 			</c:if>
