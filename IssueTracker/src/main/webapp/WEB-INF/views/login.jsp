@@ -32,14 +32,14 @@
 				<form method="POST" action="LoginServlet">
 					<div class="form-group">
 						<div class="input-group with-addon-icon-left">
-							<span class="input-group-addon"> <i class="fa fa-user"></i>
+							<span class="input-group-addon"> <i class="fa fa-user fa-fw"></i>
 							</span> <input class="form-control" name="username"
 								placeholder="Username" type="text" required />
 						</div>
 					</div>
 					<div class="form-group">
 						<div class="input-group with-addon-icon-left">
-							<span class="input-group-addon"><i class="fa fa-lock"></i>
+							<span class="input-group-addon"><i class="fa fa-lock fa-fw"></i>
 							</span> <input class="form-control" name="password"
 								placeholder="Password" type="password" required />
 						</div>
