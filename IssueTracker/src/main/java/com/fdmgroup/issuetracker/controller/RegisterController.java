@@ -73,7 +73,7 @@ public class RegisterController {
 			return("register");
 		}
 		
-		User user = dao.getUser(username);
+		User user = dao.getUser(username.toLowerCase());
 		
 		if (user != null) {
 			model.addAttribute("userexist", true);
@@ -100,7 +100,7 @@ public class RegisterController {
 		
 		newDept.setDepartmentName(department);
 		
-		newUser.setUsername(username);
+		newUser.setUsername(username.toLowerCase());
 		newUser.setEmail(email);
 		newUser.setPassword(password);
 		newUser.setRole(newRole);

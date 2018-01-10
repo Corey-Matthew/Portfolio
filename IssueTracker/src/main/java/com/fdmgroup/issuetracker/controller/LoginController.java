@@ -47,15 +47,16 @@ public class LoginController {
 		HttpSession session = request.getSession();
 		ctx = (ApplicationContext) session.getServletContext().getAttribute("ctx");
 		userDAO = (UserDAO) ctx.getBean("UserDAO");
-		User user = userDAO.getUser(username);
+		String compare = username.toLowerCase();
+		User user = userDAO.getUser(compare);
 		String path = null;
-		if (!Validation.checkUsername(username)) {
+		if (!Validation.checkUsername(compare)) {
 			path = "index";
 			model.addAttribute("invalidUser", true);
 		} else if (user == null) {
 			path = "index";
 			model.addAttribute("notfound", true);
-		} else if (Validation.compare(userDAO, username, password)) {
+		} else if (Validation.compare(userDAO, compare, password)) {
 			request.getSession().setAttribute("user", user);
 			path = "index";
 		} else {
