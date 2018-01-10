@@ -38,10 +38,29 @@
 						<b>Date Resolved:</b>
 						<c:out value='${ issue.dateResolved }' />
 					</p>
-					<p>
-						<b>Admin Comment:</b>
-						<c:out value='${ issue.adminComment }' />
-					</p>
+					<c:choose>
+						<c:when test='${ user.role.roleName != "admin"}'>
+							<c:if test='${ not empty issue.adminComment }'>
+								<p>
+									<b>Admin Comment:</b>
+									<c:out value='${ issue.adminComment }' />
+								</p>
+							</c:if>
+						</c:when>
+						<c:otherwise>
+							<form method="POST" action="updateIssueComment">
+								<input type="hidden" name="issueId" value="${ issue.issueId }" />
+								<div class="form-group center">
+									<textarea name="adminComment" cols="30">${issue.adminComment}</textarea>
+								</div>
+								<div class="login-button">
+									<button type="submit" class="btn btn-primary btn-pill">Submit
+										Update</button>
+								</div>
+							</form>
+						</c:otherwise>
+					</c:choose>
+
 				</div>
 				<c:if test="${ not empty requestScope.issue.issueUpdates }">
 					<div class="issue-update-cards col-md-4">

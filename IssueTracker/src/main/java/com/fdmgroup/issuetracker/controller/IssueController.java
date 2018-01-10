@@ -283,4 +283,32 @@ public class IssueController {
 		}
 		return listIssues(model, req);
 	}
+	
+	
+	/**
+	 * This updates an issue admin comment
+	 * @param req
+	 * @param model
+	 * @param issueId
+	 * @param status
+	 * @return
+	 */
+	@RequestMapping(value = "updateIssueComment")
+	public String updateIssueAdminComment(HttpServletRequest req, Model model, 
+			@RequestParam int issueId, @RequestParam String adminComment) {
+		HttpSession session = req.getSession();
+		ctx = (ApplicationContext) session.getServletContext().getAttribute("ctx");
+		issueDAO = (IssueDAO) ctx.getBean("IssueDAO");
+		if (Validation.compare(issueDAO, issueId)) {
+			Issue issue = issueDAO.getIssue(issueId);
+			issue.setAdminComment(adminComment);
+			issueDAO.updateIssue(issue);
+		} else {
+			model.addAttribute("notfound", true);
+			return listIssues(model, req);
+		}
+		
+		return listIssues(model, req);
+	}
+	
 }
