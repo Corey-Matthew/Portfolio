@@ -30,10 +30,10 @@
 						</c:if>
 						<li class="nav-item"><a class="nav-link" href="logout">Logout</a></li>
 			</ul>
-			<form class="form-inline my-2 my-lg-0" action="viewissue"
+			<form class="form-inline my-2 my-lg-0" style="width:40%"action="viewissue"
 				method="GET">
 				<input type="number" name="issueId" class="form-control mr-sm-2 "
-					placeholder="Search by issue ID" style="width: 59%;">
+					placeholder="Search by issue ID" style="width: 55%;">
 				<button type="submit" class="btn btn-default my-2 my-sm-0">Search</button>
 			</form>
 

@@ -67,14 +67,15 @@
 						<h2>Issue updates</h2>
 						<c:forEach var='issueUpdate'
 							items='${ requestScope.issue.issueUpdates }'>
+							<table></table>
 							<div class="issue-updates user-card" style="width: 90%;">
+								<p>
+									User${ issueUpdate.submittedBy }
+									<c:out value='${ issueUpdate.updateComment}' />
+								</p>
 								<p>
 									Update date:
 									<c:out value='${ issueUpdate.updateDate}' />
-								</p>
-								<p>
-									Update comment:
-									<c:out value='${ issueUpdate.updateComment}' />
 								</p>
 							</div>
 						</c:forEach>
