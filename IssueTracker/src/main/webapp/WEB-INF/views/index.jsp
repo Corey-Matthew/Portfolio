@@ -11,13 +11,13 @@
 		<img src="https://i.imgur.com/RCr0CMy.png" />
 	</div>
 	<div class="login-div ">
-	
+
 		<c:choose>
 			<c:when test="${ not empty sessionScope.user }">
 				<h3>Welcome back, ${
-				sessionScope.user.username }</h2>
+				sessionScope.user.username }</h3>
 				<h3>Access level: ${
-				sessionScope.user.role.roleName }</h2>
+				sessionScope.user.role.roleName }</h3>
 			</c:when>
 			<c:otherwise>
 				<c:if test="${requestScope.notfound}">
@@ -59,9 +59,11 @@
 						<button type="submit" class="btn btn-primary btn-pill">Login</button>
 					</div>
 				</form>
+			</c:otherwise>
+		</c:choose>
 	</div>
-	</c:otherwise>
-	</c:choose>
+
+
 </body>
 <c:import url="footer.jsp"></c:import>
 </html>
