@@ -109,6 +109,14 @@ public class IssueController {
 		HttpSession session = req.getSession();
 		ctx = (ApplicationContext) session.getServletContext().getAttribute("ctx");
 		issueDAO = (IssueDAO) ctx.getBean("IssueDAO");
+		User user = (User)session.getAttribute("user");
+		if(user == null){
+			return "index";
+		}
+		if(user.getRole().getRoleName().equals(Role.USER))
+		{
+			return "index";
+		}
 		Issue issue = issueDAO.getIssue(issueId);
 		if (issue != null) {
 			if (issueDAO.getDepartmentById(issue.getAssignedTo()) != null) {
