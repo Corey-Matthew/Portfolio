@@ -71,9 +71,8 @@
 									<input type="hidden" name="issueId" value="${ issue.issueId }" />
 									<div class="form-group" style="padding: 0 20%;">
 										<span class="input-group-addon">
-											<h3>
-												<i class="fa fa-info-circle"> Update on Issue: </i>
-											</h3>
+											<b> Update on Issue: 
+											</b>
 										</span>
 										<textarea class="form-control" name="issueComment"
 											placeholder="Enter any updates on the issue" maxlength="300"
