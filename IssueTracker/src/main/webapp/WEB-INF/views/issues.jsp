@@ -71,18 +71,21 @@
 							<tr>
 								<td><c:out value='${ issue.issueId}' /></td>
 								<td>
-									<form method="POST" action="assign">
-										<input type="hidden" name ="issueId"value='${ issue.issueId}' /> <select
-											class="form-control" name="deptId" size="1" required>
-											<c:forEach var='dept' items='${ requestScope.depts}'>
-												<option value="${dept.departmentId}"
-													<c:if test = '${ issue.assignedTo == dept.departmentId}'>selected</c:if>>${
+									<div class="input-group">
+										<form method="POST" action="assign">
+											<input type="hidden" name="issueId" value='${ issue.issueId}' />
+											<select name="deptId" size="1" required>
+												<c:forEach var='dept' items='${ requestScope.depts}'>
+													<option value="${dept.departmentId}"
+														<c:if test = '${ issue.assignedTo == dept.departmentId}'>selected</c:if>>${
 									dept.departmentName }
-												</option>
-											</c:forEach>
-										</select>
-										<button type="submit" class="btn btn-primary btn-pill">Assign</button>
-									</form>
+													</option>
+												</c:forEach>
+											</select> <span class="input-group-addon">
+												<button type="submit" class="btn btn-primary btn-pill">Assign</button>
+											</span>
+										</form>
+									</div>
 								</td>
 								<td><c:out value='${ issue.status}' /></td>
 							</tr>
