@@ -233,6 +233,7 @@ tr {
 	}
 }
 
+
 .scrollbar {
 	margin: 0 auto;
 	height: 600px;
@@ -292,4 +293,14 @@ tr {
     text-align: left;
     background-color: #136562;
     color: white;
+}
+
+#issue-update-table {
+	width: 100%;
+	height: 500px;
+	
+}
+
+.row.issue-details {
+	padding: 0 5%;
 }

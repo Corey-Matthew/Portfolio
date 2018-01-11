@@ -51,7 +51,7 @@
 							<form method="POST" action="updateIssueComment">
 								<input type="hidden" name="issueId" value="${ issue.issueId }" />
 								<div class="form-group center">
-									<textarea name="adminComment" cols="30">${issue.adminComment}</textarea>
+									<textarea name="adminComment" cols="20">${issue.adminComment}</textarea>
 								</div>
 								<div class="login-button">
 									<button type="submit" class="btn btn-primary btn-pill">Submit
@@ -60,33 +60,6 @@
 							</form>
 						</c:otherwise>
 					</c:choose>
-
-				</div>
-				<c:if test="${ not empty requestScope.issue.issueUpdates }">
-					<div class="issue-update-cards col-md-4">
-						<h2>Issue updates</h2>
-						<table id="issue-updates">
-								<tr>
-									<th>Username</th>
-									<th>Update</th>
-									<th>Date</th>
-								</tr>
-						<c:forEach var='issueUpdate'
-							items='${ requestScope.issue.issueUpdates }'>
-							
-								<tr>
-									<td><b>${ issueUpdate.submittedBy.username } </b> </td>
-									<td><c:out
-											value='${ issueUpdate.updateComment}' /></td>
-									<td>Update date: <c:out value='${ issueUpdate.updateDate}' />
-									</td>
-								</tr>
-							
-						</c:forEach>
-						</table>
-					</div>
-				</c:if>
-				<div class="issue-update-div col-md-4">
 					<c:if
 						test="${ sessionScope.user.role.roleName eq 'department_admin' or sessionScope.user.role.roleName eq 'user' }">
 						<c:if
@@ -95,11 +68,14 @@
 								<form method="POST" action="addIssueUpdate">
 									<input type="hidden" name="issueId" value="${ issue.issueId }" />
 									<div class="form-group" style="padding: 0 20%;">
-										<span class="input-group-addon"> <h3><i
-											class="fa fa-info-circle"> Update on Issue: </i></h3>
+										<span class="input-group-addon">
+											<h3>
+												<i class="fa fa-info-circle"> Update on Issue: </i>
+											</h3>
 										</span>
 										<textarea class="form-control" name="issueComment"
-											placeholder="Enter any updates on the issue" maxlength="300" required></textarea>
+											placeholder="Enter any updates on the issue" maxlength="300"
+											required></textarea>
 									</div>
 									<div class="login-button">
 										<button type="submit" class="btn btn-primary btn-pill">Submit
@@ -148,6 +124,35 @@
 						</div>
 					</c:if>
 				</div>
+				<c:if test="${ not empty requestScope.issue.issueUpdates }">
+					<div class="issue-update-cards col-md-8">
+						<h2>Issue updates</h2>
+						<div class="scrollbar scrollbar-morpheus-den"
+							id="issue-update-table">
+							<div class="force-overflow">
+								<table id="issue-updates">
+									<tr>
+										<th>User</th>
+										<th>Update</th>
+										<th>Date</th>
+									</tr>
+
+									<c:forEach var='issueUpdate'
+										items='${ requestScope.issue.issueUpdates }'>
+
+										<tr>
+											<td><b>${ issueUpdate.submittedBy.username } </b></td>
+											<td><c:out value='${ issueUpdate.updateComment}' /></td>
+											<td><c:out value='${ issueUpdate.updateDate}' /></td>
+										</tr>
+
+									</c:forEach>
+
+								</table>
+							</div>
+						</div>
+					</div>
+				</c:if>
 			</div>
 		</c:otherwise>
 	</c:choose>
