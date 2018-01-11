@@ -15,28 +15,39 @@ import com.fdmgroup.issuetracker.model.impl.User;
 import com.fdmgroup.issuetracker.model.impl.UserDAO;
 import com.fdmgroup.issuetracker.utils.Validation;
 
-//we are creating new bean for department and role => new user requires those 
-//if we do that twice, then the SQL fails, because dept and role already exist
-//we need to pass reference, but do we need DAO for role and dept for that?
-
 /**
- * RegisterController for registering...
+ * RegisterController for registering and related operations
  *
  */
 @Controller
 public class RegisterController {
 	
 	/**
-	 * Returns to Register page
-	 * @param req
-	 * @param model
-	 * @return
+	 * Method that directs to register page. 
+	 * It checks first if the parameters are legal for each field.
+	 *  
+	 * @return - return register page
 	 */
 	@RequestMapping(value="/register")
 	public String goToRegister()	{
 		return "register";
 	}
 
+	/**
+	 * Method that register a user by adding them to the database. It 
+	 * checks if fields are empty, if some fields already exists and if so then
+	 * throws RegisterException
+	 * 
+	 * @param request
+	 * @param model - contains users attribute
+	 * @param username - registered user's username
+	 * @param password - registered user's password
+	 * @param email - registered user's email
+	 * @param confirmedPassword - another field of registered user's password to match with the first password. To ensure there isn't a typo in the password
+	 * @param userType - set if user is a user or has admin rights, if so if the admin has just a department or the whole system
+	 * @param department - department with the system
+	 * @return
+	 */
 	@RequestMapping(value = "/registerUser", method = RequestMethod.POST)
 	public String register(HttpServletRequest request, Model model, @RequestParam String username, @RequestParam String password, @RequestParam String email, @RequestParam String confirmedPassword, @RequestParam String userType, @RequestParam String department) {
 		
@@ -109,7 +120,7 @@ public class RegisterController {
 		dao.addUser(newUser);
 		model.addAttribute("registered", true);
 		model.addAttribute("user", newUser);
-		return ("register");
-				
+		return ("register");	
+		
 	}
 }

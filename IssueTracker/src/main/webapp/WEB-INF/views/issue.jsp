@@ -12,8 +12,10 @@
 			<p>
 		</c:when>
 		<c:otherwise>
+		<h1 id="issue"> Issue </h1>
 			<div class="row">
 				<div class="issue col-md-4">
+				<h3> Details </h3>
 					<p>
 						<b>Issue ID:</b>
 						<c:out value='${ issue.issueId }' />
@@ -48,14 +50,14 @@
 							</c:if>
 						</c:when>
 						<c:otherwise>
+						<b>Admin Comment:</b>
 							<form method="POST" action="updateIssueComment">
 								<input type="hidden" name="issueId" value="${ issue.issueId }" />
 								<div class="form-group center">
-									<textarea name="adminComment" cols="20">${issue.adminComment}</textarea>
+									<textarea name="adminComment">${issue.adminComment}</textarea>
 								</div>
 								<div class="login-button">
-									<button type="submit" class="btn btn-primary btn-pill">Submit
-										Update</button>
+									<button type="submit" class="btn btn-primary btn-pill">Comment</button>
 								</div>
 							</form>
 						</c:otherwise>
@@ -69,9 +71,8 @@
 									<input type="hidden" name="issueId" value="${ issue.issueId }" />
 									<div class="form-group" style="padding: 0 20%;">
 										<span class="input-group-addon">
-											<h3>
-												<i class="fa fa-info-circle"> Update on Issue: </i>
-											</h3>
+											<b> Update on Issue: 
+											</b>
 										</span>
 										<textarea class="form-control" name="issueComment"
 											placeholder="Enter any updates on the issue" maxlength="300"
@@ -126,7 +127,7 @@
 				</div>
 				<c:if test="${ not empty requestScope.issue.issueUpdates }">
 					<div class="issue-update-cards col-md-8">
-						<h2>Issue updates</h2>
+						<h3>Issue updates</h3>
 						<div class="scrollbar scrollbar-morpheus-den"
 							id="issue-update-table">
 							<div class="force-overflow">

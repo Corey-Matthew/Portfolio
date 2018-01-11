@@ -1,10 +1,16 @@
 body {
+	-webkit-tap-highlight-color: rgba(255, 255, 255, 0.2);
 	font-family: 'Lora', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 	position: relative;
 	color: #343a40;
 	background-color: #f8f9fa;
 	padding-bottom: 12%;
 	padding-top: 100px;
+}
+
+textarea {
+	width: 95%;
+	margin-top: 10px;
 }
 
 .homepage {
@@ -24,9 +30,10 @@ h1, h2, h3, h4, h5, h6, button, .login-button, p {
 	padding: 5px;
 }
 
-.center{
-	text-align:center;
+.center {
+	text-align: center;
 }
+
 h1, h2, h3, h4, h5, h6 {
 	font-family: 'Cabin', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 	font-weight: 700;
@@ -75,10 +82,6 @@ img::selection {
 
 img::-moz-selection {
 	background: transparent;
-}
-
-body {
-	-webkit-tap-highlight-color: rgba(255, 255, 255, 0.2);
 }
 
 ul {
@@ -196,6 +199,13 @@ ul.nav.navbar-nav li a:hover {
 	text-align: center;
 }
 
+select {
+	border-radius: 5px;
+}
+
+select.form-control {
+	margin-top: 10px;
+}
 .issues-table table {
 	margin: 0 auto;
 	border: 1px solid black;
@@ -233,6 +243,9 @@ tr {
 	}
 }
 
+#issue-element {
+	margin: 3%;
+}
 
 .scrollbar {
 	margin: 0 auto;
@@ -241,9 +254,9 @@ tr {
 	background: #fff;
 	overflow-y: scroll;
 	margin-bottom: 25px;
-	border-radius: 5px;
+	border-radius: 10px;
 	border-style: hidden;
-	box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+	box-shadow: 8px 8px 16px 8px rgba(0, 0, 0, 0.2);
 }
 
 .force-overflow {
@@ -271,36 +284,89 @@ tr {
 }
 
 #issue-updates {
-    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
-    border-collapse: collapse;
-    width: 100%;
-    table-layout: fixed;
-    word-wrap: break-word;
+	font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+	border-collapse: collapse;
+	width: 100%;
+	table-layout: fixed;
+	word-wrap: break-word;
 }
 
 #issue-updates td, #issue-updates th {
-    border: 1px solid #ddd;
-    padding: 8px;
+	border: 1px solid #ddd;
+	padding: 8px;
 }
 
-#issue-updates tr:nth-child(even){background-color: #f2f2f2;}
+#issue-updates tr {
+	text-align: center;
+}
 
-#issue-updates tr:hover {background-color: #ddd;}
+#issue-updates tr:nth-child(even) {
+	background-color: #f2f2f2;
+}
+
+#issue-updates tr:hover {
+	background-color: #ddd;
+}
+
+td#issueLink:hover {
+	color: white;
+	cursor: pointer;
+	background: linear-gradient(70deg, #2E455D, #6D2B36);
+}
 
 #issue-updates th {
-    padding-top: 12px;
-    padding-bottom: 12px;
-    text-align: left;
-    background-color: #136562;
-    color: white;
+	padding-top: 12px;
+	padding-bottom: 12px;
+	background: linear-gradient(180deg, #000000, #8E5656);
+	color: white;
 }
 
 #issue-update-table {
 	width: 100%;
 	height: 500px;
-	
+}
+
+#issue {
+	border-style: groove;
+	border-radius: 10px;
+	width: 80%;
+	margin: 0 auto;
+	background-color: white;
+}
+
+.issue p{
+	text-align: left;
+}
+
+.row {
+	margin: 0 auto;
+	width: 95%;
+	margin-top: 20px;
+	border-style: outset;
+	border-radius: 10px;
+	background-color: white;
+}
+
+.row h3 {
+	margin-top: 8px;
 }
 
 .row.issue-details {
 	padding: 0 5%;
+}
+
+.noauthority {
+	color: red
+}
+
+.homepage-title {
+	color: #00008B;
+}
+
+.programtitle {
+	font-size: 44px;
+}
+
+button.btn.btn-primary.btn-pill:hover {
+	background: radial-gradient(#2E455D, #6D2B36);
 }

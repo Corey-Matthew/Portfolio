@@ -33,9 +33,9 @@ public class IssueController {
 
 	/**
 	 * This method lists issues by users role 
-	 * @param model
-	 * @param req
-	 * @return String
+	 * @param model contains users attribute for departments and issues
+	 * @param req allows us to access the application context
+	 * @return String issues
 	 */
 	@RequestMapping(value = "/issues")
 	public String listIssues(Model model, HttpServletRequest req) {
@@ -62,7 +62,7 @@ public class IssueController {
 	}
 	/**
 	 * This method proceeds to the addIssue page
-	 * @return
+	 * @return to addIssue.jsp
 	 */
 	@RequestMapping(value = "/addIssue")
 	public String addIssue() {
@@ -70,11 +70,11 @@ public class IssueController {
 	}
 	/**
 	 * This adds an issue by a user
-	 * @param model
-	 * @param req
-	 * @param title
-	 * @param userDescription
-	 * @return
+	 * @param model contains users attribute for issueAdded
+	 * @param req allows us to access the application context
+	 * @param title allows us to set a name to an issue
+	 * @param userDescription allows us to set a Description to an issue
+	 * @return to addIssue.jsp
 	 */
 	@RequestMapping(value = "/addIssueProc", method = RequestMethod.POST)
 	public String addIssueMethod(Model model, HttpServletRequest req, @RequestParam(value = "title") String title,
@@ -99,20 +99,16 @@ public class IssueController {
 	}
 	/**
 	 * This method lists users in that department
-	 * @param issueId
-	 * @param model
-	 * @param req
-	 * @return
+	 * @param issueId allows for retrieval of issueId from issueDAO
+	 * @param model contains users attribute for department and issue
+	 * @param req allows us to access the application context
+	 * @return to issue.jsp
 	 */
 	@RequestMapping(value = "/viewissue")
 	public String listUsers(@RequestParam int issueId, Model model, HttpServletRequest req) {
 		HttpSession session = req.getSession();
 		ctx = (ApplicationContext) session.getServletContext().getAttribute("ctx");
 		issueDAO = (IssueDAO) ctx.getBean("IssueDAO");
-		User user = (User)session.getAttribute("user");
-		if(user == null){
-			return "index";
-		}
 		Issue issue = issueDAO.getIssue(issueId);
 		if (issue != null) {
 			if (issueDAO.getDepartmentById(issue.getAssignedTo()) != null) {
@@ -129,11 +125,12 @@ public class IssueController {
 	}
 	/**
 	 * This method assigns an issue
-	 * @param req
-	 * @param model
-	 * @param issueId
-	 * @param deptId
-	 * @return
+	 * @param req allows us to access the application context
+	 * @param model model contains users attribute for notFound
+	 * @param issueId allows for retrieval of issueId from issueDAO
+	 * @param deptId allows for Assigning of deptId
+	 * @return listIssues(model, req);
+	 * @see listIssues(Model model, HttpServletRequest req)
 	 */
 	@RequestMapping(value = "/assign", method = RequestMethod.POST)
 	public String assignIssue(HttpServletRequest req, Model model, @RequestParam int issueId,
@@ -157,10 +154,10 @@ public class IssueController {
 	}
 	/**
 	 * This lists issues by a user
-	 * @param req
-	 * @param model
-	 * @param userId
-	 * @return
+	 * @param req allows us to access the application context
+	 * @param model contains users attribute for departments and issues
+	 * @param userId used to list issues by userId
+	 * @return to issues.jsp
 	 */
 	@RequestMapping(value = "/viewUserIssues")
 	public String viewUserIssues(HttpServletRequest req, Model model, @RequestParam int userId) {
@@ -173,8 +170,14 @@ public class IssueController {
 		model.addAttribute("issues", issues);
 		return "issues";
 	}
-	
-	@RequestMapping(value = "/viewDeptIssues")
+	/**
+	 * 
+	 * @param req
+	 * @param model
+	 * @param deptId
+	 * @return
+	 */
+	@RequestMapping(value = "/viewDeptIssues") 
 	public String viewAssignedIssues(HttpServletRequest req, Model model, @RequestParam int deptId) {
 		HttpSession session = req.getSession();
 		ctx = (ApplicationContext) session.getServletContext().getAttribute("ctx");
@@ -216,8 +219,9 @@ public class IssueController {
 	 * @param model
 	 * @param issueId
 	 * @return
+	 * @see listIssues(Model model, HttpServletRequest req)
 	 */
-	@RequestMapping(value = "approveIssue", method=RequestMethod.POST)
+	@RequestMapping(value = "approveIssue")
 	public String approveIssueProc(HttpServletRequest req, Model model, 
 			@RequestParam int issueId) {
 
@@ -243,7 +247,7 @@ public class IssueController {
 	 * @param issueId
 	 * @return
 	 */
-	@RequestMapping(value = "rejectIssue", method=RequestMethod.POST)
+	@RequestMapping(value = "rejectIssue")
 	public String rejectIssueProc(HttpServletRequest req, Model model, 
 			@RequestParam int issueId) {
 
@@ -270,7 +274,7 @@ public class IssueController {
 	 * @param status
 	 * @return
 	 */
-	@RequestMapping(value = "updateIssueStatus", method=RequestMethod.POST)
+	@RequestMapping(value = "updateIssueStatus")
 	public String updateIssueStatusProc(HttpServletRequest req, Model model, 
 			@RequestParam int issueId, @RequestParam String status) {
 
@@ -288,32 +292,4 @@ public class IssueController {
 		}
 		return listIssues(model, req);
 	}
-	
-	
-	/**
-	 * This updates an issue admin comment
-	 * @param req
-	 * @param model
-	 * @param issueId
-	 * @param status
-	 * @return
-	 */
-	@RequestMapping(value = "updateIssueComment", method=RequestMethod.POST)
-	public String updateIssueAdminComment(HttpServletRequest req, Model model, 
-			@RequestParam int issueId, @RequestParam String adminComment) {
-		HttpSession session = req.getSession();
-		ctx = (ApplicationContext) session.getServletContext().getAttribute("ctx");
-		issueDAO = (IssueDAO) ctx.getBean("IssueDAO");
-		if (Validation.compare(issueDAO, issueId)) {
-			Issue issue = issueDAO.getIssue(issueId);
-			issue.setAdminComment(adminComment);
-			issueDAO.updateIssue(issue);
-		} else {
-			model.addAttribute("notfound", true);
-			return listIssues(model, req);
-		}
-		
-		return listIssues(model, req);
-	}
-	
 }
