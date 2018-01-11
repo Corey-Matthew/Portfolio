@@ -203,6 +203,9 @@ select {
 	border-radius: 5px;
 }
 
+select.form-control {
+	margin-top: 10px;
+}
 .issues-table table {
 	margin: 0 auto;
 	border: 1px solid black;
