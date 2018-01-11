@@ -154,10 +154,10 @@ public class IssueController {
 	}
 	/**
 	 * This lists issues by a user
-	 * @param req
-	 * @param model
-	 * @param userId
-	 * @return
+	 * @param req allows us to access the application context
+	 * @param model contains users attribute for departments and issues
+	 * @param userId used to list issues by userId
+	 * @return to issues.jsp
 	 */
 	@RequestMapping(value = "/viewUserIssues")
 	public String viewUserIssues(HttpServletRequest req, Model model, @RequestParam int userId) {
