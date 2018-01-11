@@ -28,7 +28,7 @@ public class Client {
 		UserDAO userDAO = (UserDAO) ctx.getBean("UserDAO");
 		User trainee = new User();
 		Department java = new Department();
-		java.setDepartmentName("java");
+		java.setDepartmentName("IT");
 		trainee.setDepartment(java);
 		trainee.setEmail("haha@haha");
 		trainee.setUsername("admin1");

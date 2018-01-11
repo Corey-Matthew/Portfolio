@@ -58,27 +58,38 @@
 		<c:otherwise>
 			<div class="scrollbar scrollbar-morpheus-den">
 				<div class="force-overflow">
-					<div class="issues-table">
+
+					<table id="issue-updates">
+						<tr>
+							<th>IssueID</th>
+							<th>Assigned To</th>
+							<th>Status</th>
+						</tr>
+
 						<c:forEach var='issue' items='${ requestScope.issues }'>
-							<div class="user-card">
-								<a href="viewissue?issueId=${ issue.issueId }">
-									<p>
-										Issue ID:
-										<c:out value='${ issue.issueId }' />
-									</p>
-									<p>
-										Assigned to:
-										<c:out value='${ issue.assignedTo }' />
-									</p>
-								</a>
-								<p>
-									Status:
-									<c:out value='${ issue.status }' />
-								</p>
-								</a>
-							</div>
+
+							<tr>
+								<td><c:out value='${ issue.issueId}' /></td>
+								<td>
+									<form method="POST" action="assign">
+										<input type="hidden" name ="issueId"value='${ issue.issueId}' /> <select
+											class="form-control" name="deptId" size="1" required>
+											<c:forEach var='dept' items='${ requestScope.depts}'>
+												<option value="${dept.departmentId}"
+													<c:if test = '${ issue.assignedTo == dept.departmentId}'>selected</c:if>>${
+									dept.departmentName }
+												</option>
+											</c:forEach>
+										</select>
+										<button type="submit" class="btn btn-primary btn-pill">Assign</button>
+									</form>
+								</td>
+								<td><c:out value='${ issue.status}' /></td>
+							</tr>
+
 						</c:forEach>
-					</div>
+
+					</table>
 				</div>
 			</div>
 			<c:if test="${requestScope.notfound}">
