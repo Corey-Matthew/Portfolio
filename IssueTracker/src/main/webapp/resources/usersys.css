@@ -307,3 +307,15 @@ tr {
 .row.issue-details {
 	padding: 0 5%;
 }
+
+.noauthority {
+	color: red
+}
+
+.homepage-title {
+	color: #00008B;
+}
+
+.programtitle {
+	font-size: 44px;
+}

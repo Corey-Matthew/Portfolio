@@ -9,10 +9,8 @@
 	<c:choose>
 		<c:when
 			test="${ empty sessionScope.user  || sessionScope.user.role.roleName != 'admin'}">
-			<p>You shall not pass!</p>
-			<p>
-				<span><a href="./">Get Me Out of Here!</a></span>
-			</p>
+			<h1 class="noauthority">Restricted Access</h1>
+			<p>You are either not logged in or you do not have permission to view this page</p>
 		</c:when>
 		<c:otherwise>
 
@@ -105,7 +103,6 @@
 			</div>
 		</c:otherwise>
 	</c:choose>
-
 </body>
 <c:import url="/WEB-INF/views/footer.jsp"></c:import>
 </html>

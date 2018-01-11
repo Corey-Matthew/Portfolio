@@ -8,7 +8,8 @@
 <body>
 	<c:choose>
 		<c:when test="${ sessionScope.user.role.roleName != 'admin' }">
-			<p>You need to login to see this page.</p>
+			<h1 class="noauthority">Restricted Access</h1>
+			<p>You are either not logged in or you do not have permission to view this page</p>
 		</c:when>
 		<c:otherwise>
 		<div class="iter-cards">
@@ -49,8 +50,6 @@
 			</div>
 		</c:otherwise>
 	</c:choose>
-	<br />
-	<br />
 </body>
 <c:import url="/WEB-INF/views/footer.jsp"></c:import>
 </html>
