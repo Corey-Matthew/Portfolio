@@ -177,7 +177,7 @@ public class IssueController {
 	 * @param deptId
 	 * @return
 	 */
-	@RequestMapping(value = "/viewDeptIssues")
+	@RequestMapping(value = "/viewDeptIssues") 
 	public String viewAssignedIssues(HttpServletRequest req, Model model, @RequestParam int deptId) {
 		HttpSession session = req.getSession();
 		ctx = (ApplicationContext) session.getServletContext().getAttribute("ctx");
