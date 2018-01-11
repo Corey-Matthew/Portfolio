@@ -14,16 +14,21 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.fdmgroup.issuetracker.model.impl.User;
 import com.fdmgroup.issuetracker.model.impl.UserDAO;
 
+/**
+ * Class that returns list of users
+ *
+ */
 @Controller
 public class UsersController {
+	
 	private ApplicationContext ctx;
 	private UserDAO userDAO;
 	
 	/**
-	 * This lists all users
-	 * @param model
-	 * @param req
-	 * @return String
+	 * Method that returns list of users
+	 * @param model - model contains users attributes
+	 * @param req - allows us to access the application context
+	 * @return - returns list of users
 	 */
 	@RequestMapping(value = "/listusers")
 	public String listUsers(Model model, HttpServletRequest req){
@@ -37,8 +42,4 @@ public class UsersController {
 		
 		return "listusers";
 	}
-	
-	
-
-
 }
