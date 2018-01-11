@@ -99,7 +99,7 @@
 											class="fa fa-info-circle"> Update on Issue: </i></h3>
 										</span>
 										<textarea class="form-control" name="issueComment"
-											placeholder="Enter any updates on the issue" required></textarea>
+											placeholder="Enter any updates on the issue" maxlength="300" required></textarea>
 									</div>
 									<div class="login-button">
 										<button type="submit" class="btn btn-primary btn-pill">Submit

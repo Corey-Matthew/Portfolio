@@ -21,14 +21,14 @@
 							<span class="input-group-addon"> <i
 								class="fa fa-exclamation"> Title of Issue</i>
 							</span> <input class="form-control" name="title"
-								placeholder="Title of your Issue" type="text" required />
+								placeholder="Title of your Issue" maxlength="300" type="text" required />
 						</div>
 						<div class="form-group">
 							<span class="input-group-addon"> <i
 								class="fa fa-info-circle"> Description of Issue</i>
 							</span>
 							<textarea class="form-control" name="userDescription"
-								placeholder="Description of issue" required></textarea>
+								placeholder="Description of issue" maxlength="300" required></textarea>
 						</div>
 						<div class="login-button">
 							<span>
