@@ -99,10 +99,10 @@ public class IssueController {
 	}
 	/**
 	 * This method lists users in that department
-	 * @param issueId
-	 * @param model
-	 * @param req
-	 * @return
+	 * @param issueId allows for retrieval of issueId from issueDAO
+	 * @param model contains users attribute for department and issue
+	 * @param req allows us to access the application context
+	 * @return to issue.jsp
 	 */
 	@RequestMapping(value = "/viewissue")
 	public String listUsers(@RequestParam int issueId, Model model, HttpServletRequest req) {
@@ -125,11 +125,12 @@ public class IssueController {
 	}
 	/**
 	 * This method assigns an issue
-	 * @param req
-	 * @param model
-	 * @param issueId
-	 * @param deptId
-	 * @return
+	 * @param req allows us to access the application context
+	 * @param model model contains users attribute for notFound
+	 * @param issueId allows for retrieval of issueId from issueDAO
+	 * @param deptId allows for Assigning of deptId
+	 * @return listIssues(model, req);
+	 * @see listIssues(Model model, HttpServletRequest req)
 	 */
 	@RequestMapping(value = "/assign", method = RequestMethod.POST)
 	public String assignIssue(HttpServletRequest req, Model model, @RequestParam int issueId,
