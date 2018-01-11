@@ -33,9 +33,9 @@ public class IssueController {
 
 	/**
 	 * This method lists issues by users role 
-	 * @param model 
-	 * @param req
-	 * @return String 
+	 * @param model contains users attribute for departments and issues
+	 * @param req allows us to access the application context
+	 * @return String issues
 	 */
 	@RequestMapping(value = "/issues")
 	public String listIssues(Model model, HttpServletRequest req) {
@@ -62,7 +62,7 @@ public class IssueController {
 	}
 	/**
 	 * This method proceeds to the addIssue page
-	 * @return
+	 * @return to addIssue.jsp
 	 */
 	@RequestMapping(value = "/addIssue")
 	public String addIssue() {
@@ -70,11 +70,11 @@ public class IssueController {
 	}
 	/**
 	 * This adds an issue by a user
-	 * @param model
-	 * @param req
-	 * @param title
-	 * @param userDescription
-	 * @return
+	 * @param model contains users attribute for issueAdded
+	 * @param req allows us to access the application context
+	 * @param title allows us to set a name to an issue
+	 * @param userDescription allows us to set a Description to an issue
+	 * @return to addIssue.jsp
 	 */
 	@RequestMapping(value = "/addIssueProc", method = RequestMethod.POST)
 	public String addIssueMethod(Model model, HttpServletRequest req, @RequestParam(value = "title") String title,
