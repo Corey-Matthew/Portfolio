@@ -113,10 +113,6 @@ public class IssueController {
 		if(user == null){
 			return "index";
 		}
-		if(user.getRole().getRoleName().equals(Role.USER))
-		{
-			return "index";
-		}
 		Issue issue = issueDAO.getIssue(issueId);
 		if (issue != null) {
 			if (issueDAO.getDepartmentById(issue.getAssignedTo()) != null) {
@@ -209,6 +205,7 @@ public class IssueController {
 		issueUpdate.setIssue(issue);
 		issueUpdate.setUpdateComment(issueComment);
 		issueUpdate.setUpdateDate(new Date());
+		issueUpdate.setSubmittedBy((User) session.getAttribute("user"));
 		issueUpdates.add(issueUpdate);
 		issueDAO.updateIssue(issue);
 		return listUsers(issueId, model, req);

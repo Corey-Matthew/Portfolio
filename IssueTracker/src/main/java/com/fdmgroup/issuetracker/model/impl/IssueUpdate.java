@@ -24,8 +24,9 @@ public class IssueUpdate {
 	@JoinColumn(name="issue_id")
 	private Issue issue;
 	
-	@Column(name = "submitted_by")
-	private int submittedBy;
+	@ManyToOne
+	@JoinColumn(name = "submitted_by")
+	private User submittedBy;
 
 	@Column(name="update_date")
 	private Date updateDate;
@@ -57,11 +58,11 @@ public class IssueUpdate {
 		this.issue = issue;
 	}
 
-	public int getSubmittedBy() {
+	public User getSubmittedBy() {
 		return submittedBy;
 	}
 
-	public void setSubmittedBy(int submittedBy) {
+	public void setSubmittedBy(User submittedBy) {
 		this.submittedBy = submittedBy;
 	}
 

@@ -70,7 +70,7 @@
 							<table></table>
 							<div class="issue-updates user-card" style="width: 90%;">
 								<p>
-									User${ issueUpdate.submittedBy }
+									<b>${ issueUpdate.submittedBy.username } </b>
 									<c:out value='${ issueUpdate.updateComment}' />
 								</p>
 								<p>
