@@ -6,8 +6,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class HomeController {
 	/**
-	 * This would return to the home page
-	 * @return
+	 * Goes to the Homepage
+	 * @return the index.jsp page
 	 */
 	@RequestMapping(value="/")
 	public String goHome(){

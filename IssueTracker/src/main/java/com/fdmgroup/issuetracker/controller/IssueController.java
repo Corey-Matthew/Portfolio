@@ -33,9 +33,9 @@ public class IssueController {
 
 	/**
 	 * This method lists issues by users role 
-	 * @param model
+	 * @param model 
 	 * @param req
-	 * @return String
+	 * @return String 
 	 */
 	@RequestMapping(value = "/issues")
 	public String listIssues(Model model, HttpServletRequest req) {
@@ -109,10 +109,6 @@ public class IssueController {
 		HttpSession session = req.getSession();
 		ctx = (ApplicationContext) session.getServletContext().getAttribute("ctx");
 		issueDAO = (IssueDAO) ctx.getBean("IssueDAO");
-		User user = (User)session.getAttribute("user");
-		if(user == null){
-			return "index";
-		}
 		Issue issue = issueDAO.getIssue(issueId);
 		if (issue != null) {
 			if (issueDAO.getDepartmentById(issue.getAssignedTo()) != null) {
@@ -205,7 +201,6 @@ public class IssueController {
 		issueUpdate.setIssue(issue);
 		issueUpdate.setUpdateComment(issueComment);
 		issueUpdate.setUpdateDate(new Date());
-		issueUpdate.setSubmittedBy((User) session.getAttribute("user"));
 		issueUpdates.add(issueUpdate);
 		issueDAO.updateIssue(issue);
 		return listUsers(issueId, model, req);
@@ -217,7 +212,7 @@ public class IssueController {
 	 * @param issueId
 	 * @return
 	 */
-	@RequestMapping(value = "approveIssue", method=RequestMethod.POST)
+	@RequestMapping(value = "approveIssue")
 	public String approveIssueProc(HttpServletRequest req, Model model, 
 			@RequestParam int issueId) {
 
@@ -243,7 +238,7 @@ public class IssueController {
 	 * @param issueId
 	 * @return
 	 */
-	@RequestMapping(value = "rejectIssue", method=RequestMethod.POST)
+	@RequestMapping(value = "rejectIssue")
 	public String rejectIssueProc(HttpServletRequest req, Model model, 
 			@RequestParam int issueId) {
 
@@ -270,7 +265,7 @@ public class IssueController {
 	 * @param status
 	 * @return
 	 */
-	@RequestMapping(value = "updateIssueStatus", method=RequestMethod.POST)
+	@RequestMapping(value = "updateIssueStatus")
 	public String updateIssueStatusProc(HttpServletRequest req, Model model, 
 			@RequestParam int issueId, @RequestParam String status) {
 
@@ -288,32 +283,4 @@ public class IssueController {
 		}
 		return listIssues(model, req);
 	}
-	
-	
-	/**
-	 * This updates an issue admin comment
-	 * @param req
-	 * @param model
-	 * @param issueId
-	 * @param status
-	 * @return
-	 */
-	@RequestMapping(value = "updateIssueComment", method=RequestMethod.POST)
-	public String updateIssueAdminComment(HttpServletRequest req, Model model, 
-			@RequestParam int issueId, @RequestParam String adminComment) {
-		HttpSession session = req.getSession();
-		ctx = (ApplicationContext) session.getServletContext().getAttribute("ctx");
-		issueDAO = (IssueDAO) ctx.getBean("IssueDAO");
-		if (Validation.compare(issueDAO, issueId)) {
-			Issue issue = issueDAO.getIssue(issueId);
-			issue.setAdminComment(adminComment);
-			issueDAO.updateIssue(issue);
-		} else {
-			model.addAttribute("notfound", true);
-			return listIssues(model, req);
-		}
-		
-		return listIssues(model, req);
-	}
-	
 }
