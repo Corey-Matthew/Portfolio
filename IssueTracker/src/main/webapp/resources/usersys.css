@@ -1,4 +1,5 @@
 body {
+	-webkit-tap-highlight-color: rgba(255, 255, 255, 0.2);
 	font-family: 'Lora', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 	position: relative;
 	color: #343a40;
@@ -75,10 +76,6 @@ img::selection {
 
 img::-moz-selection {
 	background: transparent;
-}
-
-body {
-	-webkit-tap-highlight-color: rgba(255, 255, 255, 0.2);
 }
 
 ul {
@@ -285,6 +282,9 @@ tr {
     border: 1px solid #ddd;
     padding: 8px;
 }
+#issue-updates tr{
+	text-align: center;	
+}
 
 #issue-updates tr:nth-child(even){background-color: #f2f2f2;}
 
@@ -293,7 +293,6 @@ tr {
 #issue-updates th {
     padding-top: 12px;
     padding-bottom: 12px;
-    text-align: left;
     background-color: #136562;
     color: white;
 }
@@ -301,9 +300,12 @@ tr {
 #issue-update-table {
 	width: 100%;
 	height: 500px;
-	
 }
 
+.row {
+	margin: 0 auto;
+	width: 95%;
+}
 .row.issue-details {
 	padding: 0 5%;
 }

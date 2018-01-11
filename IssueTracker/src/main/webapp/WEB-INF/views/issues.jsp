@@ -8,7 +8,7 @@
 <body>
 	<c:choose>
 		<c:when
-			test="${ empty sessionScope.user  || sessionScope.user.role.roleName != 'admin'}">
+			test="${ empty sessionScope.user}">
 			<h1 class="noauthority">Restricted Access</h1>
 			<p>You are either not logged in or you do not have permission to
 				view this page</p>
@@ -27,7 +27,6 @@
 				<h4>Successfully added your issue!</h4>
 			</c:if>
 			<c:if test="${ sessionScope.user.role.roleName eq 'admin' }">
-
 				<div class="user-card assign-card">
 					<h3>Assign Issues</h3>
 					<form method="POST" action="assign">
@@ -70,14 +69,17 @@
 							<table id="issue-updates">
 								<tr>
 									<th>IssueID</th>
-									<th>Assigned To</th>
+									<c:if test='${ user.role.roleName == "admin" }'>
+										<th>Assigned To</th>
+									</c:if>
 									<th>Status</th>
 								</tr>
 
 								<c:forEach var='issue' items='${ requestScope.issues }'>
 
-									<tr>
+									<tr onclick="window.location='viewissue?issueId=${issue.issueId}';">
 										<td><c:out value='${ issue.issueId}' /></td>
+										<c:if test='${ user.role.roleName == "admin" }'>
 										<td>
 											<div class="input-group">
 												<form method="POST" action="assign">
@@ -96,6 +98,7 @@
 												</form>
 											</div>
 										</td>
+										</c:if>
 										<td><c:out value='${ issue.status}' /></td>
 									</tr>
 
@@ -112,6 +115,7 @@
 			</c:choose>
 		</c:otherwise>
 	</c:choose>
+	
 </body>
 <c:import url="/WEB-INF/views/footer.jsp"></c:import>
 </html>

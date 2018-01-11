@@ -48,14 +48,14 @@
 							</c:if>
 						</c:when>
 						<c:otherwise>
+						<b>Admin Comment:</b>
 							<form method="POST" action="updateIssueComment">
 								<input type="hidden" name="issueId" value="${ issue.issueId }" />
 								<div class="form-group center">
 									<textarea name="adminComment" cols="20">${issue.adminComment}</textarea>
 								</div>
 								<div class="login-button">
-									<button type="submit" class="btn btn-primary btn-pill">Submit
-										Update</button>
+									<button type="submit" class="btn btn-primary btn-pill">Comment</button>
 								</div>
 							</form>
 						</c:otherwise>

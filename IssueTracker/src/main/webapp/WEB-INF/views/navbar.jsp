@@ -10,11 +10,11 @@
 			aria-label="Toggle navigation">
 			<span class="navbar-toggler-icon"></span>
 		</button>
+		<c:choose>
+			<c:when test="${ not empty sessionScope.user }">
+				<div class="collapse navbar-collapse" id="navbarsExampleDefault">
+					<ul class="navbar-nav mr-auto">
 
-		<div class="collapse navbar-collapse" id="navbarsExampleDefault">
-			<ul class="navbar-nav mr-auto">
-				<c:choose>
-					<c:when test="${ not empty sessionScope.user }">
 						<li class="nav-item"><a class="nav-link" href="issues">Issues</a></li>
 						<c:if test="${ sessionScope.user.role.roleName == 'admin' }">
 							<li class="nav-item"><a class="nav-link" href="register">Register</a></li>
@@ -29,21 +29,20 @@
 							<li class="nav-item"><a class="nav-link" href="./">User:${sessionScope.user.username}</a></li>
 						</c:if>
 						<li class="nav-item"><a class="nav-link" href="logout">Logout</a></li>
-			</ul>
-			<form class="form-inline my-2 my-lg-0" style="width:40%"action="viewissue"
-				method="GET">
-				<input type="number" name="issueId" class="form-control mr-sm-2 "
-					placeholder="Search by issue ID" style="width: 55%;">
-				<button type="submit" class="btn btn-default my-2 my-sm-0">Search</button>
-			</form>
-
+					</ul>
+					<form class="input-group" action="viewissue">
+						<input type="number" class="form-control" name="issueId" style="margin-left: 30%;"> <span
+							class="input-group-addon"><button type="submit"
+								class="btn btn-default">Search</button></span>
+					</form>
+				</div>
 			</c:when>
-					<c:otherwise>
+			<c:otherwise>
 
-					</c:otherwise>
-				</c:choose>
+			</c:otherwise>
+		</c:choose>
 
 
-		</div>
+
 	</nav>
 </header>
