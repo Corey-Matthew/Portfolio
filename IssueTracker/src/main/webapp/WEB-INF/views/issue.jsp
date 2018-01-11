@@ -65,20 +65,25 @@
 				<c:if test="${ not empty requestScope.issue.issueUpdates }">
 					<div class="issue-update-cards col-md-4">
 						<h2>Issue updates</h2>
+						<table id="issue-updates">
+								<tr>
+									<th>Username</th>
+									<th>Update</th>
+									<th>Date</th>
+								</tr>
 						<c:forEach var='issueUpdate'
 							items='${ requestScope.issue.issueUpdates }'>
-							<table></table>
-							<div class="issue-updates user-card" style="width: 90%;">
-								<p>
-									<b>${ issueUpdate.submittedBy.username } </b>
-									<c:out value='${ issueUpdate.updateComment}' />
-								</p>
-								<p>
-									Update date:
-									<c:out value='${ issueUpdate.updateDate}' />
-								</p>
-							</div>
+							
+								<tr>
+									<td><b>${ issueUpdate.submittedBy.username } </b> </td>
+									<td><c:out
+											value='${ issueUpdate.updateComment}' /></td>
+									<td>Update date: <c:out value='${ issueUpdate.updateDate}' />
+									</td>
+								</tr>
+							
 						</c:forEach>
+						</table>
 					</div>
 				</c:if>
 				<div class="issue-update-div col-md-4">
@@ -109,8 +114,8 @@
 						<h4>Update Issue Status</h4>
 						<div>
 							<form method="POST" action="updateIssueStatus">
-								<div class="form-group select" style="text-align:center;">
-								<input type="hidden" name="issueId" value="${ issue.issueId }" />
+								<div class="form-group select" style="text-align: center;">
+									<input type="hidden" name="issueId" value="${ issue.issueId }" />
 									<select name="status" size="1" required>
 										<option value=''>Please select a status</option>
 										<option value="ASSIGNED">Assigned</option>
@@ -119,7 +124,8 @@
 									</select>
 								</div>
 								<div class="login-button">
-									<button type="submit" class="btn btn-primary btn-pill">Update Status</button>
+									<button type="submit" class="btn btn-primary btn-pill">Update
+										Status</button>
 								</div>
 							</form>
 						</div>

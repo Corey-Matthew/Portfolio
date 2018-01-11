@@ -217,7 +217,7 @@ public class IssueController {
 	 * @param issueId
 	 * @return
 	 */
-	@RequestMapping(value = "approveIssue")
+	@RequestMapping(value = "approveIssue", method=RequestMethod.POST)
 	public String approveIssueProc(HttpServletRequest req, Model model, 
 			@RequestParam int issueId) {
 
@@ -243,7 +243,7 @@ public class IssueController {
 	 * @param issueId
 	 * @return
 	 */
-	@RequestMapping(value = "rejectIssue")
+	@RequestMapping(value = "rejectIssue", method=RequestMethod.POST)
 	public String rejectIssueProc(HttpServletRequest req, Model model, 
 			@RequestParam int issueId) {
 
@@ -270,7 +270,7 @@ public class IssueController {
 	 * @param status
 	 * @return
 	 */
-	@RequestMapping(value = "updateIssueStatus")
+	@RequestMapping(value = "updateIssueStatus", method=RequestMethod.POST)
 	public String updateIssueStatusProc(HttpServletRequest req, Model model, 
 			@RequestParam int issueId, @RequestParam String status) {
 
@@ -298,7 +298,7 @@ public class IssueController {
 	 * @param status
 	 * @return
 	 */
-	@RequestMapping(value = "updateIssueComment")
+	@RequestMapping(value = "updateIssueComment", method=RequestMethod.POST)
 	public String updateIssueAdminComment(HttpServletRequest req, Model model, 
 			@RequestParam int issueId, @RequestParam String adminComment) {
 		HttpSession session = req.getSession();
