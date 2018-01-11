@@ -170,7 +170,13 @@ public class IssueController {
 		model.addAttribute("issues", issues);
 		return "issues";
 	}
-	
+	/**
+	 * 
+	 * @param req
+	 * @param model
+	 * @param deptId
+	 * @return
+	 */
 	@RequestMapping(value = "/viewDeptIssues")
 	public String viewAssignedIssues(HttpServletRequest req, Model model, @RequestParam int deptId) {
 		HttpSession session = req.getSession();
@@ -213,6 +219,7 @@ public class IssueController {
 	 * @param model
 	 * @param issueId
 	 * @return
+	 * @see listIssues(Model model, HttpServletRequest req)
 	 */
 	@RequestMapping(value = "approveIssue")
 	public String approveIssueProc(HttpServletRequest req, Model model, 
