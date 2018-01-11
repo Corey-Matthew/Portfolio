@@ -77,8 +77,8 @@
 
 								<c:forEach var='issue' items='${ requestScope.issues }'>
 
-									<tr onclick="window.location='viewissue?issueId=${issue.issueId}';">
-										<td><c:out value='${ issue.issueId}' /></td>
+									<tr>
+										<td id="issueLink" onclick="window.location='viewissue?issueId=${issue.issueId}';"><c:out value='${ issue.issueId}' /></td>
 										<c:if test='${ user.role.roleName == "admin" }'>
 										<td>
 											<div class="input-group">

@@ -8,6 +8,11 @@ body {
 	padding-top: 100px;
 }
 
+textarea {
+	width: 95%;
+	margin-top: 10px;
+}
+
 .homepage {
 	background-color: #f8f9fa;
 }
@@ -25,9 +30,10 @@ h1, h2, h3, h4, h5, h6, button, .login-button, p {
 	padding: 5px;
 }
 
-.center{
-	text-align:center;
+.center {
+	text-align: center;
 }
+
 h1, h2, h3, h4, h5, h6 {
 	font-family: 'Cabin', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 	font-weight: 700;
@@ -193,6 +199,10 @@ ul.nav.navbar-nav li a:hover {
 	text-align: center;
 }
 
+select {
+	border-radius: 5px;
+}
+
 .issues-table table {
 	margin: 0 auto;
 	border: 1px solid black;
@@ -230,8 +240,8 @@ tr {
 	}
 }
 
-#issue-element{
-	margin:3%;
+#issue-element {
+	margin: 3%;
 }
 
 .scrollbar {
@@ -271,30 +281,41 @@ tr {
 }
 
 #issue-updates {
-    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
-    border-collapse: collapse;
-    width: 100%;
-    table-layout: fixed;
-    word-wrap: break-word;
+	font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+	border-collapse: collapse;
+	width: 100%;
+	table-layout: fixed;
+	word-wrap: break-word;
 }
 
 #issue-updates td, #issue-updates th {
-    border: 1px solid #ddd;
-    padding: 8px;
-}
-#issue-updates tr{
-	text-align: center;	
+	border: 1px solid #ddd;
+	padding: 8px;
 }
 
-#issue-updates tr:nth-child(even){background-color: #f2f2f2;}
+#issue-updates tr {
+	text-align: center;
+}
 
-#issue-updates tr:hover {background-color: #ddd;}
+#issue-updates tr:nth-child(even) {
+	background-color: #f2f2f2;
+}
+
+#issue-updates tr:hover {
+	background-color: #ddd;
+}
+
+td#issueLink:hover {
+	color: white;
+	cursor: pointer;
+	background: linear-gradient(70deg, #2E455D, #6D2B36);
+}
 
 #issue-updates th {
-    padding-top: 12px;
-    padding-bottom: 12px;
-    background-color: #136562;
-    color: white;
+	padding-top: 12px;
+	padding-bottom: 12px;
+	background: linear-gradient(180deg, #000000, #8E5656);
+	color: white;
 }
 
 #issue-update-table {
@@ -302,10 +323,31 @@ tr {
 	height: 500px;
 }
 
+#issue {
+	border-style: groove;
+	border-radius: 10px;
+	width: 80%;
+	margin: 0 auto;
+	background-color: white;
+}
+
+.issue p{
+	text-align: left;
+}
+
 .row {
 	margin: 0 auto;
 	width: 95%;
+	margin-top: 20px;
+	border-style: outset;
+	border-radius: 10px;
+	background-color: white;
 }
+
+.row h3 {
+	margin-top: 8px;
+}
+
 .row.issue-details {
 	padding: 0 5%;
 }
@@ -320,4 +362,8 @@ tr {
 
 .programtitle {
 	font-size: 44px;
+}
+
+button.btn.btn-primary.btn-pill:hover {
+	background: radial-gradient(#2E455D, #6D2B36);
 }
