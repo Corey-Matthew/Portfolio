@@ -23,7 +23,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 import static org.springframework.test.web.servlet.setup.MockMvcBuilders.*;
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration("classpath:context.xml")
+@ContextConfiguration("classpath:*/test-context.xml")
 @WebAppConfiguration
 public class LoginControllerTest {
 	@Autowired
@@ -45,12 +45,15 @@ public class LoginControllerTest {
 
 	@Test
 	public void testIfDisplayLoginPageReturnsLoginJsp() throws Exception {
-	mockMvc.perform(get("/login")).andExpect(status().isOk()).andExpect(model().attribute("user", User.class)).andExpect(content().string("login"));
+	mockMvc.perform(get("/login")).andExpect(status().isOk());
 	}
 	
 	@Test
-	public void testLoginServelt() throws Exception {
-	mockMvc.perform(post("/loginServlet")).andExpect(status().isOk());
+	public void testLoginServlet() throws Exception {
+	String username = "Corey";
+	String password = "Password";
+		
+		mockMvc.perform(post("/LoginServlet").param("username", username).param("password", password)).andExpect(status().isOk()).andReturn();
 	}
 
 }
