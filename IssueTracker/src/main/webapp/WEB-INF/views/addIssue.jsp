@@ -11,7 +11,7 @@
 <body>
 	<c:choose>
 		<c:when
-			test="${ empty sessionScope.user  || sessionScope.user.role.roleName != 'admin'}">
+			test="${ empty sessionScope.user }">
 			<h1 class="noauthority">Restricted Access</h1>
 			<p>You are either not logged in or you do not have permission to
 				view this page</p>

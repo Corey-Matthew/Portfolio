@@ -326,6 +326,11 @@ td#issueLink:hover {
 	height: 500px;
 }
 
+.user-row tr:hover {
+	cursor: pointer;
+	color: blue;
+}
+
 #issue {
 	border-style: groove;
 	border-radius: 10px;

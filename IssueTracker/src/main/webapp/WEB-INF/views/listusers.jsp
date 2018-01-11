@@ -9,44 +9,51 @@
 	<c:choose>
 		<c:when test="${ sessionScope.user.role.roleName != 'admin' }">
 			<h1 class="noauthority">Restricted Access</h1>
-			<p>You are either not logged in or you do not have permission to view this page</p>
+			<p>You are either not logged in or you do not have permission to
+				view this page</p>
 		</c:when>
 		<c:otherwise>
-		<div class="iter-cards">
-		<h1>User List</h1>
-			<c:forEach var='user' items='${ requestScope.users }'>
-				<div class="user-card col-sm-4">
-						<p>
-							User ID:
-							<c:out value='${ user.userId }' />
-						</p>
-						<p>
-							Department:
-							<c:out value='${ user.department.departmentName }' />
-						</p>
-						<p>
-							Username:
-							<c:out value='${ user.username }' />
-						</p>
-						<p>
-							Email:
-							<c:out value='${ user.email }' />
-						</p>
-						<p>
-							Role:
-							<c:out value='${ user.role.roleName }' />
-						</p>
-						<c:if test="${ user.role.roleName == 'user' }">
-						<a href="viewUserIssues?userId=${ user.userId }" class="btn btn-primary">See User Issues</a>
-						</c:if>
-						<c:if test="${ user.role.roleName == 'department_admin' }">
-						<a href="viewDeptIssues?deptId=${ user.department.departmentId }" class="btn btn-primary">See Department Issues</a>
-						</c:if>
-						<c:if test="${ user.role.roleName == 'admin' }">
-						<a href="issues" class="btn btn-primary">See All Issues</a>
-						</c:if>
+			<div class="row">
+				<div class="iter-cards">
+					<h1>User List</h1>
+					<table id="issue-updates" class="user-row">
+						<tr>
+							<th>User ID</th>
+							<th>Username</th>
+							<th>Department</th>
+							<th>Email</th>
+							<th>Role</th>
+						</tr>
+
+						<c:forEach var='user' items='${ requestScope.users }'>
+
+						<c:if test="${ user.role.roleName == 'user' }"> 
+							<tr onclick="window.location='viewUserIssues?userId=${ user.userId }';">
+							</c:if>
+							<c:if test="${ user.role.roleName == 'department_admin' }">
+							<tr onclick="window.location='viewDeptIssues?deptId=${ user.department.departmentId }';">
+							</c:if>
+							<c:if test="${ user.role.roleName == 'admin' }">
+							<tr onclick="window.location='issues';">
+							</c:if>
+								<td><c:out value='${ user.userId }' /></td>
+								<td><c:out value='${ user.username }' /></td>
+								<td><c:out value='${ user.department.departmentName }' /></td>
+								<td><c:out value='${ user.email }' /></td>
+								<c:choose>
+								<c:when test='${ user.role.roleName == "department_admin" }'>
+								<td><c:out value="dept admin" /></td>
+								</c:when>
+								<c:otherwise>
+								<td><c:out value='${ user.role.roleName }' /></td>
+								</c:otherwise>
+								</c:choose>
+							</tr>
+
+						</c:forEach>
+
+					</table>
 				</div>
-			</c:forEach>
 			</div>
 		</c:otherwise>
 	</c:choose>
