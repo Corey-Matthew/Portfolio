@@ -42,9 +42,11 @@ public class IssueController {
 		HttpSession session = req.getSession();
 		ctx = (ApplicationContext) session.getServletContext().getAttribute("ctx");
 		issueDAO = (IssueDAO) ctx.getBean("IssueDAO");
-
 		User user = (User) session.getAttribute("user");
-		if (user != null) {
+		if(user == null){
+			return "index";
+	
+		} else {
 			if (user.getRole().getRoleName().equals(Role.ADMIN)) {
 				List<Issue> issues = issueDAO.listAll();
 				List<Department> depts = issueDAO.listDepts();
@@ -222,7 +224,7 @@ public class IssueController {
 	 * @return
 	 * @see listIssues(Model model, HttpServletRequest req)
 	 */
-	@RequestMapping(value = "approveIssue")
+	@RequestMapping(value = "approveIssue", method=RequestMethod.POST)
 	public String approveIssueProc(HttpServletRequest req, Model model, 
 			@RequestParam int issueId) {
 
@@ -248,7 +250,7 @@ public class IssueController {
 	 * @param issueId
 	 * @return
 	 */
-	@RequestMapping(value = "rejectIssue")
+	@RequestMapping(value = "rejectIssue", method=RequestMethod.POST)
 	public String rejectIssueProc(HttpServletRequest req, Model model, 
 			@RequestParam int issueId) {
 
@@ -275,7 +277,7 @@ public class IssueController {
 	 * @param status
 	 * @return
 	 */
-	@RequestMapping(value = "updateIssueStatus")
+	@RequestMapping(value = "updateIssueStatus", method=RequestMethod.POST)
 	public String updateIssueStatusProc(HttpServletRequest req, Model model, 
 			@RequestParam int issueId, @RequestParam String status) {
 
@@ -291,6 +293,25 @@ public class IssueController {
 			model.addAttribute("notfound", true);
 			return listIssues(model, req);
 		}
+		return listIssues(model, req);
+	}
+	
+	@RequestMapping(value = "updateIssueComment", method=RequestMethod.POST)
+	public String updateIssueAdminComment(HttpServletRequest req, Model model, 
+			@RequestParam int issueId, @RequestParam String adminComment) {
+		HttpSession session = req.getSession();
+		ctx = (ApplicationContext) session.getServletContext().getAttribute("ctx");
+		issueDAO = (IssueDAO) ctx.getBean("IssueDAO");
+		if (Validation.compare(issueDAO, issueId)) {
+			Issue issue = issueDAO.getIssue(issueId);
+	
+			issue.setAdminComment(adminComment);
+			issueDAO.updateIssue(issue);
+		} else {
+			model.addAttribute("notfound", true);
+			return listIssues(model, req);
+		}
+		
 		return listIssues(model, req);
 	}
 }
