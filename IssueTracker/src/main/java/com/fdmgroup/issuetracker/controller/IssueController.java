@@ -174,11 +174,11 @@ public class IssueController {
 		return "issues";
 	}
 	/**
-	 * 
-	 * @param req
-	 * @param model
-	 * @param deptId
-	 * @return
+	 * This is to view a issue by department
+	 * @param req allows us to access the application context
+	 * @param model contains users attribute for departments and issues
+	 * @param deptId allows for Assigning of deptId
+	 * @return to issues.jsp
 	 */
 	@RequestMapping(value = "/viewDeptIssues") 
 	public String viewAssignedIssues(HttpServletRequest req, Model model, @RequestParam int deptId) {
@@ -193,11 +193,12 @@ public class IssueController {
 	}
 	/**
 	 * This updates an issue
-	 * @param issueId
-	 * @param issueComment
-	 * @param req
-	 * @param model
-	 * @return
+	 * @param issueId used to retrieve a specific issue
+	 * @param issueComment used to set a comment in issueUpdate
+	 * @param req allows us to access the application context
+	 * @param model used as a param for return
+	 * @return listUsers(issueId, model, req)
+	 * @see listUsers(@RequestParam int issueId, Model model, HttpServletRequest req)
 	 */
 	@RequestMapping(value = "addIssueUpdate", method = RequestMethod.POST)
 	public String addIssueUpdate(@RequestParam int issueId, @RequestParam String issueComment, HttpServletRequest req,
@@ -218,11 +219,11 @@ public class IssueController {
 	}
 	/**
 	 * This approves an issue
-	 * @param req
-	 * @param model
-	 * @param issueId
-	 * @return
-	 * @see listIssues(Model model, HttpServletRequest req)
+	 * @param req allows us to access the application context
+	 * @param model contains users attribute for notFound and is used as param in return
+	 * @param issueId used to retrieve a specific issue
+	 * @return listUsers(issueId, model, req)
+	 * @see listUsers(@RequestParam int issueId, Model model, HttpServletRequest req)
 	 */
 	@RequestMapping(value = "approveIssue", method=RequestMethod.POST)
 	public String approveIssueProc(HttpServletRequest req, Model model, 
@@ -245,10 +246,11 @@ public class IssueController {
 	}
 	/**
 	 * This rejects an issue
-	 * @param req
-	 * @param model
-	 * @param issueId
-	 * @return
+	 * @param req allows us to access the application context
+	 * @param model contains users attribute for notFound and is used as param in return
+	 * @param issueId used to retrieve a specific issue
+	 * @return return listIssues(model, req)
+	 * @see listIssues(Model model, HttpServletRequest req)
 	 */
 	@RequestMapping(value = "rejectIssue", method=RequestMethod.POST)
 	public String rejectIssueProc(HttpServletRequest req, Model model, 
@@ -271,11 +273,12 @@ public class IssueController {
 	}
 	/**
 	 * This updates an issue status
-	 * @param req
-	 * @param model
-	 * @param issueId
-	 * @param status
-	 * @return
+	 * @param req allows us to access the application context
+	 * @param model contains users attribute for notFound and is used as param in return
+	 * @param issueId used to retrieve a specific issue
+	 * @param status used to set a specific status 
+	 * @return listIssues(model, req);
+	 * @see listIssues(Model model, HttpServletRequest req)
 	 */
 	@RequestMapping(value = "updateIssueStatus", method=RequestMethod.POST)
 	public String updateIssueStatusProc(HttpServletRequest req, Model model, 
@@ -295,7 +298,15 @@ public class IssueController {
 		}
 		return listIssues(model, req);
 	}
-	
+	/**
+	 * 
+	 * @param req allows us to access the application context
+	 * @param model contains users attribute for notFound and is used as param in return
+	 * @param issueId used to retrieve a specific issue
+	 * @param adminComment used to set an adminComment to issue
+	 * @return listIssues(model, req);
+	 * @see listIssues(Model model, HttpServletRequest req)
+	 */
 	@RequestMapping(value = "updateIssueComment", method=RequestMethod.POST)
 	public String updateIssueAdminComment(HttpServletRequest req, Model model, 
 			@RequestParam int issueId, @RequestParam String adminComment) {
