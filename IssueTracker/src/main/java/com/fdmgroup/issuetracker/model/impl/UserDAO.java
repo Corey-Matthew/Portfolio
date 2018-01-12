@@ -23,13 +23,10 @@ import com.fdmgroup.issuetracker.model.IUserDAO;
  */
 public class UserDAO  {
 
-	private static final String PERSISTENCE_UNIT_NAME = "IssueTracker";
-//	static Logger myLogger = Logger.getLogger("myLogger");
-	
 	private static EntityManagerFactory factory;
 
-	public UserDAO(){		
-		factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);	
+	public UserDAO(EntityManagerFactory emf){		
+		factory = emf;	
 	}
 
 	public EntityManager getEntityManager() {
@@ -116,11 +113,21 @@ public class UserDAO  {
 			if (foundUser != null) {
 				et.begin();
 				User modifyUser = em.find(User.class, foundUser.getUserId());
-				modifyUser.setDepartment(user.getDepartment());
+				Department dept = getDepartment(user.getDepartment().getDepartmentName());
+				if(dept != null)
+				{
+					dept = em.find(Department.class, dept.getDepartmentId());
+					user.setDepartment(dept);
+				}
+				Role role = getRole(user.getRole().getRoleName());
+				if(role != null)
+				{
+					role = em.find(Role.class, role.getRole_id());
+					user.setRole(role);
+				}
 				modifyUser.setUsername(user.getUsername());
 				modifyUser.setPassword(user.getPassword());
 				modifyUser.setEmail(user.getEmail());
-				modifyUser.setRole(user.getRole());
 				et.commit();
 				return true;
 			}
@@ -187,7 +194,8 @@ public class UserDAO  {
 		EntityTransaction et = em.getTransaction();
 		try {
 			et.begin();
-			em.persist(role);
+			Role getRole = getRole(role.getRoleName());
+			em.merge(getRole);
 			et.commit();
 			return true;
 		} finally {

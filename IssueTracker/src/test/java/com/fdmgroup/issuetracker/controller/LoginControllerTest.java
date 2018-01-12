@@ -53,7 +53,7 @@ public class LoginControllerTest {
 	String username = "Corey";
 	String password = "Password";
 		
-		mockMvc.perform(post("/LoginServlet").param("username", username).param("password", password)).andExpect(status().isOk()).andReturn();
+		mockMvc.perform(post("/LoginProc").param("username", username).param("password", password)).andExpect(status().isOk()).andReturn();
 	}
 
 }

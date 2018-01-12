@@ -87,6 +87,7 @@
 														<input type="hidden" name="issueId"
 															value='${ issue.issueId}' /> <select name="deptId"
 															size="1" required>
+															<option value=''>--</option>
 															<c:forEach var='dept' items='${ requestScope.depts}'>
 																<option value="${dept.departmentId}"
 																	<c:if test = '${ issue.assignedTo == dept.departmentId}'>selected</c:if>>${

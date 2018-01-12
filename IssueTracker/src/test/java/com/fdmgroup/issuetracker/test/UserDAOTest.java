@@ -6,6 +6,8 @@ import java.util.List;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.fdmgroup.issuetracker.model.impl.Department;
 import com.fdmgroup.issuetracker.model.impl.Role;
@@ -18,6 +20,7 @@ public class UserDAOTest {
 	UserDAO dao;
 	Role role;
 	Department department;
+	ApplicationContext ctx;
 	
 	@Before
 	public void before(){
@@ -26,7 +29,8 @@ public class UserDAOTest {
 		role = new Role();
 		role.setAdmin();
 		user = new User(department, "sal","78y","salhenson@gmail.com", role);
-		dao = new UserDAO();
+		ctx = new ClassPathXmlApplicationContext("context.xml");
+		dao = (UserDAO) ctx.getBean("UserDAO");
 	}
 	@Test
 	public void test_addUser_UserDAO() {

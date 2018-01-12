@@ -48,7 +48,10 @@ public class RegisterController {
 	 * @return a string that indicate page based on success of register
 	 */
 	@RequestMapping(value = "/registerUser", method = RequestMethod.POST)
-	public String register(HttpServletRequest request, Model model, @RequestParam String username, @RequestParam String password, @RequestParam String email, @RequestParam String confirmedPassword, @RequestParam String userType, @RequestParam String department) {
+	public String register(HttpServletRequest request, Model model, 
+			@RequestParam String username, @RequestParam String password, 
+			@RequestParam String email, @RequestParam String confirmedPassword, 
+			@RequestParam String userType, @RequestParam String department) {
 		
 		ApplicationContext ac = (ApplicationContext) request.getSession().getServletContext().getAttribute("ctx");
 		

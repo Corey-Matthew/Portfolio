@@ -36,7 +36,7 @@
 					</p>
 				</c:if>
 				<h3>Login</h3>
-				<form method="POST" action="LoginServlet">
+				<form method="POST" action="LoginProc">
 					<div class="form-group">
 						<div class="input-group">
 							<div class="input-group-prepend">
