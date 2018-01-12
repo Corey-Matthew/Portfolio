@@ -11,8 +11,8 @@ import javax.persistence.*;
 @NamedQueries({
 //@NamedQuery(name = "Issue.findIssue", query = "Select i from Issue i where i.issueId = :issueId"),
 @NamedQuery(name = "Issue.findAll", query = "Select i from Issue i order by i.priority DESC, i.dateSubmitted DESC"),
-@NamedQuery(name = "Issue.listDepts", query = "Select i from Issue i where i.assignedTo = :assignedTo"),
-@NamedQuery(name = "Issue.listUserIssues", query = "Select i from Issue i where i.submittedBy = :submittedBy")
+@NamedQuery(name = "Issue.listDepts", query = "Select i from Issue i where i.assignedTo = :assignedTo order by i.dateSubmitted DESC"),
+@NamedQuery(name = "Issue.listUserIssues", query = "Select i from Issue i where i.submittedBy = :submittedBy order by i.dateSubmitted DESC")
 })
 public class Issue {
 
