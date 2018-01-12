@@ -23,8 +23,7 @@ public class LoginController {
 	/**
 	 * Return to the login page
 	 * 
-	 * @param req
-	 * @return
+	 * @return String returns name of view page for the dispatcher servlet.
 	 */
 	@RequestMapping(value = "/login")
 	public String displayLogin() {
@@ -34,11 +33,11 @@ public class LoginController {
 	/**
 	 * Deal with login requests Need to get role of every user
 	 * 
-	 * @param request
-	 * @param model
-	 * @param username
-	 * @param password
-	 * @return path
+	 * @param request is the servlet request from the webcontainer.
+	 * @param model object to be populated with attributes to be used by frontend.
+	 * @param username string containing the username
+	 * @param password string that contains the password of the user
+	 * @return path returns the index view page.
 	 */
 	@RequestMapping(value = "/LoginServlet", method = RequestMethod.POST)
 	public String login(HttpServletRequest request, Model model, 
@@ -67,8 +66,8 @@ public class LoginController {
 	}
 	/**
 	 * Logs out a user
-	 * @param request
-	 * @return String
+	 * @param request is the servlet request from the webcontainer.
+	 * @return String returns the index view page.
 	 */
 	@RequestMapping(value = "/logout")
 	public String logout(HttpServletRequest request) {
