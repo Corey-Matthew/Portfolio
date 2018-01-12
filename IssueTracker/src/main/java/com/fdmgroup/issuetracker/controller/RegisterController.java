@@ -25,7 +25,6 @@ public class RegisterController {
 	/**
 	 * Method that directs to register page. 
 	 * It checks first if the parameters are legal for each field.
-	 *  
 	 * @return - return register page
 	 */
 	@RequestMapping(value="/register")
@@ -38,7 +37,7 @@ public class RegisterController {
 	 * checks if fields are empty, if some fields already exists and if so then
 	 * throws RegisterException
 	 * 
-	 * @param request
+	 * @param request allows us to set and retrieve attributes for the session
 	 * @param model - contains users attribute
 	 * @param username - registered user's username
 	 * @param password - registered user's password
@@ -46,7 +45,7 @@ public class RegisterController {
 	 * @param confirmedPassword - another field of registered user's password to match with the first password. To ensure there isn't a typo in the password
 	 * @param userType - set if user is a user or has admin rights, if so if the admin has just a department or the whole system
 	 * @param department - department with the system
-	 * @return
+	 * @return a string that indicate page based on success of register
 	 */
 	@RequestMapping(value = "/registerUser", method = RequestMethod.POST)
 	public String register(HttpServletRequest request, Model model, @RequestParam String username, @RequestParam String password, @RequestParam String email, @RequestParam String confirmedPassword, @RequestParam String userType, @RequestParam String department) {
