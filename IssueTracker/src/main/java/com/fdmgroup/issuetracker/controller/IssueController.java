@@ -78,7 +78,7 @@ public class IssueController {
 	 */
 	@RequestMapping(value = "/addIssueProc", method = RequestMethod.POST)
 	public String addIssueMethod(Model model, HttpServletRequest req, @RequestParam(value = "title") String title,
-			@RequestParam(value = "userDescription") String userDescription) {
+			@RequestParam(value = "userDescription") String userDescription, @RequestParam int priority) {
 		HttpSession session = req.getSession();
 		ctx = (ApplicationContext) session.getServletContext().getAttribute("ctx");
 		issueDAO = (IssueDAO) ctx.getBean("IssueDAO");
@@ -87,6 +87,7 @@ public class IssueController {
 		issue.setTitle(title);
 		issue.setUserDescription(userDescription);
 		issue.setSubmittedBy(sessionUser.getUserId());
+		issue.setPriority(priority);
 		issue.setDateSubmitted(new Date());
 		boolean addIssueBool = issueDAO.addIssue(issue);
 		if (addIssueBool) {

@@ -372,6 +372,6 @@ td#issueLink:hover {
 	font-size: 44px;
 }
 
-button.btn.btn-primary.btn-pill:hover {
+.btn:hover {
 	background: radial-gradient(#2E455D, #6D2B36);
 }

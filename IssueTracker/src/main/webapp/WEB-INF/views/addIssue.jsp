@@ -10,8 +10,7 @@
 <c:import url="/WEB-INF/views/navbar.jsp"></c:import>
 <body>
 	<c:choose>
-		<c:when
-			test="${ empty sessionScope.user }">
+		<c:when test="${ empty sessionScope.user }">
 			<h1 class="noauthority">Restricted Access</h1>
 			<p>You are either not logged in or you do not have permission to
 				view this page</p>
@@ -38,6 +37,16 @@
 									</span>
 									<textarea class="form-control" name="userDescription"
 										placeholder="Description of issue" maxlength="300" required></textarea>
+								</div>
+								<div class="form-group">
+									<span class="input-group-addon"> <i
+										class="fa fa-info-circle"> Priority Level</i>
+									</span> 
+									<select class="form-control" name="priority" size="1" required>
+										<option value="1"> Low </option>
+										<option value="2"> Normal </option>
+										<option value="3"> High </option>
+									</select>
 								</div>
 								<div class="login-button">
 									<span>

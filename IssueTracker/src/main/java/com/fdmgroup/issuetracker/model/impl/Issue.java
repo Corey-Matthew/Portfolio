@@ -10,7 +10,7 @@ import javax.persistence.*;
 @Table(name = "Issue")
 @NamedQueries({
 //@NamedQuery(name = "Issue.findIssue", query = "Select i from Issue i where i.issueId = :issueId"),
-@NamedQuery(name = "Issue.findAll", query = "Select i from Issue i"),
+@NamedQuery(name = "Issue.findAll", query = "Select i from Issue i order by i.priority, i.dateResolved desc"),
 @NamedQuery(name = "Issue.listDepts", query = "Select i from Issue i where i.assignedTo = :assignedTo"),
 @NamedQuery(name = "Issue.listUserIssues", query = "Select i from Issue i where i.submittedBy = :submittedBy")
 })
@@ -32,7 +32,9 @@ public class Issue {
 	@Column(name = "submitted_by")
 	private int submittedBy;
 	
-	
+	@Column(name = "Priority")
+	private int priority;
+
 	@Enumerated(EnumType.STRING)
 	private Status status = Status.UNASSIGNED;
 	
@@ -125,6 +127,14 @@ public class Issue {
 
 	public void setIssueUpdates(List<IssueUpdate> issueUpdates) {
 		this.issueUpdates = issueUpdates;
+	}
+	
+	public int getPriority() {
+		return priority;
+	}
+
+	public void setPriority(int priority) {
+		this.priority = priority;
 	}
 	
 	@Override
