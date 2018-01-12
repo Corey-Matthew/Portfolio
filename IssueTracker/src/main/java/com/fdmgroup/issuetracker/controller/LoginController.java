@@ -21,16 +21,6 @@ public class LoginController {
 	private UserDAO userDAO;
 
 	/**
-	 * Return to the login page
-	 * 
-	 * @return String returns name of view page for the dispatcher servlet.
-	 */
-	@RequestMapping(value = "/login")
-	public String displayLogin() {
-		return "login";
-	}
-
-	/**
 	 * Deal with login requests Need to get role of every user
 	 * 
 	 * @param request is the servlet request from the webcontainer.
@@ -50,19 +40,15 @@ public class LoginController {
 		User user = userDAO.getUser(compare);
 		String path = null;
 		if (!Validation.checkUsername(compare)) {
-			path = "index";
 			model.addAttribute("invalidUser", true);
 		} else if (user == null) {
-			path = "index";
 			model.addAttribute("notfound", true);
 		} else if (Validation.compare(userDAO, compare, password)) {
 			request.getSession().setAttribute("user", user);
-			path = "index";
 		} else {
 			model.addAttribute("notmatch", true);
-			path = "index";
 		}
-		return path;
+		return "index";
 	}
 	/**
 	 * Logs out a user
