@@ -8,7 +8,7 @@
 <body>
 		<section>
 			<form>
-				<h1>HTTP 404 - File not found</h1>	
+				<h1>HTTP 404 - Page not found</h1>	
 			</form>
 		</section>
 </body>

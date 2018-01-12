@@ -69,7 +69,7 @@
 							<div class="issue-update-form">
 								<form method="POST" action="addIssueUpdate">
 									<input type="hidden" name="issueId" value="${ issue.issueId }" />
-									<div class="form-group" style="padding: 0 20%;">
+									<div class="form-group">
 										<span class="input-group-addon">
 											<b> Update on Issue: 
 											</b>

@@ -7,8 +7,7 @@
 <c:import url="/WEB-INF/views/navbar.jsp"></c:import>
 <body>
 	<c:choose>
-		<c:when
-			test="${ empty sessionScope.user}">
+		<c:when test="${ empty sessionScope.user}">
 			<h1 class="noauthority">Restricted Access</h1>
 			<p>You are either not logged in or you do not have permission to
 				view this page</p>
@@ -78,26 +77,43 @@
 								<c:forEach var='issue' items='${ requestScope.issues }'>
 
 									<tr>
-										<td id="issueLink" onclick="window.location='viewissue?issueId=${issue.issueId}';"><c:out value='${ issue.issueId}' /></td>
+										<td id="issueLink"
+											onclick="window.location='viewissue?issueId=${issue.issueId}';"><c:out
+												value='${ issue.issueId}' /></td>
 										<c:if test='${ user.role.roleName == "admin" }'>
-										<td>
-											<div class="input-group">
-												<form method="POST" action="assign">
-													<input type="hidden" name="issueId"
-														value='${ issue.issueId}' /> <select name="deptId"
-														size="1" required>
-														<c:forEach var='dept' items='${ requestScope.depts}'>
-															<option value="${dept.departmentId}"
-																<c:if test = '${ issue.assignedTo == dept.departmentId}'>selected</c:if>>${
+											<td>
+												<div class="input-group">
+													<form method="POST" action="assign">
+														<input type="hidden" name="issueId"
+															value='${ issue.issueId}' /> <select name="deptId"
+															size="1" required>
+															<c:forEach var='dept' items='${ requestScope.depts}'>
+																<option value="${dept.departmentId}"
+																	<c:if test = '${ issue.assignedTo == dept.departmentId}'>selected</c:if>>${
 									dept.departmentName }
-															</option>
-														</c:forEach>
-													</select> <span class="input-group-addon">
-														<button type="submit" class="btn btn-primary btn-pill">Assign</button>
-													</span>
-												</form>
-											</div>
-										</td>
+																</option>
+															</c:forEach>
+														</select> <span class="input-group-addon"> 
+														<c:choose>
+														<c:when test="${ not empty issue.priority }">
+														<c:if test="${ issue.priority eq 1 }">
+																<button type="submit" class="btn btn-info btn-pill">Assign</button>
+															</c:if> 
+															<c:if test="${ issue.priority eq 2 }">
+																<button type="submit" class="btn btn-warning btn-pill">Assign</button>
+															</c:if> 
+															<c:if test="${ issue.priority eq 3 }">
+																<button type="submit" class="btn btn-danger btn-pill">Assign</button>
+															</c:if>
+															</c:when>
+															<c:otherwise>
+															<button type="submit" class="btn btn-primary btn-pill">Assign</button>
+															</c:otherwise>
+															</c:choose>
+														</span>
+													</form>
+												</div>
+											</td>
 										</c:if>
 										<td><c:out value='${ issue.status}' /></td>
 									</tr>
@@ -115,7 +131,7 @@
 			</c:choose>
 		</c:otherwise>
 	</c:choose>
-	
+
 </body>
 <c:import url="/WEB-INF/views/footer.jsp"></c:import>
 </html>
