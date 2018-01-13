@@ -29,7 +29,7 @@ public class LoginController {
 	 * @param password string that contains the password of the user
 	 * @return path returns the index view page.
 	 */
-	@RequestMapping(value = "/LoginServlet", method = RequestMethod.POST)
+	@RequestMapping(value = "/LoginProc", method = RequestMethod.POST)
 	public String login(HttpServletRequest request, Model model, 
 			@RequestParam String username,
 			@RequestParam String password) {
@@ -38,7 +38,6 @@ public class LoginController {
 		userDAO = (UserDAO) ctx.getBean("UserDAO");
 		String compare = username.toLowerCase();
 		User user = userDAO.getUser(compare);
-		String path = null;
 		if (!Validation.checkUsername(compare)) {
 			model.addAttribute("invalidUser", true);
 		} else if (user == null) {

@@ -254,15 +254,21 @@ public class IssueController {
 	 */
 	@RequestMapping(value = "rejectIssue", method=RequestMethod.POST)
 	public String rejectIssueProc(HttpServletRequest req, Model model, 
-			@RequestParam int issueId) {
+			@RequestParam int issueId, @RequestParam String rejectIssueReason) {
 
 		HttpSession session = req.getSession();
 		ctx = (ApplicationContext) session.getServletContext().getAttribute("ctx");
 		issueDAO = (IssueDAO) ctx.getBean("IssueDAO");
-
 		if (Validation.compare(issueDAO, issueId)) {
 			Issue issue = issueDAO.getIssue(issueId);
-			issue.setStatus(Status.UNASSIGNED);
+			List<IssueUpdate> issueUpdates = issue.getIssueUpdates();
+			IssueUpdate issueUpdate = (IssueUpdate) ctx.getBean("newIssueUpdate");
+			issue.setStatus(Status.REJECTED);
+			issueUpdate.setIssue(issue);
+			issueUpdate.setUpdateComment(rejectIssueReason);
+			issueUpdate.setUpdateDate(new Date());
+			issueUpdate.setSubmittedBy((User) session.getAttribute("user"));
+			issueUpdates.add(issueUpdate);
 			issue.setAssignedTo(0);
 			issueDAO.updateIssue(issue);
 		} else {

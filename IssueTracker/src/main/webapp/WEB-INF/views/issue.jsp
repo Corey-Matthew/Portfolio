@@ -12,10 +12,10 @@
 			<p>
 		</c:when>
 		<c:otherwise>
-		<h1 id="issue"> Issue </h1>
+			<h1 id="issue">Issue</h1>
 			<div class="row">
 				<div class="issue col-md-4">
-				<h3> Details </h3>
+					<h3>Details</h3>
 					<p>
 						<b>Issue ID:</b>
 						<c:out value='${ issue.issueId }' />
@@ -50,7 +50,7 @@
 							</c:if>
 						</c:when>
 						<c:otherwise>
-						<b>Admin Comment:</b>
+							<b>Admin Comment:</b>
 							<form method="POST" action="updateIssueComment">
 								<input type="hidden" name="issueId" value="${ issue.issueId }" />
 								<div class="form-group center">
@@ -70,9 +70,8 @@
 								<form method="POST" action="addIssueUpdate">
 									<input type="hidden" name="issueId" value="${ issue.issueId }" />
 									<div class="form-group">
-										<span class="input-group-addon">
-											<b> Update on Issue: 
-											</b>
+										<span class="input-group-addon"> <b> Update on
+												Issue: </b>
 										</span>
 										<textarea class="form-control" name="issueComment"
 											placeholder="Enter any updates on the issue" maxlength="300"
@@ -108,6 +107,11 @@
 						</div>
 						<div class="login-button">
 							<form method="POST" action="rejectIssue">
+								<div class="form-group">
+									<textarea class="form-control" name="rejectIssueReason"
+										placeholder="Enter reject issue reason" maxlength="300"
+										required>Please re-assign issue because..</textarea>
+								</div>
 								<input type="hidden" name="issueId" value="${ issue.issueId }" />
 								<button type="submit" class="btn btn-danger btn-pill">Reject
 									issue</button>
